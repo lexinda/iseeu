@@ -31,7 +31,6 @@
     
     [_hud showWhileExecuting:@selector(showHud) onTarget:self withObject:nil animated:YES];
     
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)showHud{
