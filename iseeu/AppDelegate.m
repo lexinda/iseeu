@@ -10,6 +10,10 @@
 
 #import "ViewController.h"
 
+#import "MFSideMenuContainerViewController.h"
+
+#import "SideMenuViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -25,9 +29,13 @@
     
     ViewController *viewController = [[ViewController alloc] init];
     
+    SideMenuViewController *rightMenuViewController = [[SideMenuViewController alloc] init];
+    
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:viewController];
     
-    [self.window setRootViewController:navigation];
+    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:navigation leftMenuViewController:nil rightMenuViewController:rightMenuViewController];
+    
+    [self.window setRootViewController:container];
     
     [self.window makeKeyAndVisible];
     

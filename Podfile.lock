@@ -21,8 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - MBProgressHUD (0.9)
+  - MFSideMenu (0.5.5)
   - Reachability (3.1.1)
-  - SBJson (4.0.1)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
@@ -32,8 +32,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.4.1)
   - MBProgressHUD (~> 0.9)
+  - MFSideMenu (~> 0.5.5)
   - Reachability (~> 3.1.1)
-  - SBJson (~> 4.0.0)
   - SDWebImage (~> 3.7.1)
   - TSPopover (~> 0.1.0)
   - XHRefreshControl (~> 3.6)
@@ -41,8 +41,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  MFSideMenu: 0493b0f57385dd036cc5443407a31fda6dee81ac
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
-  SBJson: d71212c078abf4679d54b0d0565260c474e46235
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   TSPopover: 7424d73c5d4628055d3692fc1c8c902ac91bff2c
   XHRefreshControl: eb2d4aafaf5972e3c0ebd64bbf4612bdf6a098df
