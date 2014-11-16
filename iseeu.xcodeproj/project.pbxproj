@@ -14,7 +14,6 @@
 		28224B111A13985A00C6EE18 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28224B101A13985A00C6EE18 /* Images.xcassets */; };
 		28224B141A13985A00C6EE18 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28224B121A13985A00C6EE18 /* LaunchScreen.xib */; };
 		28224B201A13985A00C6EE18 /* iseeuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B1F1A13985A00C6EE18 /* iseeuTests.m */; };
-		28224B2A1A139C3A00C6EE18 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 28224B291A139C3A00C6EE18 /* Podfile */; };
 		2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3C91A17A7740062D7F1 /* SpecialSellingTopView.m */; };
 		2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CC1A17A7910062D7F1 /* SpecialSellingView.m */; };
 		2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */; };
@@ -233,7 +232,6 @@
 		28224B191A13985A00C6EE18 /* iseeuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iseeuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28224B1E1A13985A00C6EE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28224B1F1A13985A00C6EE18 /* iseeuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iseeuTests.m; sourceTree = "<group>"; };
-		28224B291A139C3A00C6EE18 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2830D3C81A17A7740062D7F1 /* SpecialSellingTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSellingTopView.h; sourceTree = "<group>"; };
 		2830D3C91A17A7740062D7F1 /* SpecialSellingTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialSellingTopView.m; sourceTree = "<group>"; };
 		2830D3CB1A17A7910062D7F1 /* SpecialSellingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSellingView.h; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 		28224AF71A13985A00C6EE18 = {
 			isa = PBXGroup;
 			children = (
-				28224B291A139C3A00C6EE18 /* Podfile */,
 				28224B021A13985A00C6EE18 /* iseeu */,
 				28224B1C1A13985A00C6EE18 /* iseeuTests */,
 				28224B011A13985A00C6EE18 /* Products */,
@@ -923,7 +920,6 @@
 				28D533161A14F0A400E62C39 /* hhh.png in Resources */,
 				28D533361A14F0A400E62C39 /* listview_arrow.png in Resources */,
 				28D533481A14F0A400E62C39 /* personal_balack.png in Resources */,
-				28224B2A1A139C3A00C6EE18 /* Podfile in Resources */,
 				28D5331E1A14F0A400E62C39 /* home_head_right.png in Resources */,
 				28D533671A14F0A400E62C39 /* shoppingcar_delete.png in Resources */,
 				28D533631A14F0A400E62C39 /* shopping_detial.png in Resources */,

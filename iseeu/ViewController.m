@@ -294,23 +294,6 @@
         [alert show];
     }];
     
-//    NSMutableDictionary *requestParms = [[NSMutableDictionary alloc] init];
-//    
-//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-//    
-//    NSMutableURLRequest *request = [requestSerializer requestWithMethod:@"POST" URLString:homeUrl parameters:requestParms error:nil];
-//    
-//    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    [requestOperation setResponseSerializer:responseSerializer];
-//    [requestOperation start];
-//    [requestOperation waitUntilFinished];
-//    
-//    NSDictionary *userInfo = [[requestOperation responseObject] objectForKey:@"user"];
-//
-//    NSLog(@"%@",[requestOperation responseObject]);
-    
 }
 
 //手指点击事件
