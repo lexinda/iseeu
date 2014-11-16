@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00672B13EAA0C6B0D16060E5"
+               BlueprintIdentifier = "E1EB37815F560A1C6D32320B"
                BuildableName = "libPods-TSPopover.a"
                BlueprintName = "Pods-TSPopover"
                ReferencedContainer = "container:Pods.xcodeproj">

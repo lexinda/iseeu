@@ -30,7 +30,7 @@ PODS:
   - XHRefreshControl (3.6)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.4.1)
+  - AFNetworking (~> 2.0)
   - MBProgressHUD (~> 0.9)
   - MFSideMenu (~> 0.5.5)
   - Reachability (~> 3.1.1)
