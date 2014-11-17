@@ -12,6 +12,8 @@
 
 @synthesize _imageArray;
 
+@synthesize _delegate;
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
@@ -33,11 +35,19 @@
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, separateView.frame.origin.y+separateView.frame.size.height+5.0, rect.size.width, 120.0)];
             
-            NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_IMAGEURL,homeModel.pic]];
+            NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,homeModel.pic]];
             
             [imageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"SpecialSellingImage%i",i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSLog(@"加载SpecialSellingImage!");
             }];
+            
+            imageView.tag = [homeModel.id intValue];
+            
+            imageView.userInteractionEnabled = YES;
+            
+            UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage:)];
+            
+            [imageView addGestureRecognizer:singleTap];
             
             [self addSubview:imageView];
             
@@ -68,6 +78,15 @@
     }
     
     
+}
+
+-(void)onClickImage:(UITapGestureRecognizer *)sender{
+    
+    UIImageView *imageView = (UIImageView *)sender.view;
+    
+    NSLog(@"图片%i被点击!",imageView.tag);
+    
+    [_delegate pushGoodsDetail:[NSNumber numberWithInt:imageView.tag]];
 }
 
 

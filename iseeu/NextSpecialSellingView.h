@@ -12,8 +12,12 @@
 
 #import "UIImageView+WebCache.h"
 
+#import "HomeDelegate.h"
+
 @interface NextSpecialSellingView : UIView
 
 @property(strong,nonatomic)NSArray *_imageArray;
+
+@property(nonatomic)id<HomeDelegate> _delegate;
 
 @end

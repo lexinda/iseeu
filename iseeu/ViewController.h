@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
-#import "MFSideMenu.h"
+#import <MFSideMenu/MFSideMenu.h>
 
 #import "FootView.h"
 
@@ -22,11 +22,13 @@
 
 #import "NextSpecialSellingView.h"
 
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 #import "HomeModel.h"
 
-@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
+#import "GoodsDetailViewController.h"
+
+@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
 

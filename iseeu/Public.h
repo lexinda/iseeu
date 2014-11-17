@@ -9,8 +9,6 @@
 #ifndef iseeu_Public_h
 #define iseeu_Public_h
 
-#define SERVER_URL @"http://www.2.com.s1.kingidc.net/index.php"
-
-#define SERVER_IMAGEURL @"http://www.2.com.s1.kingidc.net"
+#define SERVER_URL @"http://www.2.com.s1.kingidc.net"
 
 #endif

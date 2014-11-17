@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - FXForms (1.2.9)
   - MBProgressHUD (0.9)
   - MFSideMenu (0.5.5)
   - Reachability (3.1.1)
@@ -31,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - FXForms (~> 1.2.9)
   - MBProgressHUD (~> 0.9)
   - MFSideMenu (~> 0.5.5)
   - Reachability (~> 3.1.1)
@@ -40,6 +42,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  FXForms: dd42cbb090e9db2f69d8f2920b99bf88f6933552
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MFSideMenu: 0493b0f57385dd036cc5443407a31fda6dee81ac
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7

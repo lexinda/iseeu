@@ -46,7 +46,7 @@
             
             HomeModel *homeModel = (HomeModel *)[_imageArray objectAtIndex:i];
             
-            NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_IMAGEURL,homeModel.pic]];
+            NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,homeModel.pic]];
             
             [imageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"bannerImage%i",i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSLog(@"加载bannerimage！");

@@ -36,54 +36,59 @@
 
 @synthesize _nextSpecialSellingArray;
 
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        
+        UIImage *navBarImage = [UIImage imageNamed:@"home_head"];
+        
+        [[UINavigationBar appearance] setBackgroundImage:navBarImage forBarMetrics:UIBarMetricsDefault];
+        
+        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [leftButton setFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
+        
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"home_head_left"] forState:UIControlStateNormal];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+        
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];
+        
+        [title setText:@"商城首页"];
+        
+        [title setTextColor:[UIColor whiteColor]];
+        
+        title.font = [UIFont systemFontOfSize: 20.0];
+        
+        self.navigationItem.titleView = title;
+        
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [rightButton setFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
+        
+        [rightButton setBackgroundImage:[UIImage imageNamed:@"home_head_right"] forState:UIControlStateNormal];
+        
+        [rightButton addTarget:self action:@selector(rightSideMenuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+        
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        
+    }
+    
+    return self;
+
+}
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    UIImage *navBarImage = [UIImage imageNamed:@"home_head"];
-    
-    UIImageView *navBarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 44.0)];
-    
-    [navBarImageView setImage:navBarImage];
-    
-    [self.navigationController.navigationBar addSubview:navBarImageView];
-    
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [leftButton setFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
-    
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"home_head_left"] forState:UIControlStateNormal];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    
-    UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    titleButton.frame = CGRectMake(0, 0, 50, 40);
-    
-    [titleButton setTitle:@"商城首页" forState:UIControlStateNormal];
-    
-    titleButton.titleLabel.font = [UIFont systemFontOfSize: 20.0];
-    
-    [titleButton setTintColor:[UIColor whiteColor]];
-    
-    [titleButton setSelected:NO];
-    
-    self.navigationItem.titleView = titleButton;
-    
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [rightButton setFrame:CGRectMake(0.0, 0.0, 44.0, 44.0)];
-    
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"home_head_right"] forState:UIControlStateNormal];
-    
-    [rightButton addTarget:self action:@selector(rightSideMenuButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height-44.0)];
+    _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height-20.0-44.0-49.0)];
     
     [_mainScrollView setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]];
     
@@ -129,15 +134,15 @@
     
     [self.view addSubview:_mainScrollView];
     
-    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-49.0, self.view.frame.size.width, 49.0)];
+    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
     
     [footView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:footView];
     
-    _hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    _hud = [[MBProgressHUD alloc] initWithView:self.view];
     
-    [self.navigationController.view addSubview:_hud];
+    [self.view addSubview:_hud];
     
     _hud.delegate = self;
     
@@ -159,7 +164,7 @@
 
 -(void)showHud{
     
-    NSString *homeUrl = [NSString stringWithFormat:@"%@/index/index/",SERVER_URL];
+    NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/index/index/",SERVER_URL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -219,6 +224,8 @@
             
             _specialSellingTopView = [[SpecialSellingTopView alloc] initWithFrame:CGRectMake(5.0, meddleImageView.frame.origin.y+meddleImageView.frame.size.height+5.0, self.view.frame.size.width-10.0, 100.0)];
             
+            _specialSellingTopView._delegate = self;
+            
             [_specialSellingTopView set_imageArray:imageArray];
             
             [_specialSellingTopView setBackgroundColor:[UIColor whiteColor]];
@@ -245,6 +252,8 @@
             _specialSellingView = [[SpecialSellingView alloc] initWithFrame:CGRectMake(5.0, _specialSellingTopView.frame.origin.y+_specialSellingTopView.frame.size.height, self.view.frame.size.width-10.0, 195.0*_specialSellingArray.count)];
             
             [_specialSellingView setBackgroundColor:[UIColor whiteColor]];
+            
+            _specialSellingView._delegate = self;
             
             [_specialSellingView set_imageArray:imageArray];
             
@@ -278,6 +287,8 @@
             
             [_nextSpecialSellingView set_imageArray:imageArray];
             
+            _nextSpecialSellingView._delegate = self;
+            
             [_mainScrollView addSubview:_nextSpecialSellingView];
             
         }
@@ -285,8 +296,6 @@
         [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 195.0*_specialSellingArray.count+_specialSellingTopView.frame.size.height+_bannerView.frame.size.height+_nextSpecialSellingView.frame.size.height+123.0)];
         
         [_hud hide:YES];
-        
-        NSLog(@"%@",_specialSellingArray);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -349,6 +358,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)pushGoodsDetail:(NSNumber *)sid{
+
+    GoodsDetailViewController *goodsDetailViewController = [[GoodsDetailViewController alloc] init];
+    
+    [goodsDetailViewController set_sid:sid];
+    
+    [self.navigationController pushViewController:goodsDetailViewController animated:YES];
+
 }
 
 @end

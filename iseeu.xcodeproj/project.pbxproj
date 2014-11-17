@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282027721A1A2ED9009CC640 /* CartDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 282027711A1A2ED9009CC640 /* CartDetail.m */; };
 		28224B061A13985A00C6EE18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B051A13985A00C6EE18 /* main.m */; };
 		28224B091A13985A00C6EE18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B081A13985A00C6EE18 /* AppDelegate.m */; };
 		28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B0B1A13985A00C6EE18 /* ViewController.m */; };
@@ -219,6 +220,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2820276F1A1A1FD2009CC640 /* HomeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDelegate.h; sourceTree = "<group>"; };
+		282027701A1A2ED9009CC640 /* CartDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartDetail.h; sourceTree = "<group>"; };
+		282027711A1A2ED9009CC640 /* CartDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartDetail.m; sourceTree = "<group>"; };
 		28224B001A13985A00C6EE18 /* iseeu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iseeu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28224B041A13985A00C6EE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28224B051A13985A00C6EE18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -541,6 +545,8 @@
 			children = (
 				28A4AC021A17149E00709F33 /* HomeModel.h */,
 				28A4AC031A17149E00709F33 /* HomeModel.m */,
+				282027701A1A2ED9009CC640 /* CartDetail.h */,
+				282027711A1A2ED9009CC640 /* CartDetail.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 		28D533901A15126D00E62C39 /* delegate */ = {
 			isa = PBXGroup;
 			children = (
+				2820276F1A1A1FD2009CC640 /* HomeDelegate.h */,
 			);
 			name = delegate;
 			sourceTree = "<group>";
@@ -1094,6 +1101,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				282027721A1A2ED9009CC640 /* CartDetail.m in Sources */,
 				28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,

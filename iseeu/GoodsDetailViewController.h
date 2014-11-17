@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GoodsDetailViewController : UIViewController
+#import <AFNetworking/AFNetworking.h>
+
+#import "CartDetail.h"
+
+#import <MBProgressHUD/MBProgressHUD.h>
+
+#import "UIImageView+WebCache.h"
+
+@interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate>
+
+@property(strong,nonatomic)NSNumber *_sid;
+
+@property(strong,nonatomic)MBProgressHUD *_hud;
+
+@property(strong,nonatomic)UIScrollView *_mainScrollView;
 
 @end
