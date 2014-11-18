@@ -16,12 +16,24 @@
 
 #import "UIImageView+WebCache.h"
 
-@interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate>
+#import "HomeModel.h"
+
+@interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property(strong,nonatomic)NSNumber *_sid;
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
 
 @property(strong,nonatomic)UIScrollView *_mainScrollView;
+
+@property(strong,nonatomic)UIPickerView *_leftEyePickerView;
+
+@property(strong,nonatomic)NSString *_leftEyeCount;
+
+@property(strong,nonatomic)UIPickerView *_rightEyePickerView;
+
+@property(strong,nonatomic)NSString *_rightEyeCount;
+
+@property(strong,nonatomic)NSArray *_pickerViewData;
 
 @end

@@ -14,7 +14,7 @@
 //商品类型
 @synthesize shoptype_id;
 //商品的名称
-@synthesize title;
+@synthesize titleName;
 //商品的编号
 @synthesize pianhao;
 //商品的关键字
@@ -66,6 +66,34 @@
 @synthesize pic3;
 //商品出售数量
 @synthesize shu;
+////////////////////////////////
+//商品的可选度数
+@synthesize dushu_id;
+//商品的含水量
+@synthesize hang_id;
+
+@synthesize is_xin;
+
+@synthesize jifen;
+
+//商品的基弧
+@synthesize jihu_id;
+
+//商品的首页的模特的展示图片
+@synthesize pic;
+
+@synthesize ren;
+
+@synthesize shopfeilei_id;
+//商品的颜色
+@synthesize yanse_id;
+
+//商品的效果类型
+@synthesize xiaoguo_id;
+//商品的直径
+@synthesize zhijin_id;
+//商品的使用周期
+@synthesize zhouqi_id;
 
 +(CartDetail *)getCartDetail:(NSDictionary *)dictionary{
 
@@ -75,7 +103,7 @@
     
     [cartDetail setShoptype_id:[dictionary objectForKey:@"shoptype_id"]];
     
-    [cartDetail setTitle:[dictionary objectForKey:@"title"]];
+    [cartDetail setTitleName:[dictionary objectForKey:@"title"]];
     
     [cartDetail setPianhao:[dictionary objectForKey:@"pianhao"]];
     
@@ -126,6 +154,34 @@
     [cartDetail setPic3:[dictionary objectForKey:@"pic3"]];
     
     [cartDetail setShu:[dictionary objectForKey:@"shu"]];
+    ///////////////////////////////////////////////////////////
+    
+    [cartDetail setDushu_id:[dictionary objectForKey:@"dushu_id"]];
+    
+    [cartDetail setHang_id:[dictionary objectForKey:@"hang_id"]];
+    
+    [cartDetail setIs_xin:[dictionary objectForKey:@"is_xin"]];
+    
+    [cartDetail setJifen:[dictionary objectForKey:@"jifen"]];
+    
+    //商品的基弧
+    [cartDetail setJihu_id:[dictionary objectForKey:@"jihu_id"]];
+    
+    //商品的首页的模特的展示图片
+    [cartDetail setPic:[dictionary objectForKey:@"pic"]];
+    
+    [cartDetail setRen:[dictionary objectForKey:@"ren"]];
+    
+    [cartDetail setShopfeilei_id:[dictionary objectForKey:@"shopfeilei_id"]];
+    //商品的颜色
+    [cartDetail setYanse_id:[dictionary objectForKey:@"yanse_id"]];
+    
+    //商品的效果类型
+    [cartDetail setXiaoguo_id:[dictionary objectForKey:@"xiaoguo_id"]];
+    //商品的直径
+    [cartDetail setZhijin_id:[dictionary objectForKey:@"zhijin_id"]];
+    //商品的使用周期
+    [cartDetail setZhouqi_id:[dictionary objectForKey:@"zhouqi_id"]];
     
     return cartDetail;
     

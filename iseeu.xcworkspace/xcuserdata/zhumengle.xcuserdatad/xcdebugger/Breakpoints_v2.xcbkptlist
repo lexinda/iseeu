@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/GoodsDetailViewController.m"
-            timestampString = "437929161.124797"
+            timestampString = "438017134.499068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
             landmarkName = "-goBack"
             landmarkType = "5">
          </BreakpointContent>
@@ -200,11 +200,73 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/GoodsDetailViewController.m"
-            timestampString = "437929161.124797"
+            timestampString = "438016707.381376"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-pushGoodsView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iseeu/GoodsDetailViewController.m"
+            timestampString = "438016707.381376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "-pushGoodsView"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[GoodsDetailViewController pushGoodsView]_block_invoke_3"
+                  moduleName = "iseeu"
+                  urlString = "file:///Users/zhumengle/git/iseeu/iseeu/GoodsDetailViewController.m"
+                  timestampString = "438008071.447214"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "165">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[GoodsDetailViewController pushGoodsView]_block_invoke_4"
+                  moduleName = "iseeu"
+                  urlString = "file:///Users/zhumengle/git/iseeu/iseeu/GoodsDetailViewController.m"
+                  timestampString = "438008071.447449"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "164"
+                  endingLineNumber = "164"
+                  offsetFromSymbolStart = "91">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iseeu/GoodsDetailViewController.m"
+            timestampString = "438016707.381376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "-pushGoodsView"
             landmarkType = "5">
          </BreakpointContent>

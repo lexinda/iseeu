@@ -15,7 +15,7 @@
 //商品类型
 @property(strong,nonatomic)NSString *shoptype_id;
 //商品的名称
-@property(strong,nonatomic)NSString *title;
+@property(strong,nonatomic)NSString *titleName;
 //商品的编号
 @property(strong,nonatomic)NSString *pianhao;
 //商品的关键字
@@ -67,6 +67,34 @@
 @property(strong,nonatomic)NSString *pic3;
 //商品出售数量
 @property(strong,nonatomic)NSString *shu;
+/////////////////////////////////////////////////
+//商品的可选度数
+@property(strong,nonatomic)NSString *dushu_id;
+//商品的含水量
+@property(strong,nonatomic)NSString *hang_id;
+
+@property(strong,nonatomic)NSString *is_xin;
+
+@property(strong,nonatomic)NSString *jifen;
+
+//商品的基弧
+@property(strong,nonatomic)NSString *jihu_id;
+
+//商品的首页的模特的展示图片
+@property(strong,nonatomic)NSString *pic;
+
+@property(strong,nonatomic)NSString *ren;
+
+@property(strong,nonatomic)NSString *shopfeilei_id;
+//商品的颜色
+@property(strong,nonatomic)NSString *yanse_id;
+
+//商品的效果类型
+@property(strong,nonatomic)NSString *xiaoguo_id;
+//商品的直径
+@property(strong,nonatomic)NSString *zhijin_id;
+//商品的使用周期
+@property(strong,nonatomic)NSString *zhouqi_id;
 
 +(CartDetail *)getCartDetail:(NSDictionary *)dictionary;
 
