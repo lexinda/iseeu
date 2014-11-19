@@ -206,6 +206,7 @@
 		28D533821A14F0A400E62C39 /* zzz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D532CB1A14F0A400E62C39 /* zzz.jpg */; };
 		28D533861A14FC4D00E62C39 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D533851A14FC4D00E62C39 /* FootView.m */; };
 		28D5338C1A15069500E62C39 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D5338B1A15069500E62C39 /* BannerView.m */; };
+		28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */; };
 		352AF26E6925ECF232F2D25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DBE98D1B95CD8767A46344 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -437,6 +438,8 @@
 		28D533851A14FC4D00E62C39 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
 		28D5338A1A15069500E62C39 /* BannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
 		28D5338B1A15069500E62C39 /* BannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
+		28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsFootView.h; sourceTree = "<group>"; };
+		28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsFootView.m; sourceTree = "<group>"; };
 		5C87C1F9727744AB4FB06F83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B0DBE98D1B95CD8767A46344 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13C94F1FD26335F03E26540 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -754,6 +757,8 @@
 				2830D3CC1A17A7910062D7F1 /* SpecialSellingView.m */,
 				2830D3CE1A17A7D40062D7F1 /* NextSpecialSellingView.h */,
 				2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */,
+				28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */,
+				28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1107,6 +1112,7 @@
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,
+				28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */,
 				28D533861A14FC4D00E62C39 /* FootView.m in Sources */,
 				28224B091A13985A00C6EE18 /* AppDelegate.m in Sources */,
 				2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */,

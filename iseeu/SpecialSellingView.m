@@ -84,7 +84,7 @@
     
     UIImageView *imageView = (UIImageView *)sender.view;
     
-    NSLog(@"图片%i被点击!",imageView.tag);
+    NSLog(@"图片%li被点击!",(long)imageView.tag);
     
     [_delegate pushGoodsDetail:[NSNumber numberWithInt:imageView.tag]];
 }

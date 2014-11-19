@@ -80,7 +80,7 @@
 
     UIButton *button = (UIButton *)sender;
     
-    NSLog(@"%i",button.tag);
+    NSLog(@"%li",(long)button.tag);
     
 }
 

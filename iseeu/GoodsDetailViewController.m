@@ -387,19 +387,25 @@
         
         [_mainScrollView addSubview:fourEndImageView];
         
-        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(promise.frame.origin.x, fourPromiseImageView.frame.origin.y+fourPromiseImageView.frame.size.height, self.view.frame.size.width-20.0, 300.0)];
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0.0, fourPromiseImageView.frame.origin.y+fourPromiseImageView.frame.size.height+5.0, self.view.frame.size.width, 320.0)];
         
-        [footView setBackgroundColor:[UIColor colorWithRed:44.0/255.0 green:46.0/255.0 blue:45.0/255.0 alpha:1.0]];
+        [footView setTag:800];
         
-        CGFloat buttonWidth = (footView.frame.size.width-10.0)/3;
+        [footView setBackgroundColor:[UIColor colorWithRed:167.0/255.0 green:167.0/255.0 blue:167.0/255.0 alpha:1.0]];
+        
+        CGFloat buttonWidth = (footView.frame.size.width-20.0)/3;
         
         UIButton *oneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
-        [oneButton setFrame:CGRectMake(5.0, 5.0, buttonWidth, 30.0)];
+        [oneButton setFrame:CGRectMake(10.0, 10.0, buttonWidth, 30.0)];
         
         [oneButton setBackgroundColor:[UIColor whiteColor]];
         
         [oneButton setTitle:@"商品介绍" forState:UIControlStateNormal];
+        
+        [oneButton setTag:801];
+        
+        [oneButton addTarget:self action:@selector(selectFootViewContent:) forControlEvents:UIControlEventTouchUpInside];
         
         [oneButton setTintColor:[UIColor redColor]];
         
@@ -407,11 +413,15 @@
         
         UIButton *twoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
-        [twoButton setFrame:CGRectMake(oneButton.frame.origin.x+oneButton.frame.size.width, 5.0, buttonWidth, 30.0)];
+        [twoButton setFrame:CGRectMake(oneButton.frame.origin.x+oneButton.frame.size.width, 10.0, buttonWidth, 30.0)];
         
         [twoButton setBackgroundColor:[UIColor blackColor]];
         
         [twoButton setTitle:@"商品详情" forState:UIControlStateNormal];
+        
+        [twoButton setTag:802];
+        
+        [twoButton addTarget:self action:@selector(selectFootViewContent:) forControlEvents:UIControlEventTouchUpInside];
         
         [twoButton setTintColor:[UIColor whiteColor]];
         
@@ -419,19 +429,25 @@
         
         UIButton *threeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
-        [threeButton setFrame:CGRectMake(twoButton.frame.origin.x+twoButton.frame.size.width, 5.0, buttonWidth, 30.0)];
+        [threeButton setFrame:CGRectMake(twoButton.frame.origin.x+twoButton.frame.size.width, 10.0, buttonWidth, 30.0)];
         
         [threeButton setBackgroundColor:[UIColor blackColor]];
         
         [threeButton setTitle:@"口碑" forState:UIControlStateNormal];
         
+        [threeButton setTag:803];
+        
+        [threeButton addTarget:self action:@selector(selectFootViewContent:) forControlEvents:UIControlEventTouchUpInside];
+        
         [threeButton setTintColor:[UIColor whiteColor]];
         
         [footView addSubview:threeButton];
         
-        UIView *footContentView = [[UIView alloc] initWithFrame:CGRectMake(oneButton.frame.origin.x, oneButton.frame.origin.y+oneButton.frame.size.height, footView.frame.size.width-10.0, 220.0)];
+        UIView *footContentView = [[UIView alloc] initWithFrame:CGRectMake(oneButton.frame.origin.x, oneButton.frame.origin.y+oneButton.frame.size.height, footView.frame.size.width-20.0, 220.0)];
         
         [footContentView setBackgroundColor:[UIColor whiteColor]];
+        
+        [footContentView setTag:804];
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 20.0, 85.0, 20.0)];
         
@@ -503,9 +519,33 @@
         
         [footView addSubview:footContentView];
         
+        UIImageView *footDetailView = [[UIImageView alloc] initWithFrame:CGRectMake(oneButton.frame.origin.x, oneButton.frame.origin.y+oneButton.frame.size.height, footView.frame.size.width-20.0, 320.0)];
+        
+        [footDetailView setTag:805];
+        
+        NSURL *goodsDetailImage = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,cartDetail.pic3]];
+        
+        [footDetailView sd_setImageWithURL:goodsDetailImage placeholderImage:[UIImage imageNamed:@"goodsDetailImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            NSLog(@"加载图片!");
+        }];
+        
+        [footDetailView setHidden:YES];
+        
+        [footView addSubview:footDetailView];
+        
+        GoodsFootView *goodsFootView = [[GoodsFootView alloc] initWithFrame:CGRectMake(footContentView.frame.origin.x, footView.frame.size.height-55.0, footContentView.frame.size.width, 55.0)];
+        
+        [goodsFootView setTag:806];
+        
+        [goodsFootView set_price:cartDetail.price_xiaoshou];
+        
+        [goodsFootView setBackgroundColor:[UIColor clearColor]];
+        
+        [footView addSubview:goodsFootView];
+        
         [_mainScrollView addSubview:footView];
         
-        [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000.0)];
+        [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1020.0)];
         
         NSLog(@"%@",dictionary);
         
@@ -555,6 +595,73 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)selectFootViewContent:(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    
+    UIView *footView = [self.view viewWithTag:800];
+    
+    UIButton *oneButton = (UIButton *)[self.view viewWithTag:801];
+    
+    [oneButton setBackgroundColor:[UIColor blackColor]];
+    
+    [oneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIButton *twoButton = (UIButton *)[self.view viewWithTag:802];
+    
+    [twoButton setBackgroundColor:[UIColor blackColor]];
+    
+    [twoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIButton *threeButton = (UIButton *)[self.view viewWithTag:803];
+    
+    [threeButton setBackgroundColor:[UIColor blackColor]];
+    
+    [threeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIView *footContentView = [self.view viewWithTag:804];
+    
+    [footContentView setHidden:YES];
+    
+    UIView *footDetailView = [self.view viewWithTag:805];
+    
+    GoodsFootView *goodsFootView = (GoodsFootView *)[self.view viewWithTag:806];
+    
+    [footDetailView setHidden:YES];
+    
+    switch (button.tag) {
+        case 801:
+            [button setBackgroundColor:[UIColor whiteColor]];
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [footView setFrame:CGRectMake(footView.frame.origin.x, footView.frame.origin.y, footView.frame.size.width, 320.0)];
+            [goodsFootView setFrame:CGRectMake(footContentView.frame.origin.x, footView.frame.size.height-55.0, footContentView.frame.size.width, 55.0)];
+            [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1020.0)];
+            [footContentView setHidden:NO];
+            break;
+        case 802:
+            [button setBackgroundColor:[UIColor whiteColor]];
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [footView setFrame:CGRectMake(footView.frame.origin.x, footView.frame.origin.y, footView.frame.size.width, 420.0)];
+            [goodsFootView setFrame:CGRectMake(footContentView.frame.origin.x, footView.frame.size.height-55.0, footContentView.frame.size.width, 55.0)];
+            [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1120.0)];
+            [footDetailView setHidden:NO];
+            break;
+        case 803:
+            [button setBackgroundColor:[UIColor whiteColor]];
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            [footView setFrame:CGRectMake(footView.frame.origin.x, footView.frame.origin.y, footView.frame.size.width, 120.0)];
+            [goodsFootView setFrame:CGRectMake(footContentView.frame.origin.x, footView.frame.size.height-55.0, footContentView.frame.size.width, 55.0)];
+            [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 820.0)];
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSLog(@"%i",button.tag);
+
 }
 
 /*

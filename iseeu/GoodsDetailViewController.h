@@ -18,6 +18,8 @@
 
 #import "HomeModel.h"
 
+#import "GoodsFootView.h"
+
 @interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property(strong,nonatomic)NSNumber *_sid;
