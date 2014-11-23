@@ -9,22 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FXForms.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-MFSideMenu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-XHRefreshControl.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>079E8A078F28CCA24B4A4364</key>
+		<key>3442C1711F72796A344B4808</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>541C4B4657AC50877D34D93E</key>
+		<key>555DA52A968CAA5A1251708E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C8AB421C34456A6D144616A</key>
+		<key>700D1C6E56FF1E54A802D517</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>95B709581BA76BF827A577D0</key>
+		<key>763187B45DAA52132B8CA4E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA33A6012CBF5E20D29DD48F</key>
+		<key>9089D9BAC90D05EB31D1738D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B356E328EA80ED5F9D684D4A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B8EA26F57479AEF84F72AD4A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4A8A21F2204D883EE0B52BD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA96B5DEC5199C56DFF54E45</key>
+		<key>D1CC11F8D07B6F1A7E6C3B5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,6 +14,8 @@
 
 #import "SideMenuViewController.h"
 
+#import "SideViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -29,11 +31,13 @@
     
     ViewController *viewController = [[ViewController alloc] init];
     
-    SideMenuViewController *rightMenuViewController = [[SideMenuViewController alloc] init];
+//    SideMenuViewController *rightMenuViewController = [[SideMenuViewController alloc] init];
+    
+    SideViewController *rightViewController = [[SideViewController alloc] init];
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:viewController];
     
-    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:navigation leftMenuViewController:nil rightMenuViewController:rightMenuViewController];
+    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:navigation leftMenuViewController:nil rightMenuViewController:rightViewController];
     
     [self.window setRootViewController:container];
     

@@ -1,53 +1,44 @@
 PODS:
-  - AFNetworking (2.4.1):
+  - AFNetworking (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
+  - AFNetworking/NSURLConnection (2.5.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
+  - AFNetworking/NSURLSession (2.5.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - FXForms (1.2.9)
   - MBProgressHUD (0.9)
   - MFSideMenu (0.5.5)
-  - Reachability (3.1.1)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
   - TSPopover (0.1.0)
-  - XHRefreshControl (3.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - FXForms (~> 1.2.9)
   - MBProgressHUD (~> 0.9)
   - MFSideMenu (~> 0.5.5)
-  - Reachability (~> 3.1.1)
   - SDWebImage (~> 3.7.1)
   - TSPopover (~> 0.1.0)
-  - XHRefreshControl (~> 3.6)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  FXForms: dd42cbb090e9db2f69d8f2920b99bf88f6933552
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MFSideMenu: 0493b0f57385dd036cc5443407a31fda6dee81ac
-  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   TSPopover: 7424d73c5d4628055d3692fc1c8c902ac91bff2c
-  XHRefreshControl: eb2d4aafaf5972e3c0ebd64bbf4612bdf6a098df
 
 COCOAPODS: 0.34.4

@@ -20,6 +20,20 @@
 		2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */; };
 		289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289128231A18518E00E5F9BA /* GoodsDetailViewController.m */; };
 		28A4AC041A17149E00709F33 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A4AC031A17149E00709F33 /* HomeModel.m */; };
+		28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92B31A203C48004FEAE3 /* SideViewController.m */; };
+		28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */; };
+		28BA92C01A2086E0004FEAE3 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */; };
+		28BA92C11A2086E0004FEAE3 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */; };
+		28BA92DB1A209C46004FEAE3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28BA92CB1A209C46004FEAE3 /* MJRefresh.bundle */; };
+		28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92CE1A209C46004FEAE3 /* MJRefreshBaseView.m */; };
+		28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D01A209C46004FEAE3 /* MJRefreshConst.m */; };
+		28BA92DE1A209C46004FEAE3 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D21A209C46004FEAE3 /* MJRefreshFooterView.m */; };
+		28BA92DF1A209C46004FEAE3 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D41A209C46004FEAE3 /* MJRefreshHeaderView.m */; };
+		28BA92E01A209C46004FEAE3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D61A209C46004FEAE3 /* UIScrollView+MJRefresh.m */; };
+		28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D81A209C46004FEAE3 /* UIView+MJExtension.m */; };
+		28BA92E21A209C46004FEAE3 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92DA1A209C46004FEAE3 /* UIScrollView+MJExtension.m */; };
+		28BA92E81A2177DA004FEAE3 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
+		28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92EA1A218E18004FEAE3 /* RightViewModel.m */; };
 		28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D530961A14E28600E62C39 /* SideMenuViewController.m */; };
 		28D532CC1A14F0A400E62C39 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D532151A14F0A400E62C39 /* a.png */; };
 		28D532CD1A14F0A400E62C39 /* a1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D532161A14F0A400E62C39 /* a1.jpg */; };
@@ -249,6 +263,33 @@
 		28A4AC011A17006400709F33 /* Public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Public.h; sourceTree = "<group>"; };
 		28A4AC021A17149E00709F33 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
 		28A4AC031A17149E00709F33 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		28BA92B21A203C48004FEAE3 /* SideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideViewController.h; sourceTree = "<group>"; };
+		28BA92B31A203C48004FEAE3 /* SideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideViewController.m; sourceTree = "<group>"; };
+		28BA92B91A203F51004FEAE3 /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
+		28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
+		28BA92BD1A2086E0004FEAE3 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
+		28BA92CB1A209C46004FEAE3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		28BA92CC1A209C46004FEAE3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		28BA92CD1A209C46004FEAE3 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		28BA92CE1A209C46004FEAE3 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		28BA92CF1A209C46004FEAE3 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		28BA92D01A209C46004FEAE3 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		28BA92D11A209C46004FEAE3 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		28BA92D21A209C46004FEAE3 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		28BA92D31A209C46004FEAE3 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		28BA92D41A209C46004FEAE3 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		28BA92D51A209C46004FEAE3 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		28BA92D61A209C46004FEAE3 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		28BA92D71A209C46004FEAE3 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		28BA92D81A209C46004FEAE3 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		28BA92D91A209C46004FEAE3 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		28BA92DA1A209C46004FEAE3 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		28BA92E61A2177DA004FEAE3 /* DetailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableView.h; sourceTree = "<group>"; };
+		28BA92E71A2177DA004FEAE3 /* DetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableView.m; sourceTree = "<group>"; };
+		28BA92E91A218E18004FEAE3 /* RightViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewModel.h; sourceTree = "<group>"; };
+		28BA92EA1A218E18004FEAE3 /* RightViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewModel.m; sourceTree = "<group>"; };
 		28D530951A14E28600E62C39 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		28D530961A14E28600E62C39 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		28D532151A14F0A400E62C39 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
@@ -487,6 +528,7 @@
 		28224B021A13985A00C6EE18 /* iseeu */ = {
 			isa = PBXGroup;
 			children = (
+				28BA92CA1A209C36004FEAE3 /* tools */,
 				289128211A18514900E5F9BA /* controller */,
 				28A4AC051A1714AB00709F33 /* model */,
 				28D533901A15126D00E62C39 /* delegate */,
@@ -539,6 +581,8 @@
 				28D530961A14E28600E62C39 /* SideMenuViewController.m */,
 				289128221A18518E00E5F9BA /* GoodsDetailViewController.h */,
 				289128231A18518E00E5F9BA /* GoodsDetailViewController.m */,
+				28BA92B21A203C48004FEAE3 /* SideViewController.h */,
+				28BA92B31A203C48004FEAE3 /* SideViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -546,12 +590,50 @@
 		28A4AC051A1714AB00709F33 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				28BA92BC1A2086C8004FEAE3 /* Vendor */,
 				28A4AC021A17149E00709F33 /* HomeModel.h */,
 				28A4AC031A17149E00709F33 /* HomeModel.m */,
 				282027701A1A2ED9009CC640 /* CartDetail.h */,
 				282027711A1A2ED9009CC640 /* CartDetail.m */,
+				28BA92B91A203F51004FEAE3 /* UIColor+Color.h */,
+				28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */,
+				28BA92E91A218E18004FEAE3 /* RightViewModel.h */,
+				28BA92EA1A218E18004FEAE3 /* RightViewModel.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		28BA92BC1A2086C8004FEAE3 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				28BA92BD1A2086E0004FEAE3 /* NSDate+TimeAgo.h */,
+				28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */,
+				28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		28BA92CA1A209C36004FEAE3 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				28BA92CB1A209C46004FEAE3 /* MJRefresh.bundle */,
+				28BA92CC1A209C46004FEAE3 /* MJRefresh.h */,
+				28BA92CD1A209C46004FEAE3 /* MJRefreshBaseView.h */,
+				28BA92CE1A209C46004FEAE3 /* MJRefreshBaseView.m */,
+				28BA92CF1A209C46004FEAE3 /* MJRefreshConst.h */,
+				28BA92D01A209C46004FEAE3 /* MJRefreshConst.m */,
+				28BA92D11A209C46004FEAE3 /* MJRefreshFooterView.h */,
+				28BA92D21A209C46004FEAE3 /* MJRefreshFooterView.m */,
+				28BA92D31A209C46004FEAE3 /* MJRefreshHeaderView.h */,
+				28BA92D41A209C46004FEAE3 /* MJRefreshHeaderView.m */,
+				28BA92D51A209C46004FEAE3 /* UIScrollView+MJRefresh.h */,
+				28BA92D61A209C46004FEAE3 /* UIScrollView+MJRefresh.m */,
+				28BA92D71A209C46004FEAE3 /* UIView+MJExtension.h */,
+				28BA92D81A209C46004FEAE3 /* UIView+MJExtension.m */,
+				28BA92D91A209C46004FEAE3 /* UIScrollView+MJExtension.h */,
+				28BA92DA1A209C46004FEAE3 /* UIScrollView+MJExtension.m */,
+			);
+			name = tools;
 			sourceTree = "<group>";
 		};
 		28D532141A14F06300E62C39 /* image */ = {
@@ -759,6 +841,8 @@
 				2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */,
 				28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */,
 				28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */,
+				28BA92E61A2177DA004FEAE3 /* DetailTableView.h */,
+				28BA92E71A2177DA004FEAE3 /* DetailTableView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -914,6 +998,7 @@
 				28D532DB1A14F0A400E62C39 /* bar_home_normal.png in Resources */,
 				28D5332D1A14F0A400E62C39 /* iseeu_item1.png in Resources */,
 				28D533731A14F0A400E62C39 /* type_default.png in Resources */,
+				28BA92DB1A209C46004FEAE3 /* MJRefresh.bundle in Resources */,
 				28D5335F1A14F0A400E62C39 /* shopping_cut.png in Resources */,
 				28D5333B1A14F0A400E62C39 /* longin_weibo.png in Resources */,
 				28224B141A13985A00C6EE18 /* LaunchScreen.xib in Resources */,
@@ -940,6 +1025,7 @@
 				28D533571A14F0A400E62C39 /* register.png in Resources */,
 				28D532E21A14F0A400E62C39 /* bar_personal_selected.png in Resources */,
 				28D532F01A14F0A400E62C39 /* changeaddress_backgroud.png in Resources */,
+				28BA92C11A2086E0004FEAE3 /* NSDateTimeAgo.bundle in Resources */,
 				28D532DC1A14F0A400E62C39 /* bar_home_selected.png in Resources */,
 				28D5332B1A14F0A400E62C39 /* iseeu_buynow.png in Resources */,
 				28D532E51A14F0A400E62C39 /* bar_shopping_normal.png in Resources */,
@@ -1108,17 +1194,29 @@
 			files = (
 				282027721A1A2ED9009CC640 /* CartDetail.m in Sources */,
 				28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */,
+				28BA92E81A2177DA004FEAE3 /* DetailTableView.m in Sources */,
+				28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */,
+				28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
+				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,
+				28BA92DF1A209C46004FEAE3 /* MJRefreshHeaderView.m in Sources */,
 				28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */,
+				28BA92E21A209C46004FEAE3 /* UIScrollView+MJExtension.m in Sources */,
 				28D533861A14FC4D00E62C39 /* FootView.m in Sources */,
+				28BA92E01A209C46004FEAE3 /* UIScrollView+MJRefresh.m in Sources */,
 				28224B091A13985A00C6EE18 /* AppDelegate.m in Sources */,
+				28BA92DE1A209C46004FEAE3 /* MJRefreshFooterView.m in Sources */,
 				2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */,
 				28A4AC041A17149E00709F33 /* HomeModel.m in Sources */,
+				28BA92C01A2086E0004FEAE3 /* NSDate+TimeAgo.m in Sources */,
 				28224B061A13985A00C6EE18 /* main.m in Sources */,
+				28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */,
 				2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */,
+				28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */,
+				28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
