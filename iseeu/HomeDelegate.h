@@ -12,4 +12,6 @@
 
 -(void)pushGoodsDetail:(NSNumber *)sid;
 
+-(void)pushClassificationViewController:(int)tag withSid:(int)sid;
+
 @end

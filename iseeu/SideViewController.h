@@ -10,8 +10,6 @@
 
 #import "UIColor+Color.h"
 
-#import "NSDate+TimeAgo.h"
-
 #import <MBProgressHUD/MBProgressHUD.h>
 
 #import "DetailTableView.h"
@@ -20,7 +18,9 @@
 
 #import "RightViewModel.h"
 
-@interface SideViewController : UIViewController<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
+#import "ClassificationViewController.h"
+
+@interface SideViewController : UIViewController<UIScrollViewDelegate,MBProgressHUDDelegate,HomeDelegate>
 
 @property(strong,nonatomic)UIScrollView *_contentView;
 

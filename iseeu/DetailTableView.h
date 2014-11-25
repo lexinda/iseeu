@@ -12,9 +12,11 @@
 
 #import "RightViewModel.h"
 
+#import "HomeDelegate.h"
+
 @interface DetailTableView : UIView<UITableViewDelegate,UITableViewDataSource>
 
-@property(strong,nonatomic)UITableView *tableView;
+@property(strong,nonatomic)UITableView *_tableView;
 
 /**
  *  存放假数据
@@ -22,5 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *fakeData;
 
 @property(nonatomic)BOOL isActive;
+
+@property(strong,nonatomic)id<HomeDelegate> homeDelegate;
 
 @end

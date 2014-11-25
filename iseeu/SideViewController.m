@@ -8,6 +8,8 @@
 
 #import "SideViewController.h"
 
+#import "MFSideMenu.h"
+
 @implementation SideViewController
 
 @synthesize _contentView;
@@ -178,6 +180,8 @@
                     
                     DetailTableView *view = [[DetailTableView alloc] initWithFrame:CGRectMake(x, 0.0, _width*3, _contentView.frame.size.height)];
                     
+                    view.homeDelegate = self;
+                    
                     if (i==0) {
                         
                         view.tag = 70;
@@ -326,4 +330,27 @@
     _hud = nil;
     
 }
+
+-(void)pushClassificationViewController:(int)tag withSid:(int)sid{
+
+    NSLog(@"%i,%i",tag,sid);
+    
+    ClassificationViewController *classificationViewController = [[ClassificationViewController alloc] init];
+    
+    classificationViewController._type = tag;
+    
+    classificationViewController._sid = sid;
+    
+    UINavigationController *classificationNavi = [[UINavigationController alloc] initWithRootViewController:classificationViewController];
+    
+    classificationNavi.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    [self presentViewController:classificationNavi animated:YES completion:^{
+        NSLog(@"载入试图！");
+    }];
+    
+
+    
+}
+
 @end

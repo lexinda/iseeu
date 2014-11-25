@@ -18,12 +18,14 @@
 		2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3C91A17A7740062D7F1 /* SpecialSellingTopView.m */; };
 		2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CC1A17A7910062D7F1 /* SpecialSellingView.m */; };
 		2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */; };
+		283402E41A2379A500313035 /* ClassificationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E31A2379A500313035 /* ClassificationTableView.m */; };
+		283402E71A237A2E00313035 /* ClassificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E61A237A2E00313035 /* ClassificationTableCell.m */; };
+		283402EA1A237AB100313035 /* ClassificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E91A237AB100313035 /* ClassificationModel.m */; };
+		288D52F81A21C5010030B4BC /* ClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288D52F71A21C5010030B4BC /* ClassificationViewController.m */; };
 		289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289128231A18518E00E5F9BA /* GoodsDetailViewController.m */; };
 		28A4AC041A17149E00709F33 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A4AC031A17149E00709F33 /* HomeModel.m */; };
 		28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92B31A203C48004FEAE3 /* SideViewController.m */; };
 		28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */; };
-		28BA92C01A2086E0004FEAE3 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */; };
-		28BA92C11A2086E0004FEAE3 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */; };
 		28BA92DB1A209C46004FEAE3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28BA92CB1A209C46004FEAE3 /* MJRefresh.bundle */; };
 		28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92CE1A209C46004FEAE3 /* MJRefreshBaseView.m */; };
 		28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D01A209C46004FEAE3 /* MJRefreshConst.m */; };
@@ -32,7 +34,6 @@
 		28BA92E01A209C46004FEAE3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D61A209C46004FEAE3 /* UIScrollView+MJRefresh.m */; };
 		28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D81A209C46004FEAE3 /* UIView+MJExtension.m */; };
 		28BA92E21A209C46004FEAE3 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92DA1A209C46004FEAE3 /* UIScrollView+MJExtension.m */; };
-		28BA92E81A2177DA004FEAE3 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
 		28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92EA1A218E18004FEAE3 /* RightViewModel.m */; };
 		28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D530961A14E28600E62C39 /* SideMenuViewController.m */; };
 		28D532CC1A14F0A400E62C39 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D532151A14F0A400E62C39 /* a.png */; };
@@ -221,6 +222,7 @@
 		28D533861A14FC4D00E62C39 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D533851A14FC4D00E62C39 /* FootView.m */; };
 		28D5338C1A15069500E62C39 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D5338B1A15069500E62C39 /* BannerView.m */; };
 		28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */; };
+		28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
 		352AF26E6925ECF232F2D25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DBE98D1B95CD8767A46344 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +259,14 @@
 		2830D3CC1A17A7910062D7F1 /* SpecialSellingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialSellingView.m; sourceTree = "<group>"; };
 		2830D3CE1A17A7D40062D7F1 /* NextSpecialSellingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextSpecialSellingView.h; sourceTree = "<group>"; };
 		2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextSpecialSellingView.m; sourceTree = "<group>"; };
+		283402E21A2379A500313035 /* ClassificationTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationTableView.h; sourceTree = "<group>"; };
+		283402E31A2379A500313035 /* ClassificationTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationTableView.m; sourceTree = "<group>"; };
+		283402E51A237A2E00313035 /* ClassificationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationTableCell.h; sourceTree = "<group>"; };
+		283402E61A237A2E00313035 /* ClassificationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationTableCell.m; sourceTree = "<group>"; };
+		283402E81A237AB100313035 /* ClassificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationModel.h; sourceTree = "<group>"; };
+		283402E91A237AB100313035 /* ClassificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationModel.m; sourceTree = "<group>"; };
+		288D52F61A21C5010030B4BC /* ClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationViewController.h; sourceTree = "<group>"; };
+		288D52F71A21C5010030B4BC /* ClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationViewController.m; sourceTree = "<group>"; };
 		289128221A18518E00E5F9BA /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		289128231A18518E00E5F9BA /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		28A4AC001A17002000709F33 /* iseeu_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iseeu_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -267,9 +277,6 @@
 		28BA92B31A203C48004FEAE3 /* SideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideViewController.m; sourceTree = "<group>"; };
 		28BA92B91A203F51004FEAE3 /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
 		28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
-		28BA92BD1A2086E0004FEAE3 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
-		28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
-		28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		28BA92CB1A209C46004FEAE3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		28BA92CC1A209C46004FEAE3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		28BA92CD1A209C46004FEAE3 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -583,6 +590,8 @@
 				289128231A18518E00E5F9BA /* GoodsDetailViewController.m */,
 				28BA92B21A203C48004FEAE3 /* SideViewController.h */,
 				28BA92B31A203C48004FEAE3 /* SideViewController.m */,
+				288D52F61A21C5010030B4BC /* ClassificationViewController.h */,
+				288D52F71A21C5010030B4BC /* ClassificationViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -590,7 +599,6 @@
 		28A4AC051A1714AB00709F33 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				28BA92BC1A2086C8004FEAE3 /* Vendor */,
 				28A4AC021A17149E00709F33 /* HomeModel.h */,
 				28A4AC031A17149E00709F33 /* HomeModel.m */,
 				282027701A1A2ED9009CC640 /* CartDetail.h */,
@@ -599,18 +607,10 @@
 				28BA92BA1A203F51004FEAE3 /* UIColor+Color.m */,
 				28BA92E91A218E18004FEAE3 /* RightViewModel.h */,
 				28BA92EA1A218E18004FEAE3 /* RightViewModel.m */,
+				283402E81A237AB100313035 /* ClassificationModel.h */,
+				283402E91A237AB100313035 /* ClassificationModel.m */,
 			);
 			name = model;
-			sourceTree = "<group>";
-		};
-		28BA92BC1A2086C8004FEAE3 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				28BA92BD1A2086E0004FEAE3 /* NSDate+TimeAgo.h */,
-				28BA92BE1A2086E0004FEAE3 /* NSDate+TimeAgo.m */,
-				28BA92BF1A2086E0004FEAE3 /* NSDateTimeAgo.bundle */,
-			);
-			name = Vendor;
 			sourceTree = "<group>";
 		};
 		28BA92CA1A209C36004FEAE3 /* tools */ = {
@@ -843,6 +843,10 @@
 				28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */,
 				28BA92E61A2177DA004FEAE3 /* DetailTableView.h */,
 				28BA92E71A2177DA004FEAE3 /* DetailTableView.m */,
+				283402E21A2379A500313035 /* ClassificationTableView.h */,
+				283402E31A2379A500313035 /* ClassificationTableView.m */,
+				283402E51A237A2E00313035 /* ClassificationTableCell.h */,
+				283402E61A237A2E00313035 /* ClassificationTableCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1025,7 +1029,6 @@
 				28D533571A14F0A400E62C39 /* register.png in Resources */,
 				28D532E21A14F0A400E62C39 /* bar_personal_selected.png in Resources */,
 				28D532F01A14F0A400E62C39 /* changeaddress_backgroud.png in Resources */,
-				28BA92C11A2086E0004FEAE3 /* NSDateTimeAgo.bundle in Resources */,
 				28D532DC1A14F0A400E62C39 /* bar_home_selected.png in Resources */,
 				28D5332B1A14F0A400E62C39 /* iseeu_buynow.png in Resources */,
 				28D532E51A14F0A400E62C39 /* bar_shopping_normal.png in Resources */,
@@ -1192,10 +1195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */,
 				282027721A1A2ED9009CC640 /* CartDetail.m in Sources */,
+				283402EA1A237AB100313035 /* ClassificationModel.m in Sources */,
 				28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */,
-				28BA92E81A2177DA004FEAE3 /* DetailTableView.m in Sources */,
 				28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */,
+				283402E41A2379A500313035 /* ClassificationTableView.m in Sources */,
 				28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
@@ -1210,8 +1215,9 @@
 				28224B091A13985A00C6EE18 /* AppDelegate.m in Sources */,
 				28BA92DE1A209C46004FEAE3 /* MJRefreshFooterView.m in Sources */,
 				2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */,
+				288D52F81A21C5010030B4BC /* ClassificationViewController.m in Sources */,
+				283402E71A237A2E00313035 /* ClassificationTableCell.m in Sources */,
 				28A4AC041A17149E00709F33 /* HomeModel.m in Sources */,
-				28BA92C01A2086E0004FEAE3 /* NSDate+TimeAgo.m in Sources */,
 				28224B061A13985A00C6EE18 /* main.m in Sources */,
 				28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */,
 				2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */,
