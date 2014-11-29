@@ -10,6 +10,8 @@
 
 @implementation FootView
 
+@synthesize viewDelegate;
+
 -(void)drawRect:(CGRect)rect{
 
     NSNumber *width = [NSNumber numberWithFloat:rect.size.width/5];
@@ -80,7 +82,7 @@
 
     UIButton *button = (UIButton *)sender;
     
-    NSLog(@"%li",(long)button.tag);
+    [viewDelegate pushViewController:button.tag];
     
 }
 

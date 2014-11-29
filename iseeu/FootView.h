@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HomeDelegate.h"
+
 @interface FootView : UIView
+
+@property(strong,nonatomic)id<HomeDelegate> viewDelegate;
 
 @end

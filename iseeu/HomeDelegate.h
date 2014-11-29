@@ -14,4 +14,6 @@
 
 -(void)pushClassificationViewController:(int)tag withSid:(int)sid;
 
+-(void)pushViewController:(int)type;
+
 @end

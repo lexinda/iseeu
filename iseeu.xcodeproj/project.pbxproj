@@ -221,6 +221,9 @@
 		28D533821A14F0A400E62C39 /* zzz.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D532CB1A14F0A400E62C39 /* zzz.jpg */; };
 		28D533861A14FC4D00E62C39 /* FootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D533851A14FC4D00E62C39 /* FootView.m */; };
 		28D5338C1A15069500E62C39 /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D5338B1A15069500E62C39 /* BannerView.m */; };
+		28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0BFF1A29BEAB0072F2CC /* UserInfoViewController.m */; };
+		28DE0C031A29CEFD0072F2CC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0C021A29CEFD0072F2CC /* LoginViewController.m */; };
+		28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0C051A29D8350072F2CC /* RegisterViewController.m */; };
 		28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */; };
 		28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
 		352AF26E6925ECF232F2D25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DBE98D1B95CD8767A46344 /* libPods.a */; };
@@ -486,6 +489,12 @@
 		28D533851A14FC4D00E62C39 /* FootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FootView.m; sourceTree = "<group>"; };
 		28D5338A1A15069500E62C39 /* BannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
 		28D5338B1A15069500E62C39 /* BannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
+		28DE0BFE1A29BEAB0072F2CC /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		28DE0BFF1A29BEAB0072F2CC /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		28DE0C011A29CEFD0072F2CC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		28DE0C021A29CEFD0072F2CC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		28DE0C041A29D8350072F2CC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		28DE0C051A29D8350072F2CC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsFootView.h; sourceTree = "<group>"; };
 		28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsFootView.m; sourceTree = "<group>"; };
 		5C87C1F9727744AB4FB06F83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -592,6 +601,12 @@
 				28BA92B31A203C48004FEAE3 /* SideViewController.m */,
 				288D52F61A21C5010030B4BC /* ClassificationViewController.h */,
 				288D52F71A21C5010030B4BC /* ClassificationViewController.m */,
+				28DE0BFE1A29BEAB0072F2CC /* UserInfoViewController.h */,
+				28DE0BFF1A29BEAB0072F2CC /* UserInfoViewController.m */,
+				28DE0C011A29CEFD0072F2CC /* LoginViewController.h */,
+				28DE0C021A29CEFD0072F2CC /* LoginViewController.m */,
+				28DE0C041A29D8350072F2CC /* RegisterViewController.h */,
+				28DE0C051A29D8350072F2CC /* RegisterViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1208,7 +1223,9 @@
 				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,
 				28BA92DF1A209C46004FEAE3 /* MJRefreshHeaderView.m in Sources */,
+				28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */,
 				28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */,
+				28DE0C031A29CEFD0072F2CC /* LoginViewController.m in Sources */,
 				28BA92E21A209C46004FEAE3 /* UIScrollView+MJExtension.m in Sources */,
 				28D533861A14FC4D00E62C39 /* FootView.m in Sources */,
 				28BA92E01A209C46004FEAE3 /* UIScrollView+MJRefresh.m in Sources */,
@@ -1221,6 +1238,7 @@
 				28224B061A13985A00C6EE18 /* main.m in Sources */,
 				28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */,
 				2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */,
+				28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */,
 				28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */,
 				28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */,
 			);

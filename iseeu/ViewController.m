@@ -136,6 +136,8 @@
     
     FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
     
+    [footView setViewDelegate:self];
+    
     [footView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:footView];
@@ -368,6 +370,16 @@
     
     [self.navigationController pushViewController:goodsDetailViewController animated:YES];
 
+}
+
+-(void)pushViewController:(int)type{
+
+    if (type == 4) {
+        UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+        
+        [self.navigationController pushViewController:userInfoViewController animated:YES];
+    }
+    
 }
 
 @end

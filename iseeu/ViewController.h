@@ -28,6 +28,8 @@
 
 #import "GoodsDetailViewController.h"
 
+#import "UserInfoViewController.h"
+
 @interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
