@@ -21,6 +21,7 @@
 		283402E41A2379A500313035 /* ClassificationTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E31A2379A500313035 /* ClassificationTableView.m */; };
 		283402E71A237A2E00313035 /* ClassificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E61A237A2E00313035 /* ClassificationTableCell.m */; };
 		283402EA1A237AB100313035 /* ClassificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E91A237AB100313035 /* ClassificationModel.m */; };
+		285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 285CF7721A2CB4010071F8AC /* ValidataLogin.m */; };
 		288D52F81A21C5010030B4BC /* ClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288D52F71A21C5010030B4BC /* ClassificationViewController.m */; };
 		289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289128231A18518E00E5F9BA /* GoodsDetailViewController.m */; };
 		28A4AC041A17149E00709F33 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A4AC031A17149E00709F33 /* HomeModel.m */; };
@@ -268,6 +269,8 @@
 		283402E61A237A2E00313035 /* ClassificationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationTableCell.m; sourceTree = "<group>"; };
 		283402E81A237AB100313035 /* ClassificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationModel.h; sourceTree = "<group>"; };
 		283402E91A237AB100313035 /* ClassificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationModel.m; sourceTree = "<group>"; };
+		285CF7711A2CB4010071F8AC /* ValidataLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidataLogin.h; sourceTree = "<group>"; };
+		285CF7721A2CB4010071F8AC /* ValidataLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidataLogin.m; sourceTree = "<group>"; };
 		288D52F61A21C5010030B4BC /* ClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationViewController.h; sourceTree = "<group>"; };
 		288D52F71A21C5010030B4BC /* ClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationViewController.m; sourceTree = "<group>"; };
 		289128221A18518E00E5F9BA /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
@@ -624,6 +627,8 @@
 				28BA92EA1A218E18004FEAE3 /* RightViewModel.m */,
 				283402E81A237AB100313035 /* ClassificationModel.h */,
 				283402E91A237AB100313035 /* ClassificationModel.m */,
+				285CF7711A2CB4010071F8AC /* ValidataLogin.h */,
+				285CF7721A2CB4010071F8AC /* ValidataLogin.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1219,6 +1224,7 @@
 				28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
+				285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
 				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,

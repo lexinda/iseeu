@@ -16,6 +16,8 @@
 
 @synthesize passwordAgainField;
 
+@synthesize hud;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,7 +76,7 @@
     
     [loginImageView addSubview:userName];
     
-    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userName.frame.origin.x+userName.frame.size.width+5.0, userName.frame.origin.y, 220.0, 35.0)];
+    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userName.frame.origin.x+userName.frame.size.width+15.0, userName.frame.origin.y+55.0, 220.0, 35.0)];
     
     self.userNameField.placeholder = @"输入用户名";
     
@@ -92,7 +94,7 @@
     
     self.userNameField.background = [UIImage imageNamed:@"userlong_edit"];
     
-    [loginImageView addSubview:self.userNameField];
+    [self.view addSubview:self.userNameField];
     
     UIImageView *password = [[UIImageView alloc] initWithFrame:CGRectMake(userName.frame.origin.x, userName.frame.origin.y+userName.frame.size.height+10.0, 35.0, 35.0)];
     
@@ -100,7 +102,7 @@
     
     [loginImageView addSubview:password];
     
-    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(password.frame.origin.x+password.frame.size.width+5.0, password.frame.origin.y, 220.0, 35.0)];
+    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(password.frame.origin.x+password.frame.size.width+15.0, password.frame.origin.y+55.0, 220.0, 35.0)];
     
     self.passwordField.placeholder = @"输入密码";
     
@@ -118,7 +120,7 @@
     
     self.passwordField.background = [UIImage imageNamed:@"userlong_edit"];
     
-    [loginImageView addSubview:self.passwordField];
+    [self.view addSubview:self.passwordField];
     
     UIImageView *passwordAgain = [[UIImageView alloc] initWithFrame:CGRectMake(userName.frame.origin.x, password.frame.origin.y+password.frame.size.height+10.0, 35.0, 35.0)];
     
@@ -126,7 +128,7 @@
     
     [loginImageView addSubview:passwordAgain];
     
-    self.passwordAgainField = [[UITextField alloc] initWithFrame:CGRectMake(passwordAgain.frame.origin.x+passwordAgain.frame.size.width+5.0, passwordAgain.frame.origin.y, 220.0, 35.0)];
+    self.passwordAgainField = [[UITextField alloc] initWithFrame:CGRectMake(passwordAgain.frame.origin.x+passwordAgain.frame.size.width+15.0, passwordAgain.frame.origin.y+55.0, 220.0, 35.0)];
     
     self.passwordAgainField.placeholder = @"确认密码";
     
@@ -144,23 +146,159 @@
     
     self.passwordAgainField.background = [UIImage imageNamed:@"userlong_edit"];
     
-    [loginImageView addSubview:self.passwordAgainField];
+    [self.view addSubview:self.passwordAgainField];
     
-    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [loginButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, password.frame.origin.y+password.frame.size.height+10.0+50.0+50.0, 80.0, 30.0)];
+    [registerButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, password.frame.origin.y+password.frame.size.height+10.0+50.0+50.0, 80.0, 30.0)];
     
-    [loginButton setBackgroundImage:[UIImage imageNamed:@"register"] forState:UIControlStateNormal];
+    [registerButton setBackgroundImage:[UIImage imageNamed:@"register"] forState:UIControlStateNormal];
     
-    [self.view addSubview:loginButton];
+    [registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *registButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.view addSubview:registerButton];
     
-    [registButton setFrame:CGRectMake(loginButton.frame.origin.x+loginButton.frame.size.width+20.0, loginButton.frame.origin.y, 80.0, 30.0)];
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [registButton setBackgroundImage:[UIImage imageNamed:@"reset_select"] forState:UIControlStateNormal];
+    [resetButton setFrame:CGRectMake(registerButton.frame.origin.x+registerButton.frame.size.width+20.0, registerButton.frame.origin.y, 80.0, 30.0)];
     
-    [self.view addSubview:registButton];
+    [resetButton setBackgroundImage:[UIImage imageNamed:@"reset_select"] forState:UIControlStateNormal];
+    
+    [self.view addSubview:resetButton];
+    
+}
+
+-(void)registerAction{
+    
+    if ([[self.userNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else if ([[self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else if ([[self.passwordAgainField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确认密码不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else if (![[self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:[self.passwordAgainField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"两次密码输入不一致！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else{
+        
+        self.hud = [[MBProgressHUD alloc] initWithView:self.view];
+        
+        [self.view addSubview:self.hud];
+        
+        [self.hud setLabelText:@"加载中..."];
+        
+        self.hud.delegate = self;
+        
+        [self.hud show:YES];
+        
+        NSDictionary *parameters = @{@"username":self.userNameField.text,@"password":self.passwordField.text};
+        
+        NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/login/reg/",SERVER_URL];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        [manager POST:homeUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            
+            NSDictionary *data = [dictionary objectForKey:@"xin"];
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[data objectForKey:@"a"]];
+            
+            if ([result isEqual:@"1"]) {
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户已存在！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+            }else if ([result isEqual:@"2"]) {
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+            }else if ([result isEqual:@"3"]) {
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+            }else if ([result isEqual:@"4"]) {
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"非法操作！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+            }
+            
+            NSLog(@"%@",result);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    //如果当前View是父视图，则Y为20个像素高度，如果当前View为其他View的子视图，则动态调节Y的高度
+    float Y = 30.0f;
+    CGRect rect=CGRectMake(0.0f,Y+34.0,width,height);
+    self.view.frame=rect;
+    [UIView commitAnimations];
+    
+    return [textField resignFirstResponder];
+    
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+
+    if (self.view.frame.size.height-textField.frame.origin.y<216) {
+        
+        NSTimeInterval animationDuration=0.30f;
+        [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        float width = self.view.frame.size.width;
+        float height = self.view.frame.size.height;
+        //上移30个单位，按实际情况设置
+        CGRect rect=CGRectMake(0.0f,-30,width,height);
+        self.view.frame=rect;
+        [UIView commitAnimations];
+        
+    }
+    
+    
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    NSTimeInterval animationDuration=0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    float width = self.view.frame.size.width;
+    float height = self.view.frame.size.height;
+    //如果当前View是父视图，则Y为20个像素高度，如果当前View为其他View的子视图，则动态调节Y的高度
+    float Y = 30.0f;
+    CGRect rect=CGRectMake(0.0f,Y+34.0,width,height);
+    self.view.frame=rect;
+    [UIView commitAnimations];
+    
+    [self.userNameField resignFirstResponder];
+    
+    [self.passwordField resignFirstResponder];
+    
+    [self.passwordAgainField resignFirstResponder];
+    
+}
+
+-(void)hudWasHidden:(MBProgressHUD *)hud{
+
+    [self.hud removeFromSuperview];
+    self.hud = nil;
     
 }
 

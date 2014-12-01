@@ -10,10 +10,18 @@
 
 #import "RegisterViewController.h"
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+#import <MBProgressHUD/MBProgressHUD.h>
+
+#import <AFNetworking/AFNetworking.h>
+
+#import "ValidataLogin.h"
+
+@interface LoginViewController : UIViewController<UITextFieldDelegate,MBProgressHUDDelegate>
 
 @property(strong,nonatomic)UITextField *userNameField;
 
 @property(strong,nonatomic)UITextField *passwordField;
+
+@property(strong,nonatomic)MBProgressHUD *hud;
 
 @end

@@ -14,6 +14,8 @@
 
 @synthesize passwordField;
 
+@synthesize hud;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -82,7 +84,7 @@
     
     [loginImageView addSubview:userName];
     
-    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userName.frame.origin.x+userName.frame.size.width+5.0, userName.frame.origin.y, 220.0, 35.0)];
+    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(userName.frame.origin.x+userName.frame.size.width+15.0, userName.frame.origin.y+50.0, 220.0, 35.0)];
     
     self.userNameField.placeholder = @"输入用户名";
     
@@ -100,7 +102,7 @@
     
     self.userNameField.background = [UIImage imageNamed:@"userlong_edit"];
     
-    [loginImageView addSubview:self.userNameField];
+    [self.view addSubview:self.userNameField];
     
     UIImageView *password = [[UIImageView alloc] initWithFrame:CGRectMake(userName.frame.origin.x, userName.frame.origin.y+userName.frame.size.height+10.0, 35.0, 35.0)];
     
@@ -108,7 +110,7 @@
     
     [loginImageView addSubview:password];
     
-    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(password.frame.origin.x+password.frame.size.width+5.0, password.frame.origin.y, 220.0, 35.0)];
+    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(password.frame.origin.x+password.frame.size.width+15.0, password.frame.origin.y+50.0, 220.0, 35.0)];
     
     self.passwordField.placeholder = @"输入密码";
     
@@ -126,13 +128,15 @@
     
     self.passwordField.background = [UIImage imageNamed:@"userlong_edit"];
     
-    [loginImageView addSubview:self.passwordField];
+    [self.view addSubview:self.passwordField];
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     [loginButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, password.frame.origin.y+password.frame.size.height+10.0+50.0, 80.0, 30.0)];
     
     [loginButton setBackgroundImage:[UIImage imageNamed:@"longin_submmit"] forState:UIControlStateNormal];
+    
+    [loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:loginButton];
     
@@ -148,9 +152,84 @@
     
 }
 
+-(void)loginAction{
+    
+    if ([[self.userNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else if ([[self.passwordField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码不能为空！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else{
+        
+        self.hud = [[MBProgressHUD alloc] initWithView:self.view];
+        
+        [self.view addSubview:self.hud];
+        
+        [self.hud setLabelText:@"加载中..."];
+        
+        self.hud.delegate = self;
+        
+        [self.hud show:YES];
+        
+        NSDictionary *parameters = @{@"username":self.userNameField.text,@"password":self.passwordField.text};
+        
+        NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/login",SERVER_URL];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        [manager POST:homeUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            
+            NSDictionary *data = [dictionary objectForKey:@"xin"];
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[data objectForKey:@"a"]];
+            
+            if ([result isEqual:@""]) {
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名或密码错误！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+            }else{
+                [self.hud hide:YES];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alertView show];
+                
+                NSDictionary *dataDictionary = @{@"username":self.userNameField.text,@"password":self.passwordField.text,@"uid":result};
+                
+                ValidataLogin *validataLogin = [[ValidataLogin alloc] init];
+                
+                [validataLogin standardUserInfo:dataDictionary];
+            }
+            
+            NSLog(@"%@",dictionary);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    
+}
+
+
 -(void)goBack{
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    return [textField resignFirstResponder];
+    
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    [self.userNameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
     
 }
 
