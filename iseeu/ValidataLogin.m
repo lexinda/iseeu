@@ -20,7 +20,7 @@
     
     NSString *uid = [userInfo objectForKey:@"uid"];
     
-    [defaults setObject:uid forKey:@"username"];
+    [defaults setObject:uid forKey:@"uid"];
     
     NSString *password = [userInfo objectForKey:@"password"];
     
@@ -111,13 +111,13 @@
         
         if(temp<15){
             
-            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",isAutoLogin,@"isAutoLogin",uid,@"uid", nil];
+            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",uid,@"uid",isAutoLogin,@"isAutoLogin", nil];
             
             return resultData;
             
         }else{
             
-            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",isAutoLogin,@"isAutoLogin",uid,@"uid", nil];
+            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",uid,@"uid",isAutoLogin,@"isAutoLogin", nil];
             
             return resultData;
         
@@ -129,7 +129,7 @@
         
         if ([password isEqualToString:@""]) {
             
-            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",isAutoLogin,@"isAutoLogin",uid,@"uid", nil];
+            NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",uid,@"uid",isAutoLogin,@"isAutoLogin", nil];
             
             return resultData;
             
@@ -153,7 +153,7 @@
             
             if(temp<1){
                 
-                NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",isAutoLogin,@"isAutoLogin",uid,@"uid", nil];
+                NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",uid,@"uid",isAutoLogin,@"isAutoLogin", nil];
                 
                 return resultData;
                 
@@ -162,7 +162,7 @@
                 
                 [defaults synchronize];
                 
-                NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",@"",@"password",isAutoLogin,@"isAutoLogin",uid,@"uid", nil];
+                NSDictionary *resultData = [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",@"",@"password",uid,@"uid",isAutoLogin,@"isAutoLogin", nil];
                 
                 return resultData;
                 

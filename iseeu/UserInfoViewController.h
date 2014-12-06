@@ -10,10 +10,34 @@
 
 #import "LoginViewController.h"
 
-@interface UserInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "ValidataLogin.h"
+
+#import <AFNetworking/AFNetworking.h>
+
+#import <MBProgressHUD/MBProgressHUD.h>
+
+#import "UIButton+WebCache.h"
+
+#import "MF_Base64Additions.h"
+
+@interface UserInfoViewController : UIViewController<UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 
 @property(strong,nonatomic)UITableView *_aboutTableView;
 
 @property(strong,nonatomic)NSArray *_tableArray;
+
+@property(strong,nonatomic)MBProgressHUD *_hud;
+
+@property(strong,nonatomic)NSNumber *_uid;
+
+@property(strong,nonatomic)UIButton *_userPhoto;
+
+@property(strong,nonatomic)UILabel *_userNameLabel;
+
+@property(strong,nonatomic)UILabel *_scoreLabel;
+
+@property(strong,nonatomic)UILabel *_scoreUsedLabel;
+
+@property(strong,nonatomic)UILabel *_noticeLabel;
 
 @end

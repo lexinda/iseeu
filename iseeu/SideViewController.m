@@ -234,7 +234,7 @@
     
     UIButton *button = (UIButton *)sender;
 
-    NSLog(@"%i",button.tag);
+    NSLog(@"%li",(long)button.tag);
     
     UIButton *oneButton = (UIButton *)[self.view viewWithTag:900];
     
@@ -311,9 +311,9 @@
     
     NSRange range = [responseString rangeOfString:indexStr];
     
-    NSLog(@"%i",responseString.length);
+    NSLog(@"%lu",(unsigned long)responseString.length);
     
-    int location = range.location+indexStr.length;
+    int location = (int)range.location+(int)indexStr.length;
     
     [responseString insertString:@"\"" atIndex:location];
     

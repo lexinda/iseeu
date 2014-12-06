@@ -16,6 +16,8 @@
 
 #import "ValidataLogin.h"
 
+#import "UserInfoViewController.h"
+
 @interface LoginViewController : UIViewController<UITextFieldDelegate,MBProgressHUDDelegate>
 
 @property(strong,nonatomic)UITextField *userNameField;

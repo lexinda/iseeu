@@ -34,6 +34,7 @@
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
         
         self.navigationItem.leftBarButtonItem = leftItem;
+        
     }
     return self;
     
@@ -194,14 +195,22 @@
                 [alertView show];
             }else{
                 [self.hud hide:YES];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alertView show];
                 
                 NSDictionary *dataDictionary = @{@"username":self.userNameField.text,@"password":self.passwordField.text,@"uid":result};
                 
                 ValidataLogin *validataLogin = [[ValidataLogin alloc] init];
                 
                 [validataLogin standardUserInfo:dataDictionary];
+                
+                for (UIViewController *viewController in self.navigationController.viewControllers) {
+                    
+                    if ([viewController isKindOfClass:UserInfoViewController.class]) {
+                        
+                        [self.navigationController popToViewController:viewController animated:YES];
+                        
+                    }
+                }
+                
             }
             
             NSLog(@"%@",dictionary);

@@ -660,7 +660,7 @@
             break;
     }
     
-    NSLog(@"%i",button.tag);
+    NSLog(@"%li",(long)button.tag);
 
 }
 

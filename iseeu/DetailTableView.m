@@ -32,7 +32,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    NSLog(@"%i",self.tag);
+    NSLog(@"%li",(long)self.tag);
     
     [self addSubview:_tableView];
     

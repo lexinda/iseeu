@@ -9,6 +9,6 @@
 #ifndef iseeu_Public_h
 #define iseeu_Public_h
 
-#define SERVER_URL @"http://www.2.com.s1.kingidc.net"
+#define SERVER_URL @"http://bugtuan.gotoip4.com"
 
 #endif

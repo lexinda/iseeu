@@ -166,7 +166,7 @@
 
 -(void)showHud{
     
-    NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/index/index/",SERVER_URL];
+    NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/index/indexs/",SERVER_URL];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
