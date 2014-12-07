@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2811B1A61A33F515001D1F9D /* OrderManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1A51A33F515001D1F9D /* OrderManageViewController.m */; };
+		2811B1A91A33FE26001D1F9D /* ScoreManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1A81A33FE26001D1F9D /* ScoreManageViewController.m */; };
+		2811B1AC1A340049001D1F9D /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1AB1A340049001D1F9D /* UserInfo.m */; };
+		2811B1AF1A340C8B001D1F9D /* ScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1AE1A340C8B001D1F9D /* ScoreTableViewCell.m */; };
+		2811B1B21A340FAA001D1F9D /* UserScoreLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1B11A340FAA001D1F9D /* UserScoreLog.m */; };
+		2811B1B91A341696001D1F9D /* UserMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1B81A341696001D1F9D /* UserMaterialViewController.m */; };
+		2811B1BC1A344789001D1F9D /* ModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1BB1A344789001D1F9D /* ModifyPasswordViewController.m */; };
+		2811B1BF1A344DB9001D1F9D /* ModifyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1BE1A344DB9001D1F9D /* ModifyAddressViewController.m */; };
+		2811B1C21A345F19001D1F9D /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811B1C11A345F19001D1F9D /* Address.m */; };
 		282027721A1A2ED9009CC640 /* CartDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 282027711A1A2ED9009CC640 /* CartDetail.m */; };
 		28224B061A13985A00C6EE18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B051A13985A00C6EE18 /* main.m */; };
 		28224B091A13985A00C6EE18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B081A13985A00C6EE18 /* AppDelegate.m */; };
@@ -241,6 +250,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2811B1A41A33F515001D1F9D /* OrderManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderManageViewController.h; sourceTree = "<group>"; };
+		2811B1A51A33F515001D1F9D /* OrderManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderManageViewController.m; sourceTree = "<group>"; };
+		2811B1A71A33FE26001D1F9D /* ScoreManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManageViewController.h; sourceTree = "<group>"; };
+		2811B1A81A33FE26001D1F9D /* ScoreManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManageViewController.m; sourceTree = "<group>"; };
+		2811B1AA1A340049001D1F9D /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		2811B1AB1A340049001D1F9D /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		2811B1AD1A340C8B001D1F9D /* ScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTableViewCell.h; sourceTree = "<group>"; };
+		2811B1AE1A340C8B001D1F9D /* ScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTableViewCell.m; sourceTree = "<group>"; };
+		2811B1B01A340FAA001D1F9D /* UserScoreLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserScoreLog.h; sourceTree = "<group>"; };
+		2811B1B11A340FAA001D1F9D /* UserScoreLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserScoreLog.m; sourceTree = "<group>"; };
+		2811B1B71A341696001D1F9D /* UserMaterialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMaterialViewController.h; sourceTree = "<group>"; };
+		2811B1B81A341696001D1F9D /* UserMaterialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMaterialViewController.m; sourceTree = "<group>"; };
+		2811B1BA1A344789001D1F9D /* ModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPasswordViewController.h; sourceTree = "<group>"; };
+		2811B1BB1A344789001D1F9D /* ModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPasswordViewController.m; sourceTree = "<group>"; };
+		2811B1BD1A344DB9001D1F9D /* ModifyAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyAddressViewController.h; sourceTree = "<group>"; };
+		2811B1BE1A344DB9001D1F9D /* ModifyAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyAddressViewController.m; sourceTree = "<group>"; };
+		2811B1C01A345F19001D1F9D /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
+		2811B1C11A345F19001D1F9D /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		2820276F1A1A1FD2009CC640 /* HomeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDelegate.h; sourceTree = "<group>"; };
 		282027701A1A2ED9009CC640 /* CartDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartDetail.h; sourceTree = "<group>"; };
 		282027711A1A2ED9009CC640 /* CartDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartDetail.m; sourceTree = "<group>"; };
@@ -524,6 +551,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2811B1B61A341637001D1F9D /* userInfoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2811B1B71A341696001D1F9D /* UserMaterialViewController.h */,
+				2811B1B81A341696001D1F9D /* UserMaterialViewController.m */,
+				2811B1BA1A344789001D1F9D /* ModifyPasswordViewController.h */,
+				2811B1BB1A344789001D1F9D /* ModifyPasswordViewController.m */,
+				2811B1BD1A344DB9001D1F9D /* ModifyAddressViewController.h */,
+				2811B1BE1A344DB9001D1F9D /* ModifyAddressViewController.m */,
+			);
+			name = userInfoDetail;
+			sourceTree = "<group>";
+		};
 		28224AF71A13985A00C6EE18 = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +634,7 @@
 		289128211A18514900E5F9BA /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				2811B1B61A341637001D1F9D /* userInfoDetail */,
 				28224B0A1A13985A00C6EE18 /* ViewController.h */,
 				28224B0B1A13985A00C6EE18 /* ViewController.m */,
 				28D530951A14E28600E62C39 /* SideMenuViewController.h */,
@@ -610,6 +651,10 @@
 				28DE0C021A29CEFD0072F2CC /* LoginViewController.m */,
 				28DE0C041A29D8350072F2CC /* RegisterViewController.h */,
 				28DE0C051A29D8350072F2CC /* RegisterViewController.m */,
+				2811B1A41A33F515001D1F9D /* OrderManageViewController.h */,
+				2811B1A51A33F515001D1F9D /* OrderManageViewController.m */,
+				2811B1A71A33FE26001D1F9D /* ScoreManageViewController.h */,
+				2811B1A81A33FE26001D1F9D /* ScoreManageViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -629,6 +674,12 @@
 				283402E91A237AB100313035 /* ClassificationModel.m */,
 				285CF7711A2CB4010071F8AC /* ValidataLogin.h */,
 				285CF7721A2CB4010071F8AC /* ValidataLogin.m */,
+				2811B1AA1A340049001D1F9D /* UserInfo.h */,
+				2811B1AB1A340049001D1F9D /* UserInfo.m */,
+				2811B1B01A340FAA001D1F9D /* UserScoreLog.h */,
+				2811B1B11A340FAA001D1F9D /* UserScoreLog.m */,
+				2811B1C01A345F19001D1F9D /* Address.h */,
+				2811B1C11A345F19001D1F9D /* Address.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -867,6 +918,8 @@
 				283402E31A2379A500313035 /* ClassificationTableView.m */,
 				283402E51A237A2E00313035 /* ClassificationTableCell.h */,
 				283402E61A237A2E00313035 /* ClassificationTableCell.m */,
+				2811B1AD1A340C8B001D1F9D /* ScoreTableViewCell.h */,
+				2811B1AE1A340C8B001D1F9D /* ScoreTableViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1221,12 +1274,17 @@
 				28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */,
 				28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */,
 				283402E41A2379A500313035 /* ClassificationTableView.m in Sources */,
+				2811B1AF1A340C8B001D1F9D /* ScoreTableViewCell.m in Sources */,
 				28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
 				285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */,
+				2811B1A91A33FE26001D1F9D /* ScoreManageViewController.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
 				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,
+				2811B1B91A341696001D1F9D /* UserMaterialViewController.m in Sources */,
+				2811B1B21A340FAA001D1F9D /* UserScoreLog.m in Sources */,
+				2811B1AC1A340049001D1F9D /* UserInfo.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,
 				28BA92DF1A209C46004FEAE3 /* MJRefreshHeaderView.m in Sources */,
 				28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */,
@@ -1239,14 +1297,18 @@
 				28BA92DE1A209C46004FEAE3 /* MJRefreshFooterView.m in Sources */,
 				2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */,
 				288D52F81A21C5010030B4BC /* ClassificationViewController.m in Sources */,
+				2811B1A61A33F515001D1F9D /* OrderManageViewController.m in Sources */,
 				283402E71A237A2E00313035 /* ClassificationTableCell.m in Sources */,
 				28A4AC041A17149E00709F33 /* HomeModel.m in Sources */,
 				28224B061A13985A00C6EE18 /* main.m in Sources */,
+				2811B1BC1A344789001D1F9D /* ModifyPasswordViewController.m in Sources */,
 				28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */,
 				2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */,
 				28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */,
+				2811B1BF1A344DB9001D1F9D /* ModifyAddressViewController.m in Sources */,
 				28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */,
 				28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */,
+				2811B1C21A345F19001D1F9D /* Address.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

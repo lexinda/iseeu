@@ -138,7 +138,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     
     RightViewModel *rightViewModel = (RightViewModel *)self.fakeData[indexPath.row];
     
-    [homeDelegate pushClassificationViewController:self.tag withSid:[rightViewModel.id intValue]];
+    [homeDelegate pushClassificationViewController:(int)self.tag withSid:[rightViewModel.id intValue]];
     
 }
 

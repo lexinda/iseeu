@@ -82,7 +82,7 @@
 
     UIButton *button = (UIButton *)sender;
     
-    [viewDelegate pushViewController:button.tag];
+    [viewDelegate pushViewController:(int)button.tag];
     
 }
 

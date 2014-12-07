@@ -21,6 +21,11 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Base64 (1.0.1)
+  - FMDB (2.4):
+    - FMDB/standard
+  - FMDB/common (2.4)
+  - FMDB/standard (2.4):
+    - FMDB/common
   - MBProgressHUD (0.9)
   - MFSideMenu (0.5.5)
   - SDWebImage (3.7.1):
@@ -31,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Base64 (~> 1.0.1)
+  - FMDB (~> 2.4)
   - MBProgressHUD (~> 0.9)
   - MFSideMenu (~> 0.5.5)
   - SDWebImage (~> 3.7.1)
@@ -39,6 +45,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   Base64: c6d74f31f150543b246a07e180ba813c88e59311
+  FMDB: 0b2fa25e5264ef177973c0cb8c02c711107979aa
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MFSideMenu: 0493b0f57385dd036cc5443407a31fda6dee81ac
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d

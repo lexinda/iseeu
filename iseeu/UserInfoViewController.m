@@ -28,6 +28,10 @@
 
 @synthesize _noticeLabel;
 
+@synthesize _touImage;
+
+@synthesize _userInfo;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,19 +55,17 @@
     
 }
 
--(void)viewDidLoad{
-    
-    [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]];
+-(void)viewWillAppear:(BOOL)animated{
     
     ValidataLogin *validataLogin = [[ValidataLogin alloc] init];
     
     NSDictionary *validata = [validataLogin validataUserInfo];
-    
+
     NSString *username = [validata objectForKey:@"username"];
     
     NSString *password = [validata objectForKey:@"password"];
     
-    _uid = [validata objectForKey:@"uid"];
+    _uid = [validata objectForKey:@"uid"] ;
     
     if (![username isEqualToString:@""]&&![password isEqualToString:@""]) {
         
@@ -123,6 +125,8 @@
         
         [orderButton setBackgroundImage:[UIImage imageNamed:@"ordermanager"] forState:UIControlStateNormal];
         
+        [orderButton addTarget:self action:@selector(pushOrderView) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.view addSubview:orderButton];
         
         UIButton *checkinButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -131,6 +135,8 @@
         
         [checkinButton setBackgroundImage:[UIImage imageNamed:@"checkin"] forState:UIControlStateNormal];
         
+        [checkinButton addTarget:self action:@selector(checkinAction) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.view addSubview:checkinButton];
         
         UIButton *scoreButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -138,6 +144,8 @@
         [scoreButton setFrame:CGRectMake(checkinButton.frame.origin.x+checkinButton.frame.size.width, orderButton.frame.origin.y, width, 70.0)];
         
         [scoreButton setBackgroundImage:[UIImage imageNamed:@"personal_score"] forState:UIControlStateNormal];
+        
+        [scoreButton addTarget:self action:@selector(scoreManage) forControlEvents:UIControlEventTouchUpInside];
         
         [self.view addSubview:scoreButton];
         
@@ -172,7 +180,7 @@
         [self loadUserInfo];
         
     }else{
-    
+        
         [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]];
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 180.0)];
@@ -213,6 +221,12 @@
     
 }
 
+-(void)viewDidLoad{
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]];
+    
+}
+
 -(void)loadUserInfo{
     
     NSString *userUrl = [NSString stringWithFormat:@"%@/index.php/user/index",SERVER_URL];
@@ -229,7 +243,11 @@
         
         NSDictionary *data = [dictionary objectForKey:@"xin"];
         
+        _userInfo = [[UserInfo alloc] getUserInfo:data];
+        
         NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",SERVER_URL,[data objectForKey:@"tou"]]]];
+        
+        _touImage = [NSString stringWithFormat:@"%@/%@",SERVER_URL,_userInfo.tou];
         
 //        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.imgur.com/r4uwx.jpg"]];
         
@@ -241,9 +259,9 @@
             
         }
         
-        [_userNameLabel setText:[NSString stringWithFormat:@"%@",[data objectForKey:@"username"]]];
+        [_userNameLabel setText:[NSString stringWithFormat:@"%@",_userInfo.username]];
         
-        NSString *scoreText = [NSString stringWithFormat:@"积分：%@",[data objectForKey:@"sum_jifen"]];
+        NSString *scoreText = [NSString stringWithFormat:@"积分：%@",_userInfo.sum_jifen];
         
         NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15]};
         
@@ -257,7 +275,7 @@
         
         [_noticeLabel setFrame:CGRectMake(_scoreLabel.frame.origin.x+_scoreLabel.frame.size.width+2, _scoreLabel.frame.origin.y+2, self.view.frame.size.width-_scoreLabel.frame.origin.x-_scoreLabel.frame.size.width-5.0, 30.0)];
         
-        [_scoreUsedLabel setText:[NSString stringWithFormat:@"已使用积分：%@",[data objectForKey:@"yi_jifen"]]];
+        [_scoreUsedLabel setText:[NSString stringWithFormat:@"已使用积分：%@",_userInfo.yi_jifen]];
         
         [_hud hide:YES];
         
@@ -329,9 +347,23 @@
         
         NSMutableString *responseString = [[NSMutableString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         
+        [self showAlert:@"上传成功！"];
+        
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_touImage]];
+        
+        UIImage *image = [UIImage imageWithData:imageData];
+        
+        if (image != nil) {
+            
+            [_userPhoto setBackgroundImage:image forState:UIControlStateNormal];
+            
+        }
+        
         NSLog(@"success%@",responseString);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self showAlert:@"上传失败！"];
         
         NSLog(@"error");
         
@@ -395,6 +427,30 @@
 
     NSLog(@"%li",(long)indexPath.row);
     
+    if (indexPath.row == 0) {
+        
+        UserMaterialViewController *userMaterialViewController = [[UserMaterialViewController alloc] init];
+        
+        [userMaterialViewController set_uid:_uid];
+        
+        [self.navigationController pushViewController:userMaterialViewController animated:YES];
+        
+    }else if(indexPath.row == 1){
+        ModifyPasswordViewController *modifyPasswordViewController = [[ModifyPasswordViewController alloc] init];
+        
+        [modifyPasswordViewController set_uid:_uid];
+        
+        [self.navigationController pushViewController:modifyPasswordViewController animated:YES];
+    }else if (indexPath.row ==2){
+    
+        ModifyAddressViewController *modifyAddressViewController = [[ModifyAddressViewController alloc] init];
+        
+        [modifyAddressViewController set_uid:_uid];
+        
+        [self.navigationController pushViewController:modifyAddressViewController animated:YES];
+        
+    }
+    
 }
 
 -(void)hudWasHidden:(MBProgressHUD *)hud{
@@ -403,6 +459,103 @@
     
     _hud = nil;
     
+}
+
+- (void)timerFireMethod:(NSTimer*)theTimer//弹出框
+{
+    UIAlertView *promptAlert = (UIAlertView*)[theTimer userInfo];
+    [promptAlert dismissWithClickedButtonIndex:0 animated:NO];
+    promptAlert =NULL;
+}
+
+
+-(void)showAlert:(NSString *) _message{//时间
+    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:@"提示:" message:_message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                     target:self
+                                   selector:@selector(timerFireMethod:)
+                                   userInfo:promptAlert
+                                    repeats:YES];
+    [promptAlert show];
+}
+
+-(void)pushOrderView{
+    
+    OrderManageViewController *orderManageViewController = [[OrderManageViewController alloc] init];
+    
+    [orderManageViewController set_uid:_uid];
+    
+    [self.navigationController pushViewController:orderManageViewController animated:YES];
+
+}
+
+-(void)checkinAction{
+    
+    NSString *checkinUrl = [NSString stringWithFormat:@"%@/index.php/user/qiandaoadd",SERVER_URL];
+    
+    NSDictionary *params = @{@"uid":_uid};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:checkinUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSString *data = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"a"]];
+        if ([data isEqualToString:@"1"]) {
+            [self showAlert:@"今天已签到过！"];
+        }else if([data isEqualToString:@"2"]) {
+            
+            NSString *userUrl = [NSString stringWithFormat:@"%@/index.php/user/index",SERVER_URL];
+            
+            NSDictionary *params = @{@"uid":_uid};
+            
+            [manager POST:userUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+                
+                NSDictionary *data = [dictionary objectForKey:@"xin"];
+                
+                _userInfo = [[UserInfo alloc] getUserInfo:data];
+                
+                NSString *scoreText = [NSString stringWithFormat:@"积分：%@",_userInfo.sum_jifen];
+                
+                NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15]};
+                
+                CGSize textSize = [scoreText boundingRectWithSize:CGSizeMake(MAXFLOAT, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+                
+                [_scoreLabel setFrame:CGRectMake(_scoreLabel.frame.origin.x, _scoreLabel.frame.origin.y, textSize.width, _scoreLabel.frame.size.height)];
+                
+                [_scoreLabel setFont:[UIFont systemFontOfSize:15]];
+                
+                [_scoreLabel setText:scoreText];
+                
+                [_noticeLabel setFrame:CGRectMake(_scoreLabel.frame.origin.x+_scoreLabel.frame.size.width+2, _scoreLabel.frame.origin.y+2, self.view.frame.size.width-_scoreLabel.frame.origin.x-_scoreLabel.frame.size.width-5.0, 30.0)];
+                
+            }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"error");
+            }];
+            
+            [self showAlert:@"签到成功！"];
+        }
+        NSLog(@"%@",dictionary);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error");
+    }];
+
+}
+
+-(void)scoreManage{
+    
+    ScoreManageViewController *scoreManageViewController = [[ScoreManageViewController alloc] init];
+    
+    [scoreManageViewController set_uid:_uid];
+    
+    [scoreManageViewController set_userInfo:_userInfo];
+    
+    [self.navigationController pushViewController:scoreManageViewController animated:YES];
+
 }
 
 @end
