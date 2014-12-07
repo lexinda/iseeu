@@ -156,7 +156,7 @@
     
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [registerButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, emailLabel.frame.origin.y+emailLabel.frame.size.height+10.0, 80.0, 30.0)];
+    [registerButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, emailLabel.frame.origin.y+emailLabel.frame.size.height+10.0, 80.0, 35.0)];
     
     [registerButton setBackgroundImage:[UIImage imageNamed:@"submmit_normal"] forState:UIControlStateNormal];
     
@@ -166,7 +166,7 @@
     
     UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [resetButton setFrame:CGRectMake(registerButton.frame.origin.x+registerButton.frame.size.width+20.0, registerButton.frame.origin.y, 80.0, 30.0)];
+    [resetButton setFrame:CGRectMake(registerButton.frame.origin.x+registerButton.frame.size.width+20.0, registerButton.frame.origin.y, 80.0, 35.0)];
     
     [resetButton setBackgroundImage:[UIImage imageNamed:@"reset_normal"] forState:UIControlStateNormal];
     

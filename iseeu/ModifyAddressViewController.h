@@ -12,6 +12,10 @@
 
 #import "Address.h"
 
+#import <AFNetworking/AFNetworking.h>
+
+#import <MBProgressHUD/MBProgressHUD.h>
+
 @interface ModifyAddressViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UITextViewDelegate>
 
 @property(strong,nonatomic)UITextField *_addressField;
@@ -32,6 +36,12 @@
 
 @property(nonatomic)int _cityIdRow;
 
+@property(strong,nonatomic)NSString *_provinceId;
+
+@property(strong,nonatomic)NSString *_cityId;
+
 @property(strong,nonatomic)UIToolbar *_toolbarCancelDone;
+
+@property(strong,nonatomic)MBProgressHUD *_hud;
 
 @end

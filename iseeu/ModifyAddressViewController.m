@@ -30,6 +30,12 @@
 
 @synthesize _toolbarCancelDone;
 
+@synthesize _provinceId;
+
+@synthesize _cityId;
+
+@synthesize _hud;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -120,6 +126,125 @@
 
     [super viewWillAppear:YES];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 120.0)];
+    
+    [imageView setImage:[UIImage imageNamed:@"personal_infobalack"]];
+    
+    [self.view addSubview:imageView];
+    
+    UIImageView *userHello = [[UIImageView alloc] initWithFrame:CGRectMake(30.0, imageView.frame.origin.y+imageView.frame.size.height+10,self.view.frame.size.width-60.0,40.0)];
+    
+    [userHello setImage:[UIImage imageNamed:@"personal_info_enter"]];
+    
+    [self.view addSubview:userHello];
+    
+    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, userHello.frame.origin.y+userHello.frame.size.height, 75.0, 30.0)];
+    
+    [addressLabel setText:@"所在省市"];
+    
+    [self.view addSubview:addressLabel];
+    
+    _addressField = [[UITextField alloc] initWithFrame:CGRectMake(addressLabel.frame.size.width+addressLabel.frame.origin.x, addressLabel.frame.origin.y, self.view.frame.size.width-addressLabel.frame.size.width-addressLabel.frame.origin.x-20.0, 30.0)];
+    
+    [_addressField setBorderStyle:UITextBorderStyleNone];
+    
+    _addressField.placeholder = @"省事";
+    
+    _addressField.delegate = self;
+    
+    _addressField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    _addressField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    
+    _addressField.returnKeyType = UIReturnKeyDone;
+    
+    _addressField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    _addressField.contentVerticalAlignment= UIControlContentVerticalAlignmentCenter;
+    
+    _addressField.background = [UIImage imageNamed:@"personal_info_et"];
+    
+    [self.view addSubview:_addressField];
+    
+    UILabel *addressDetail = [[UILabel alloc] initWithFrame:CGRectMake(addressLabel.frame.origin.x, addressLabel.frame.origin.y+addressLabel.frame.size.height+25.0, 75.0, 30.0)];
+    
+    [addressDetail setText:@"详细地址"];
+    
+    [self.view addSubview:addressDetail];
+    
+    _addressText = [[UITextView alloc] initWithFrame:CGRectMake(addressDetail.frame.origin.x+addressDetail.frame.size.width, addressLabel.frame.origin.y+addressLabel.frame.size.height+5.0, _addressField.frame.size.width, 80.0)];
+    
+    UIImageView *imageBackgroundView = [[UIImageView alloc] initWithFrame:[_addressText bounds]];
+    
+    imageBackgroundView.image = [UIImage imageNamed:@"change_address"];
+    
+    [_addressText addSubview:imageBackgroundView];
+    
+    _addressText.delegate = self;
+    
+    [self.view addSubview:_addressText];
+    
+    UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [registerButton setFrame:CGRectMake((self.view.frame.size.width-180.0)/2, _addressText.frame.origin.y+_addressText.frame.size.height+10.0, 80.0, 35.0)];
+    
+    [registerButton setBackgroundImage:[UIImage imageNamed:@"submmit_normal"] forState:UIControlStateNormal];
+    
+    [registerButton addTarget:self action:@selector(commitAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:registerButton];
+    
+    UIButton *resetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [resetButton setFrame:CGRectMake(registerButton.frame.origin.x+registerButton.frame.size.width+20.0, registerButton.frame.origin.y, 80.0, 35.0)];
+    
+    [resetButton setBackgroundImage:[UIImage imageNamed:@"reset_normal"] forState:UIControlStateNormal];
+    
+    [resetButton addTarget:self action:@selector(resetAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:resetButton];
+    
+    _hud = [[MBProgressHUD alloc] initWithView:self.view];
+    
+    [self.view addSubview:_hud];
+    
+    [_hud setLabelText:@"加载中..."];
+    
+    [_hud show:YES];
+    
+    [self updateData];
+    
+}
+
+-(void)updateData{
+
+    NSDictionary *parameters = @{@"uid":_uid};
+    
+    NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/user/addres",SERVER_URL];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:homeUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"a"]];
+        
+        [_hud hide:YES];
+        
+        NSLog(@"%@",result);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
     _toolbarCancelDone = [[UIToolbar alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.size.height-240.0+24, self.view.frame.size.width, 40)];
     
     _toolbarCancelDone.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
@@ -164,7 +289,7 @@
     
     [_toolbarCancelDone setItems:buttons animated:TRUE];
     
-    [self.view addSubview:_toolbarCancelDone];
+    [textField setInputAccessoryView:_toolbarCancelDone];
     
     _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, _toolbarCancelDone.frame.size.height+_toolbarCancelDone.frame.origin.y+1, self.view.frame.size.width, 199)];
     
@@ -174,13 +299,57 @@
     
     _pickerView.dataSource = self;
     
-     _pickerView.showsSelectionIndicator = YES;
+    _pickerView.showsSelectionIndicator = YES;
     
-    [self.view addSubview:_pickerView];
+    [textField setInputView:_pickerView];
     
     [_pickerView reloadAllComponents];
 
+}
+
+-(void)commitAction{
+
+    NSDictionary *parameters = @{@"uid":_uid,@"provinceid":_provinceId,@"cityid":_cityId,@"areadetail":_addressText.text};
     
+    NSString *homeUrl = [NSString stringWithFormat:@"%@/index.php/user/addsadd",SERVER_URL];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:homeUrl parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[dictionary objectForKey:@"a"]];
+        
+        [_hud hide:YES];
+        
+        NSLog(@"%@",result);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+}
+
+-(void)resetAction{
+
+    _addressField.text=@"";
+    
+    _addressText.text = @"";
+    
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if ([text isEqualToString:@"\n"])  {
+        
+        [textView resignFirstResponder];
+        
+        return NO;
+    }
+    return YES;
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -254,8 +423,7 @@
                          
                          _pickerView.hidden = YES;
                          _toolbarCancelDone.hidden = YES;
-                         
-                         
+                         [_addressField resignFirstResponder];
                      }
                      completion:^(BOOL finished){
                          
@@ -273,9 +441,29 @@
     
     //    self.textFieldEnterDate.text = [NSString stringWithFormat:@"%@/%@/%@",[yearArray objectAtIndex:[self.customPicker selectedRowInComponent:0]],[monthArray objectAtIndex:[self.customPicker selectedRowInComponent:1]],[daysArray objectAtIndex:[self.customPicker selectedRowInComponent:2]]];
     
-//    NSString *data = [NSString stringWithFormat:@"%@-%@-%@",[yearArray objectAtIndex:[self.customPicker selectedRowInComponent:0]],[monthArray objectAtIndex:[self.customPicker selectedRowInComponent:1]],[dayArray objectAtIndex:[self.customPicker selectedRowInComponent:2]]];
-//    
-//    [delegateView getDatePickerViewData:data];
+    Address *addressP = (Address *)[_provinceIdArray objectAtIndex:[_pickerView selectedRowInComponent:0]];
+    
+    Address *addressC = (Address *)[_cityIdArray objectAtIndex:[_pickerView selectedRowInComponent:1]];
+    
+    _addressField.text = [NSString stringWithFormat:@"%@%@",addressP.name,addressC.name];
+    
+    _provinceId = [NSString stringWithFormat:@"%@",addressP.id];
+    
+    _cityId = [NSString stringWithFormat:@"%@",addressC.id];
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.1
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         
+                         _pickerView.hidden = YES;
+                         _toolbarCancelDone.hidden = YES;
+                         [_addressField resignFirstResponder];
+                     }
+                     completion:^(BOOL finished){
+                         
+                         
+                     }];
     
 }
 
