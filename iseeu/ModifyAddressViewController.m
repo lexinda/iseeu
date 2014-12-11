@@ -115,6 +115,10 @@
             NSLog(@"insert end...");
         }
         
+    }else{
+    
+        [_db close];
+        
     }
 }
 
@@ -468,9 +472,11 @@
 }
 
 -(void)insertAddressInfo{
-    if(![_db executeUpdate:@"create table pub_cant(cant_code,cant_name,super_code)"])
-    {
-        NSLog(@"Could not create table: %@", [_db lastErrorMessage]);
+    
+    if(![_db tableExists:@"pub_cant"]){
+        
+        [_db executeUpdate:@"create table pub_cant(cant_code,cant_name,super_code)"];
+        
     }
     
     [_db executeUpdate:@"delete from pub_cant"];

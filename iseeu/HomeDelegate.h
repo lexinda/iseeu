@@ -16,4 +16,6 @@
 
 -(void)pushViewController:(int)type;
 
+-(void)pushCartView;
+
 @end

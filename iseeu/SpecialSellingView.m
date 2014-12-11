@@ -67,6 +67,10 @@
             
             [shoppingCart setFrame:CGRectMake(rect.size.width-30.0, price.frame.origin.y-10.0, 30.0, 30.0)];
             
+            [shoppingCart addTarget:self action:@selector(addCart:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [shoppingCart setTag:i];
+            
             [shoppingCart setBackgroundImage:[UIImage imageNamed:@"home_shopping"] forState:UIControlStateNormal];
             
             [self addSubview:shoppingCart];
@@ -87,6 +91,26 @@
     NSLog(@"图片%li被点击!",(long)imageView.tag);
     
     [_delegate pushGoodsDetail:[NSNumber numberWithInt:(int)imageView.tag]];
+}
+
+-(void)addCart:(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    
+    HomeModel *homeModel = (HomeModel *)[_imageArray objectAtIndex:button.tag];
+    
+    CartActionDetail *cartActionDetail = [[CartActionDetail alloc] init];
+    
+    FMDatabase *db = [CartActionDetail getDb];
+    
+    NSDictionary *dictionary = @{@"id":homeModel.id,@"title":homeModel.title,@"number":@"1",@"price":homeModel.price_xiaoshou,@"pic":homeModel.pic};
+    
+    [cartActionDetail insertCartRow:db withDictionary:dictionary];
+    
+    [_delegate pushCartView];
+    
+    NSLog(@"按钮%@被点击!",homeModel.id);
+
 }
 
 

@@ -373,6 +373,14 @@
 }
 
 -(void)pushViewController:(int)type{
+    
+    if (type == 2) {
+        
+        MarketViewController *marketViewController = [[MarketViewController alloc] init];
+        
+        [self.navigationController pushViewController:marketViewController animated:YES];
+        
+    }
 
     if (type == 4) {
         UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
@@ -380,6 +388,25 @@
         [self.navigationController pushViewController:userInfoViewController animated:YES];
     }
     
+}
+
+-(void)pushCartView{
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"添加购物车成功" delegate:self cancelButtonTitle:@"继续购物" otherButtonTitles:@"进入购物车", nil];
+    
+    [alertView show];
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        
+        CartDetailViewController *cartDetailViewController = [[CartDetailViewController alloc] init];
+        
+        [self.navigationController pushViewController:cartDetailViewController animated:YES];
+    }
+
 }
 
 @end

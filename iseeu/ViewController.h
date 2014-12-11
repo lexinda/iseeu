@@ -30,7 +30,13 @@
 
 #import "UserInfoViewController.h"
 
-@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate>
+#import "CartDetail.h"
+
+#import "CartDetailViewController.h"
+
+#import "MarketViewController.h"
+
+@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
 

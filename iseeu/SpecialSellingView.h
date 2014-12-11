@@ -14,6 +14,10 @@
 
 #import "HomeDelegate.h"
 
+#import "CartActionDetail.h"
+
+#import <FMDB/FMDB.h>
+
 @interface SpecialSellingView : UIView
 
 @property(strong,nonatomic)NSArray *_imageArray;
