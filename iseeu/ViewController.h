@@ -38,6 +38,8 @@
 
 #import "CartDetailViewController.h"
 
+#import "EyeColorViewController.h"
+
 @interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
