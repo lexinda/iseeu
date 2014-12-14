@@ -24,6 +24,8 @@
 
 @synthesize _mainScrollView;
 
+@synthesize _comefrom;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,9 +54,15 @@
 
 -(void)goBack{
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"取消视图！");
-    }];
+    if (_comefrom==1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSLog(@"取消视图！");
+        }];
+    
+    }
     
 }
 

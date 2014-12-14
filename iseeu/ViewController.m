@@ -251,7 +251,7 @@
                 
             }
             
-            _specialSellingView = [[SpecialSellingView alloc] initWithFrame:CGRectMake(5.0, _specialSellingTopView.frame.origin.y+_specialSellingTopView.frame.size.height, self.view.frame.size.width-10.0, 195.0*_specialSellingArray.count)];
+            _specialSellingView = [[SpecialSellingView alloc] initWithFrame:CGRectMake(5.0, _specialSellingTopView.frame.origin.y+_specialSellingTopView.frame.size.height, self.view.frame.size.width-10.0, 195.0*_specialSellingArray.count+10.0)];
             
             [_specialSellingView setBackgroundColor:[UIColor whiteColor]];
             
@@ -295,7 +295,7 @@
             
         }
         
-        [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 195.0*_specialSellingArray.count+_specialSellingTopView.frame.size.height+_bannerView.frame.size.height+_nextSpecialSellingView.frame.size.height+123.0)];
+        [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 195.0*_specialSellingArray.count+_specialSellingTopView.frame.size.height+_bannerView.frame.size.height+_nextSpecialSellingView.frame.size.height+123.0+10.0)];
         
         [_hud hide:YES];
         

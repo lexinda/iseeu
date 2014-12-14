@@ -242,6 +242,8 @@
 		28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0BFF1A29BEAB0072F2CC /* UserInfoViewController.m */; };
 		28DE0C031A29CEFD0072F2CC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0C021A29CEFD0072F2CC /* LoginViewController.m */; };
 		28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0C051A29D8350072F2CC /* RegisterViewController.m */; };
+		28E0265E1A3D2B820015843E /* ScoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E0265D1A3D2B820015843E /* ScoreDetailViewController.m */; };
+		28E026611A3D2C6A0015843E /* ScoreDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E026601A3D2C6A0015843E /* ScoreDetailTableCell.m */; };
 		28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */; };
 		28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
 		352AF26E6925ECF232F2D25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DBE98D1B95CD8767A46344 /* libPods.a */; };
@@ -550,6 +552,13 @@
 		28DE0C021A29CEFD0072F2CC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		28DE0C041A29D8350072F2CC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		28DE0C051A29D8350072F2CC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		28E0265C1A3D2B820015843E /* ScoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDetailViewController.h; sourceTree = "<group>"; };
+		28E0265D1A3D2B820015843E /* ScoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreDetailViewController.m; sourceTree = "<group>"; };
+		28E0265F1A3D2C6A0015843E /* ScoreDetailTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDetailTableCell.h; sourceTree = "<group>"; };
+		28E026601A3D2C6A0015843E /* ScoreDetailTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreDetailTableCell.m; sourceTree = "<group>"; };
+		28E026621A3D2D4D0015843E /* ScoreDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDetailDelegate.h; sourceTree = "<group>"; };
+		28E026631A3D314D0015843E /* ScoreMarketDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreMarketDelegate.h; sourceTree = "<group>"; };
+		28E026641A3D32ED0015843E /* ScoreCellModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCellModelDelegate.h; sourceTree = "<group>"; };
 		28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsFootView.h; sourceTree = "<group>"; };
 		28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsFootView.m; sourceTree = "<group>"; };
 		5C87C1F9727744AB4FB06F83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -686,6 +695,8 @@
 				2854864E1A387096000B598A /* MarketViewController.m */,
 				285486501A388DCE000B598A /* ScroeMarketViewController.h */,
 				285486511A388DCE000B598A /* ScroeMarketViewController.m */,
+				28E0265C1A3D2B820015843E /* ScoreDetailViewController.h */,
+				28E0265D1A3D2B820015843E /* ScoreDetailViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -961,6 +972,8 @@
 				28216E871A39DD3C000A9A96 /* ScoreDataModel.m */,
 				28216E891A39E344000A9A96 /* ScoreMarketTableViewCell.h */,
 				28216E8A1A39E344000A9A96 /* ScoreMarketTableViewCell.m */,
+				28E0265F1A3D2C6A0015843E /* ScoreDetailTableCell.h */,
+				28E026601A3D2C6A0015843E /* ScoreDetailTableCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -970,6 +983,9 @@
 			children = (
 				2820276F1A1A1FD2009CC640 /* HomeDelegate.h */,
 				2873AFDB1A35F6DA00169D60 /* DeleteReloadCartDetail.h */,
+				28E026621A3D2D4D0015843E /* ScoreDetailDelegate.h */,
+				28E026631A3D314D0015843E /* ScoreMarketDelegate.h */,
+				28E026641A3D32ED0015843E /* ScoreCellModelDelegate.h */,
 			);
 			name = delegate;
 			sourceTree = "<group>";
@@ -1332,6 +1348,7 @@
 				2811B1B91A341696001D1F9D /* UserMaterialViewController.m in Sources */,
 				2811B1B21A340FAA001D1F9D /* UserScoreLog.m in Sources */,
 				2811B1AC1A340049001D1F9D /* UserInfo.m in Sources */,
+				28E0265E1A3D2B820015843E /* ScoreDetailViewController.m in Sources */,
 				2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */,
 				28BA92DF1A209C46004FEAE3 /* MJRefreshHeaderView.m in Sources */,
 				28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */,
@@ -1359,6 +1376,7 @@
 				28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */,
 				28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */,
 				2811B1C21A345F19001D1F9D /* Address.m in Sources */,
+				28E026611A3D2C6A0015843E /* ScoreDetailTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

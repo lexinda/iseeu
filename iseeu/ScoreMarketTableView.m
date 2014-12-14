@@ -18,6 +18,8 @@
 
 @synthesize _scorePage;
 
+@synthesize _scoreMarketDelegate;
+
 -(void)drawRect:(CGRect)rect{
     
     _scorePage = 0;
@@ -148,12 +150,12 @@
     ScoreDataModel *scoreDataModel = (ScoreDataModel *)[self.fakeData objectAtIndex:indexPath.row];
     
     ScoreMarketTableViewCell *cell = (ScoreMarketTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+    cell = [[ScoreMarketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withScoreData:scoreDataModel];
     
-    if (cell == nil) {
-        
-        cell = [[ScoreMarketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier withScoreData:scoreDataModel];
-        
-    }
+    [cell set_scoreDataModel:scoreDataModel];
+    
+    [cell set_scoreCellDelegate:self];
     
     return cell;
 }
@@ -169,6 +171,12 @@
     
     return 180.0;
     
+}
+
+-(void)pushTableViewModel:(ScoreDataModel *)scoreDataModel{
+    
+    [_scoreMarketDelegate pushScoreDetailView:scoreDataModel];
+
 }
 
 

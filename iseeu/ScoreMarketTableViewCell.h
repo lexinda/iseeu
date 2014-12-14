@@ -12,7 +12,13 @@
 
 #import "ScoreDataModel.h"
 
+#import "ScoreCellModelDelegate.h"
+
 @interface ScoreMarketTableViewCell : UITableViewCell
+
+@property(strong,nonatomic)id<ScoreCellModelDelegate> _scoreCellDelegate;
+
+@property(strong,nonatomic)ScoreDataModel *_scoreDataModel;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withScoreData:(ScoreDataModel *)scoreDataModel;
 

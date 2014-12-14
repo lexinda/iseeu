@@ -10,6 +10,10 @@
 
 @implementation ScoreMarketTableViewCell
 
+@synthesize _scoreDataModel;
+
+@synthesize _scoreCellDelegate;
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withScoreData:(ScoreDataModel *)scoreDataModel{
 
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -46,6 +50,8 @@
         
         UIButton *convertButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
+        [convertButton addTarget:self action:@selector(pushScoreModel) forControlEvents:UIControlEventTouchUpInside];
+        
         [convertButton setFrame:CGRectMake(self.frame.size.width-40.0-10.0, scoreLabel.frame.origin.y-5.0, 40.0, 40.0)];
         
         [convertButton setBackgroundImage:[UIImage imageNamed:@"integralshopping"] forState:UIControlStateNormal];
@@ -56,6 +62,12 @@
     
     return self;
     
+}
+
+-(void)pushScoreModel{
+    
+    [_scoreCellDelegate pushTableViewModel:_scoreDataModel];
+
 }
 
 - (void)awakeFromNib {

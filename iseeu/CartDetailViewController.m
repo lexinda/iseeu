@@ -243,7 +243,7 @@
     
     [_cartNumber setText:[NSString stringWithFormat:@"%i",[_cartNumber.text intValue]-number]];
     
-    [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f",[_sumPriceValue.text floatValue]-price]];
+    [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f元",[_sumPriceValue.text floatValue]-price]];
 
 }
 
@@ -251,7 +251,7 @@
     
     [_cartNumber setText:[NSString stringWithFormat:@"%i",[_cartNumber.text intValue]+number]];
     
-    [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f",[_sumPriceValue.text floatValue]+price]];
+    [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f元",[_sumPriceValue.text floatValue]+price]];
 
 }
 
@@ -285,7 +285,7 @@
             
             [_cartNumber setText:[NSString stringWithFormat:@"%i",number]];
             
-            [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f",price]];
+            [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f元",price]];
             
             [self showAlert:@"恭喜你删除物品成功！"];
             

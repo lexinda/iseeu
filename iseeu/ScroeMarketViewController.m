@@ -116,6 +116,8 @@
             
             [scoreMarketTableView setFakeData:tableData];
             
+            [scoreMarketTableView set_scoreMarketDelegate:self];
+            
             [self.view addSubview:scoreMarketTableView];
             
             NSLog(@"%@",data);
@@ -136,6 +138,16 @@
         
     }];
     
+}
+
+-(void)pushScoreDetailView:(ScoreDataModel *)scoreDataModel{
+    
+    ScoreDetailViewController *scoreDetailViewController = [[ScoreDetailViewController alloc] init];
+    
+    [scoreDetailViewController set_scoreDataModel:scoreDataModel];
+    
+    [self.navigationController pushViewController:scoreDetailViewController animated:YES];
+
 }
 
 @end

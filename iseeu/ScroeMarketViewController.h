@@ -20,10 +20,14 @@
 
 #import "ScoreDataModel.h"
 
-@interface ScroeMarketViewController : UIViewController<MBProgressHUDDelegate>
+#import "ScoreDetailViewController.h"
+
+@interface ScroeMarketViewController : UIViewController<MBProgressHUDDelegate,ScoreMarketDelegate>
 
 @property(strong,nonatomic)BannerView *_bannerView;
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
+
+
 
 @end

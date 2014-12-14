@@ -63,6 +63,10 @@
     
     _oneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
+    [_oneButton setTag:71];
+    
+    [_oneButton addTarget:self action:@selector(pushClassificationView:) forControlEvents:UIControlEventTouchUpInside];
+    
     [_oneButton setFrame:CGRectMake(10.0, topView.frame.origin.y+topView.frame.size.height, topButtonWidth, 70.0)];
     
     [_oneButton setBackgroundImage:[UIImage imageNamed:@"aa"] forState:UIControlStateNormal];
@@ -71,17 +75,25 @@
     
     UIButton *twoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
+    [_oneButton setTag:70];
+    
     [twoButton setFrame:CGRectMake(_oneButton.frame.origin.x+_oneButton.frame.size.width, topView.frame.origin.y+topView.frame.size.height, topButtonWidth, 70.0)];
     
     [twoButton setBackgroundImage:[UIImage imageNamed:@"bb"] forState:UIControlStateNormal];
+    
+    [twoButton addTarget:self action:@selector(pushClassificationView:) forControlEvents:UIControlEventTouchUpInside];
     
     [_brandScrollView addSubview:twoButton];
     
     UIButton *threeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
+    [threeButton setTag:72];
+    
     [threeButton setFrame:CGRectMake(twoButton.frame.origin.x+twoButton.frame.size.width, topView.frame.origin.y+topView.frame.size.height, topButtonWidth, 70.0)];
     
     [threeButton setBackgroundImage:[UIImage imageNamed:@"cc"] forState:UIControlStateNormal];
+    
+    [threeButton addTarget:self action:@selector(pushClassificationView:) forControlEvents:UIControlEventTouchUpInside];
     
     [_brandScrollView addSubview:threeButton];
     
@@ -158,6 +170,10 @@
                     
                     UIButton *brandButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                     
+                    [brandButton setTag:[[brandDictionary objectForKey:@"id"] intValue]];
+                    
+                    [brandButton addTarget:self action:@selector(pushBrandView:) forControlEvents:UIControlEventTouchUpInside];
+                    
 //                    [brandButton setImage:[UIImage imageWithData:picData] forState:UIControlStateNormal];
                     
                     [brandButton sd_setBackgroundImageWithURL:[NSURL URLWithString:picUrl] forState:UIControlStateNormal];
@@ -187,6 +203,40 @@
         NSLog(@"error");
         
     }];
+
+}
+
+-(void)pushBrandView:(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    
+    ClassificationViewController *classificationViewController = [[ClassificationViewController alloc] init];
+    
+    [classificationViewController set_sid:(int)button.tag];
+    
+    [classificationViewController set_type:71];
+    
+    [classificationViewController set_comefrom:1];
+    
+    [self.navigationController pushViewController:classificationViewController animated:YES];
+
+}
+
+-(void)pushClassificationView:(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    
+    ClassificationViewController *classificationViewController = [[ClassificationViewController alloc] init];
+    
+    [classificationViewController set_sid:1];
+    
+    [classificationViewController set_type:(int)button.tag];
+    
+    [classificationViewController set_comefrom:1];
+    
+    [self.navigationController pushViewController:classificationViewController animated:YES];
+    
+    
 
 }
 

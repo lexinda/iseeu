@@ -30,4 +30,6 @@
 
 @property(strong,nonatomic)UIScrollView *_mainScrollView;
 
+@property(nonatomic)int _comefrom;
+
 @end

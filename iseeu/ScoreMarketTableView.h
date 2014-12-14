@@ -16,12 +16,16 @@
 
 #import "ScoreMarketTableViewCell.h"
 
-@interface ScoreMarketTableView : UIView<UITableViewDataSource,UITableViewDelegate>
+#import "ScoreMarketDelegate.h"
+
+@interface ScoreMarketTableView : UIView<UITableViewDataSource,UITableViewDelegate,ScoreCellModelDelegate>
 
 @property(strong,nonatomic)UITableView *_tableView;
 
 @property (strong, nonatomic) NSMutableArray *fakeData;
 
 @property(nonatomic)int _scorePage;
+
+@property(strong,nonatomic)id<ScoreMarketDelegate> _scoreMarketDelegate;
 
 @end

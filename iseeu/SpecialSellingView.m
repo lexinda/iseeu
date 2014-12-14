@@ -65,7 +65,7 @@
             
             UIButton *shoppingCart = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             
-            [shoppingCart setFrame:CGRectMake(rect.size.width-30.0, price.frame.origin.y-10.0, 30.0, 30.0)];
+            [shoppingCart setFrame:CGRectMake(rect.size.width-42.0, price.frame.origin.y-12.0, 40.0, 40.0)];
             
             [shoppingCart addTarget:self action:@selector(addCart:) forControlEvents:UIControlEventTouchUpInside];
             

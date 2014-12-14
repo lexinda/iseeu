@@ -16,6 +16,8 @@
 
 #import "ScroeMarketViewController.h"
 
+#import "ClassificationViewController.h"
+
 @interface MarketViewController : UIViewController<MBProgressHUDDelegate,UIScrollViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
