@@ -329,6 +329,7 @@
 		288D52F71A21C5010030B4BC /* ClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationViewController.m; sourceTree = "<group>"; };
 		289128221A18518E00E5F9BA /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		289128231A18518E00E5F9BA /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
+		28A4414A1A3D804D00ACDE2C /* FootPushViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootPushViewDelegate.h; sourceTree = "<group>"; };
 		28A4AC001A17002000709F33 /* iseeu_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iseeu_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		28A4AC011A17006400709F33 /* Public.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Public.h; sourceTree = "<group>"; };
 		28A4AC021A17149E00709F33 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
@@ -986,6 +987,7 @@
 				28E026621A3D2D4D0015843E /* ScoreDetailDelegate.h */,
 				28E026631A3D314D0015843E /* ScoreMarketDelegate.h */,
 				28E026641A3D32ED0015843E /* ScoreCellModelDelegate.h */,
+				28A4414A1A3D804D00ACDE2C /* FootPushViewDelegate.h */,
 			);
 			name = delegate;
 			sourceTree = "<group>";

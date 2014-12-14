@@ -52,7 +52,7 @@
 
 -(void)goBack{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
     
 }
 
@@ -154,7 +154,15 @@
         
     }
     
+    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
     
+    [footView set_activeView:4];
+    
+    [footView setViewDelegate:self];
+    
+    [footView setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.view addSubview:footView];
     
     // Do any additional setup after loading the view.
 }
@@ -321,6 +329,67 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)pushViewController:(int)type{
+
+    if (type==0) {
+        
+        BOOL isHave = NO;
+        
+        ViewController *viewController = [[ViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:viewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:viewController animated:NO];
+        }
+        
+    }
+    
+    if (type == 2) {
+        
+        BOOL isHave = NO;
+        
+        MarketViewController *marketViewController = [[MarketViewController alloc] init];
+        
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:marketViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:marketViewController animated:NO];
+        }
+        
+    }
+    
+    if (type == 4) {
+        BOOL isHave = NO;
+        
+        UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:userInfoViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:userInfoViewController animated:NO];
+        }
+    }
+
+
 }
 
 /*

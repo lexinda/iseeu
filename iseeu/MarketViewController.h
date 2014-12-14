@@ -16,9 +16,17 @@
 
 #import "ScroeMarketViewController.h"
 
+#import "FootView.h"
+
 #import "ClassificationViewController.h"
 
-@interface MarketViewController : UIViewController<MBProgressHUDDelegate,UIScrollViewDelegate>
+#import "UserInfoViewController.h"
+
+#import "CartDetailViewController.h"
+
+#import "ViewController.h"
+
+@interface MarketViewController : UIViewController<MBProgressHUDDelegate,UIScrollViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
 

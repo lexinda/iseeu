@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "HomeDelegate.h"
+#import "FootPushViewDelegate.h"
 
 @interface FootView : UIView
 
-@property(strong,nonatomic)id<HomeDelegate> viewDelegate;
+@property(strong,nonatomic)id<FootPushViewDelegate> viewDelegate;
+
+@property(nonatomic)int _activeView;
 
 @end

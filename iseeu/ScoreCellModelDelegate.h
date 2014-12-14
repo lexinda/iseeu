@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ScoreCellModelDelegate <NSObject>
-
 #import "ScoreDataModel.h"
+
+@protocol ScoreCellModelDelegate <NSObject>
 
 -(void)pushTableViewModel:(ScoreDataModel *)scoreDataModel;
 

@@ -18,7 +18,13 @@
 
 #import "ViewController.h"
 
-@interface CartDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DeleteReloadCartDetail,UIAlertViewDelegate>
+#import "FootView.h"
+
+#import "UserInfoViewController.h"
+
+#import "MarketViewController.h"
+
+@interface CartDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DeleteReloadCartDetail,UIAlertViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)UITableView *_tableView;
 

@@ -32,7 +32,15 @@
 
 #import "ModifyAddressViewController.h"
 
-@interface UserInfoViewController : UIViewController<UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+#import "FootView.h"
+
+#import "ViewController.h"
+
+#import "CartDetailViewController.h"
+
+#import "MarketViewController.h"
+
+@interface UserInfoViewController : UIViewController<UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)UITableView *_aboutTableView;
 

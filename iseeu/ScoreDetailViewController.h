@@ -18,7 +18,7 @@
 
 #import "ValidataLogin.h"
 
-@interface ScoreDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ScoreDetailDelegate,UIAlertViewDelegate,MBProgressHUDDelegate>
+@interface ScoreDetailViewController : UIViewController<UIAlertViewDelegate,MBProgressHUDDelegate>
 
 @property(strong,nonatomic)UILabel *_cartNumber;
 

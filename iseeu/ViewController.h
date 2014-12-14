@@ -28,15 +28,17 @@
 
 #import "GoodsDetailViewController.h"
 
-#import "UserInfoViewController.h"
-
 #import "CartDetail.h"
+
+#import "UserInfoViewController.h"
 
 #import "CartDetailViewController.h"
 
 #import "MarketViewController.h"
 
-@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate>
+#import "CartDetailViewController.h"
+
+@interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;
 
