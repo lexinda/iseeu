@@ -8,6 +8,8 @@
 
 #import "EyeView.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation EyeView
 
 @synthesize centerPoint;
@@ -26,21 +28,25 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    [path moveToPoint:self.leftPoint];
+    [path moveToPoint:CGPointMake(self.leftPoint.x+20.0, self.leftPoint.y)];
     
     //NSLog(@"%f,%f",self.leftPoint.x,self.leftPoint.y);
     
-    [path addQuadCurveToPoint:self.rightPoint controlPoint:self.upPoint];
+    [path addQuadCurveToPoint:CGPointMake(self.rightPoint.x-20.0, self.rightPoint.y) controlPoint:self.upPoint];
     
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     
-    [path1 moveToPoint:self.rightPoint];
+    [path1 moveToPoint:CGPointMake(self.rightPoint.x-20.0, self.rightPoint.y)];
     
-    [path1 addQuadCurveToPoint:self.leftPoint controlPoint:self.downPoint];
+    [path1 addQuadCurveToPoint:CGPointMake(self.leftPoint.x+20.0, self.leftPoint.y) controlPoint:self.downPoint];
     
     [path appendPath:path1];
     
     [path setLineWidth:1];
+    
+    [[UIColor blueColor] setFill];
+    
+    [path fill];
     
     [path stroke];
     

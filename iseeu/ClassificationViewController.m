@@ -58,9 +58,19 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else{
         
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"取消视图！");
-        }];
+//        [self dismissViewControllerAnimated:YES completion:^{
+//            NSLog(@"取消视图！");
+//        }];
+        
+        ViewController *viewController = [[ViewController alloc] init];
+        
+        UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:viewController];
+        
+        [self.revealSideViewController popViewControllerWithNewCenterController:navigation animated:YES];
+        
+        PP_RELEASE(viewController);
+        
+        PP_RELEASE(navigation);
     
     }
     

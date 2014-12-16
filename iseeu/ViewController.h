@@ -40,6 +40,10 @@
 
 #import "EyeColorViewController.h"
 
+#import "SideViewController.h"
+
+#import <PPRevealSideViewController/PPRevealSideViewController.h>
+
 @interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;

@@ -161,9 +161,15 @@
 }
 
 - (void)rightSideMenuButtonPressed:(id)sender {
-    [self.menuContainerViewController toggleRightSideMenuCompletion:^{
+//    [self.menuContainerViewController toggleRightSideMenuCompletion:^{
 //        [self setupMenuBarButtonItems];
-    }];
+//    }];
+    
+    SideViewController *rightViewController = [[SideViewController alloc] init];
+    
+    [self.revealSideViewController pushViewController:rightViewController onDirection:PPRevealSideDirectionRight animated:YES];
+    
+    PP_RELEASE(rightViewController);
 }
 
 -(void)showHud{

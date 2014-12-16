@@ -27,6 +27,7 @@
 		28224B111A13985A00C6EE18 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28224B101A13985A00C6EE18 /* Images.xcassets */; };
 		28224B141A13985A00C6EE18 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28224B121A13985A00C6EE18 /* LaunchScreen.xib */; };
 		28224B201A13985A00C6EE18 /* iseeuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28224B1F1A13985A00C6EE18 /* iseeuTests.m */; };
+		28275A461A40648700CE0E8E /* UIScrollView+UITouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 28275A451A40648700CE0E8E /* UIScrollView+UITouch.m */; };
 		2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3C91A17A7740062D7F1 /* SpecialSellingTopView.m */; };
 		2830D3CD1A17A7910062D7F1 /* SpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CC1A17A7910062D7F1 /* SpecialSellingView.m */; };
 		2830D3D01A17A7D40062D7F1 /* NextSpecialSellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830D3CF1A17A7D40062D7F1 /* NextSpecialSellingView.m */; };
@@ -303,6 +304,8 @@
 		28224B191A13985A00C6EE18 /* iseeuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iseeuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28224B1E1A13985A00C6EE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28224B1F1A13985A00C6EE18 /* iseeuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iseeuTests.m; sourceTree = "<group>"; };
+		28275A441A40648700CE0E8E /* UIScrollView+UITouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouch.h"; sourceTree = "<group>"; };
+		28275A451A40648700CE0E8E /* UIScrollView+UITouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UITouch.m"; sourceTree = "<group>"; };
 		2830D3C81A17A7740062D7F1 /* SpecialSellingTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSellingTopView.h; sourceTree = "<group>"; };
 		2830D3C91A17A7740062D7F1 /* SpecialSellingTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialSellingTopView.m; sourceTree = "<group>"; };
 		2830D3CB1A17A7910062D7F1 /* SpecialSellingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialSellingView.h; sourceTree = "<group>"; };
@@ -957,6 +960,8 @@
 		28D533831A14FC3300E62C39 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				28275A441A40648700CE0E8E /* UIScrollView+UITouch.h */,
+				28275A451A40648700CE0E8E /* UIScrollView+UITouch.m */,
 				28A4414E1A3DCE2300ACDE2C /* EyeView.h */,
 				28A4414F1A3DCE2300ACDE2C /* EyeView.m */,
 				28D533841A14FC4D00E62C39 /* FootView.h */,
@@ -1361,6 +1366,7 @@
 				2854864F1A387096000B598A /* MarketViewController.m in Sources */,
 				285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */,
 				2811B1A91A33FE26001D1F9D /* ScoreManageViewController.m in Sources */,
+				28275A461A40648700CE0E8E /* UIScrollView+UITouch.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
 				2873AFD71A35DAF800169D60 /* CartDetailViewController.m in Sources */,
 				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,

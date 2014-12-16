@@ -16,6 +16,10 @@
 
 #import "ClassificationTableView.h"
 
+#import <PPRevealSideViewController/PPRevealSideViewController.h>
+
+#import "ViewController.h"
+
 @interface ClassificationViewController : UIViewController<MBProgressHUDDelegate,UIScrollViewDelegate>
 
 @property(nonatomic)int _type;

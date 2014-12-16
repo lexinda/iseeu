@@ -19,10 +19,12 @@
 @synthesize _hud;
 
 -(void)viewDidLoad{
+    
+    CGFloat viewWidth = self.view.frame.size.width-80.0;
 
     [self.view setBackgroundColor:[UIColor colorWithHexString:@"#383b42"]];
     
-    _width = (270.0-20.0)/3;
+    _width = (viewWidth-20.0)/3;
     
     UIButton *oneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
@@ -30,7 +32,7 @@
     
     [oneButton setBackgroundColor:[UIColor colorWithHexString:@"#f7afba"]];
     
-    [oneButton setFrame:CGRectMake(10.0, 30.0, _width, 30.0)];
+    [oneButton setFrame:CGRectMake(85.0, 30.0, _width, 30.0)];
     
     [oneButton setTag:900];
     
@@ -68,7 +70,7 @@
     
     _contentView = [[UIScrollView alloc] initWithFrame:CGRectMake(oneButton.frame.origin.x, oneButton.frame.origin.y+oneButton.frame.size.height, _width*3, self.view.frame.size.height-oneButton.frame.origin.y-oneButton.frame.size.height)];
     
-    [_contentView setBackgroundColor:[UIColor orangeColor]];
+    [_contentView setBackgroundColor:[UIColor clearColor]];
     
     _contentView.delegate = self;
     
@@ -343,11 +345,17 @@
     
     UINavigationController *classificationNavi = [[UINavigationController alloc] initWithRootViewController:classificationViewController];
     
-    classificationNavi.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    classificationNavi.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
-    [self presentViewController:classificationNavi animated:YES completion:^{
-        NSLog(@"载入试图！");
-    }];
+//    [self presentViewController:classificationNavi animated:YES completion:^{
+//        NSLog(@"载入试图！");
+//    }];
+    
+    [self.revealSideViewController popViewControllerWithNewCenterController:classificationNavi animated:YES];
+    
+    PP_RELEASE(classificationViewController);
+    
+    PP_RELEASE(classificationNavi);
     
 
     

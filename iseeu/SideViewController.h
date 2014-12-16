@@ -20,6 +20,8 @@
 
 #import "ClassificationViewController.h"
 
+#import <PPRevealSideViewController/PPRevealSideViewController.h>
+
 @interface SideViewController : UIViewController<UIScrollViewDelegate,MBProgressHUDDelegate,HomeDelegate>
 
 @property(strong,nonatomic)UIScrollView *_contentView;

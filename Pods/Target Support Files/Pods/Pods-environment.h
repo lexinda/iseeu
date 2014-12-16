@@ -84,6 +84,18 @@
 #define COCOAPODS_VERSION_MINOR_MFSideMenu 5
 #define COCOAPODS_VERSION_PATCH_MFSideMenu 5
 
+// PPHelpMe
+#define COCOAPODS_POD_AVAILABLE_PPHelpMe
+#define COCOAPODS_VERSION_MAJOR_PPHelpMe 1
+#define COCOAPODS_VERSION_MINOR_PPHelpMe 0
+#define COCOAPODS_VERSION_PATCH_PPHelpMe 2
+
+// PPRevealSideViewController
+#define COCOAPODS_POD_AVAILABLE_PPRevealSideViewController
+#define COCOAPODS_VERSION_MAJOR_PPRevealSideViewController 1
+#define COCOAPODS_VERSION_MINOR_PPRevealSideViewController 2
+#define COCOAPODS_VERSION_PATCH_PPRevealSideViewController 0
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

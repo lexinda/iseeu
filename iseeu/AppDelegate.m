@@ -24,6 +24,8 @@
 
 @synthesize window;
 
+@synthesize _revealSideViewController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
@@ -33,13 +35,24 @@
     
 //    SideMenuViewController *rightMenuViewController = [[SideMenuViewController alloc] init];
     
-    SideViewController *rightViewController = [[SideViewController alloc] init];
+//    SideViewController *rightViewController = [[SideViewController alloc] init];
     
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:viewController];
     
-    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:navigation leftMenuViewController:nil rightMenuViewController:rightViewController];
+//    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:navigation leftMenuViewController:nil rightMenuViewController:rightViewController];
     
-    [self.window setRootViewController:container];
+//    [self.window setRootViewController:container];
+    
+    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:navigation];
+    
+    _revealSideViewController.delegate = self;
+    
+    self.window.rootViewController = _revealSideViewController;
+    
+    PP_RELEASE(viewController);
+    
+    PP_RELEASE(navigation);
+    
     
     [self.window makeKeyAndVisible];
     

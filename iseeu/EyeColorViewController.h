@@ -12,6 +12,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "UIScrollView+UITouch.h"
+
 @interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol>
 
 @property(strong,nonatomic)UIView *upView;
@@ -66,5 +68,9 @@
 @property(strong,nonatomic)UIImageView *selectImageView;
 
 @property(nonatomic)CGPoint startPoint;
+
+@property(nonatomic)CGPoint _gestureStartPoint;
+
+@property(strong,nonatomic)NSString *_originPointName;
 
 @end
