@@ -248,6 +248,8 @@
 		28DE0C061A29D8350072F2CC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DE0C051A29D8350072F2CC /* RegisterViewController.m */; };
 		28E0265E1A3D2B820015843E /* ScoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E0265D1A3D2B820015843E /* ScoreDetailViewController.m */; };
 		28E026611A3D2C6A0015843E /* ScoreDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E026601A3D2C6A0015843E /* ScoreDetailTableCell.m */; };
+		28E2A5CA1A41BFE800C56ABE /* EyeCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2A5C91A41BFE800C56ABE /* EyeCircleView.m */; };
+		28E2A5D91A41E46700C56ABE /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = 28E2A5D81A41E46700C56ABE /* number.png */; };
 		28E505D91A1CD8BD0054EC07 /* GoodsFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */; };
 		28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92E71A2177DA004FEAE3 /* DetailTableView.m */; };
 		352AF26E6925ECF232F2D25E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0DBE98D1B95CD8767A46344 /* libPods.a */; };
@@ -572,6 +574,9 @@
 		28E026621A3D2D4D0015843E /* ScoreDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDetailDelegate.h; sourceTree = "<group>"; };
 		28E026631A3D314D0015843E /* ScoreMarketDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreMarketDelegate.h; sourceTree = "<group>"; };
 		28E026641A3D32ED0015843E /* ScoreCellModelDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCellModelDelegate.h; sourceTree = "<group>"; };
+		28E2A5C81A41BFE800C56ABE /* EyeCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeCircleView.h; sourceTree = "<group>"; };
+		28E2A5C91A41BFE800C56ABE /* EyeCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeCircleView.m; sourceTree = "<group>"; };
+		28E2A5D81A41E46700C56ABE /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number.png; sourceTree = "<group>"; };
 		28E505D71A1CD8BD0054EC07 /* GoodsFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsFootView.h; sourceTree = "<group>"; };
 		28E505D81A1CD8BD0054EC07 /* GoodsFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsFootView.m; sourceTree = "<group>"; };
 		5C87C1F9727744AB4FB06F83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -652,6 +657,7 @@
 		28224B031A13985A00C6EE18 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				28E2A5D81A41E46700C56ABE /* number.png */,
 				28A441521A3DCF7A00ACDE2C /* image1.jpg */,
 				28D532141A14F06300E62C39 /* image */,
 				28224B041A13985A00C6EE18 /* Info.plist */,
@@ -994,6 +1000,8 @@
 				28216E8A1A39E344000A9A96 /* ScoreMarketTableViewCell.m */,
 				28E0265F1A3D2C6A0015843E /* ScoreDetailTableCell.h */,
 				28E026601A3D2C6A0015843E /* ScoreDetailTableCell.m */,
+				28E2A5C81A41BFE800C56ABE /* EyeCircleView.h */,
+				28E2A5C91A41BFE800C56ABE /* EyeCircleView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1275,6 +1283,7 @@
 				28D532EF1A14F0A400E62C39 /* change_address.png in Resources */,
 				28D532E81A14F0A400E62C39 /* bar_try_selected.png in Resources */,
 				28D532D91A14F0A400E62C39 /* bar_class_normal.png in Resources */,
+				28E2A5D91A41E46700C56ABE /* number.png in Resources */,
 				28D532F31A14F0A400E62C39 /* dailg_back.png in Resources */,
 				28224B111A13985A00C6EE18 /* Images.xcassets in Resources */,
 				28D532F41A14F0A400E62C39 /* dd.png in Resources */,
@@ -1362,6 +1371,7 @@
 				28BA92DD1A209C46004FEAE3 /* MJRefreshConst.m in Sources */,
 				2873AFDA1A35DD2500169D60 /* CartDetailTableViewCell.m in Sources */,
 				289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */,
+				28E2A5CA1A41BFE800C56ABE /* EyeCircleView.m in Sources */,
 				28D5338C1A15069500E62C39 /* BannerView.m in Sources */,
 				2854864F1A387096000B598A /* MarketViewController.m in Sources */,
 				285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */,

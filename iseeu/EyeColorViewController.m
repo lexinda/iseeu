@@ -68,6 +68,18 @@
 
 @synthesize _originPointName;
 
+@synthesize _steepName;
+
+@synthesize _eyeCircleView;
+
+@synthesize _radius;
+
+@synthesize rectFaceDetect;
+
+@synthesize _leftCenterPoint;
+
+@synthesize _rightCenterPoint;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -103,10 +115,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _steepName = @"one";
+    
+     _radius = 30.0f;
+    
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
     [[self view] addGestureRecognizer:pan];
-    
-
     
     self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
     
@@ -134,47 +148,130 @@
     //设置最小伸缩比例
     self.scrollView.minimumZoomScale=1.0;
     
-    self.oldScale = [NSNumber numberWithFloat:self.scrollView.minimumZoomScale];
-    
     [self.scrollView setBouncesZoom:NO];
     
-    self.centerPoint = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    self.scrollView.alwaysBounceHorizontal = NO;
+    
+    self.scrollView.alwaysBounceVertical = NO;
+    
+    [self.scrollView setScrollEnabled:NO];
+    
+    [self.scrollView setZoomScale:3.0];
+    
+    self.oldScale = [NSNumber numberWithFloat:self.scrollView.zoomScale];
+    
+    [self.view addSubview:self.scrollView];
+    
+    [self faceDetect:self.imageView.image];
+    
+}
+
+-(void)NextConvertEye{
+
+    if ([_steepName isEqualToString:@"one"]) {
+        _steepName = @"two";
+    }else if([_steepName isEqualToString:@"two"]) {
+        _steepName = @"three";
+    }else if([_steepName isEqualToString:@"three"]) {
+        _steepName = @"four";
+    }
+    
+    if ([_steepName isEqualToString:@"two"]) {
+        
+        [self.eyeView removeFromSuperview];
+        
+        [self.upView removeFromSuperview];
+        
+        [self.rightView removeFromSuperview];
+        
+        [self.leftView removeFromSuperview];
+        
+        [self.downView removeFromSuperview];
+        
+        [self.centerView removeFromSuperview];
+        
+        _eyeCircleView = [[EyeCircleView alloc] initWithFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.frame.size.width*5, self.scrollView.frame.size.height*5)];
+        
+        [_eyeCircleView setBackgroundColor:[UIColor clearColor]];
+        
+        _eyeCircleView.alpha=0.1;
+        
+        [_eyeCircleView setCenterPoint:CGPointMake(_leftCenterPoint.x*[self.oldScale floatValue], _leftCenterPoint.y*[self.oldScale floatValue])];
+        
+        [_eyeCircleView setRadius:_radius];
+        
+        [self.scrollView addSubview:_eyeCircleView];
+        
+        UISlider *eyeSlider = [[UISlider alloc] initWithFrame:CGRectMake(-80.0, 200.0, 200.0, 20.0)];
+        
+        [eyeSlider setTransform:[self transformForExpandDirection]];
+        
+        [self.view addSubview:eyeSlider];
+        
+        eyeSlider.minimumValue = 1.0;
+        
+        eyeSlider.value = _radius;
+        
+        eyeSlider.maximumValue = 100.0;
+        
+        [eyeSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
+        
+    }else if ([_steepName isEqualToString:@"three"]) {
+        
+        
+        
+    }else if ([_steepName isEqualToString:@"four"]) {
+        
+        
+        
+    }
+    
+}
+
+-(IBAction)sliderChanged:(id)sender{
+    
+    UISlider *mySlider = (UISlider *)sender;
+    
+    _radius = mySlider.value;
+    
+    [_eyeCircleView setRadius:_radius];
+    
+    [_eyeCircleView setNeedsDisplay];
+    
+    NSLog(@"SliderValue %f",mySlider.value);
+    
+}
+
+- (CGAffineTransform)transformForExpandDirection {
+    
+        return CGAffineTransformMakeRotation(-M_PI/2.f);
+}
+
+-(void)drawRect{
+    
+    [self.scrollView setContentOffset:CGPointMake(_leftCenterPoint.x+80.0, _leftCenterPoint.y)];
+    
+    self.centerPoint = _leftCenterPoint;
     
     self.realCenterPoint = self.centerPoint;
     
-    self.upPoint = CGPointMake(self.centerPoint.x, self.centerPoint.y-52);
+    self.upPoint = CGPointMake(self.centerPoint.x, self.centerPoint.y-12);
     
     self.realUpPoint = self.upPoint;
     
-    self.rightPoint = CGPointMake(self.centerPoint.x+51, self.centerPoint.y);
+    self.rightPoint = CGPointMake(self.centerPoint.x+21, self.centerPoint.y);
     
     self.realRightPoint = self.rightPoint;
     
-    self.downPoint = CGPointMake(self.centerPoint.x, self.centerPoint.y+51);
+    self.downPoint = CGPointMake(self.centerPoint.x, self.centerPoint.y+11);
     
     self.realDownPoint = self.downPoint;
     
-    self.leftPoint = CGPointMake(self.centerPoint.x-52, self.centerPoint.y);
+    self.leftPoint = CGPointMake(self.centerPoint.x-22, self.centerPoint.y);
     
     self.realLeftPoint = self.leftPoint;
     
     NSLog(@"%f,%f",self.centerPoint.x,self.centerPoint.y);
-    
-    [self drawRect];
-    
-    [self.centerView setHidden:NO];
-    
-    [self.scrollView addSubview:self.upView];
-    
-    [self.scrollView addSubview:self.rightView];
-    
-    [self.scrollView addSubview:self.downView];
-    
-    [self.scrollView addSubview:self.leftView];
-    
-    [self.scrollView addSubview:self.centerView];
-    
-    [self.view addSubview:self.scrollView];
     
     self.commitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
@@ -207,22 +304,21 @@
     //[self.view addSubview:self.resizeButton];
     
     // Do any additional setup after loading the view, typically from a nib.
-}
-
--(void)handlePan: (UIPanGestureRecognizer *)rec{
-
-    NSLog(@"xxoo---xxoo---xxoo");
-    CGPoint point = [rec translationInView:self.view];
-    NSLog(@"%f,%f",point.x,point.y);
     
-}
-
--(void)drawRect{
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [nextButton setFrame:CGRectMake(self.view.frame.size.width-40.0, self.view.frame.size.height-64-49-40.0, 10, 20.0)];
+    
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
+    
+    [nextButton addTarget:self action:@selector(NextConvertEye) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:nextButton];
     
     //眼部的图片跟缩放的最大倍数相同
     self.eyeView = [[EyeView alloc] initWithFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.frame.size.width*5, self.scrollView.frame.size.height*5)];
     
-    self.eyeView.alpha=0.1;
+    self.eyeView.alpha=0.2;
     
     self.eyeView.tag = 6;
     
@@ -242,12 +338,7 @@
     
     [self.scrollView addSubview:self.eyeView];
     
-    [self.upView removeFromSuperview];
-    [self.rightView removeFromSuperview];
-    
-    [self.leftView removeFromSuperview];
-    
-    [self.downView removeFromSuperview];
+    CGPoint relativeCenterPoint = CGPointMake(self.realCenterPoint.x*[self.oldScale floatValue], self.realCenterPoint.y*[self.oldScale floatValue]);
     
     CGPoint relativeUpPoint = CGPointMake(self.realUpPoint.x*[self.oldScale floatValue], self.realUpPoint.y*[self.oldScale floatValue]);
     
@@ -265,9 +356,7 @@
     
     self.downView = [self getView:4 withCenter:relativeDownPoint];
     
-    self.centerView = [self getView:5 withCenter:self.centerPoint];
-    
-    [self.centerView setHidden:YES];
+    self.centerView = [self getView:5 withCenter:relativeCenterPoint];
     
     [self.scrollView addSubview:self.upView];
     
@@ -284,17 +373,15 @@
 -(UIView *)getView:(int)tag
          withCenter:(CGPoint)centerPoint{
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
+    CGPoint point = CGPointMake(centerPoint.x, centerPoint.y);
     
-    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"number_bg"]]];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 20.0, 20.0)];
     
-    [view setCenter:centerPoint];
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"number"]]];
+    
+    [view setCenter:point];
     
     view.tag = tag;
-    
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
-    
-    [view addGestureRecognizer:longPress];
     
     return view;
     
@@ -304,10 +391,12 @@
 //滑动调用的方法
 - (void)longAction:(UILongPressGestureRecognizer *)recognizer
 {
-  
-    UIView *view = recognizer.view;
     
     CGPoint point = [recognizer locationInView:recognizer.view];
+    
+//    point = CGPointMake(point.x*[self.oldScale floatValue], point.y*[self.oldScale floatValue]);
+    
+    NSLog(@"%f,%f",point.x,point.y);
     
     CGFloat x = 0.0f;
     
@@ -327,264 +416,193 @@
     
     _gestureStartPoint = point;
     
-    NSLog(@"start%f,start%f,%f,%f",_gestureStartPoint.x,_gestureStartPoint.y,x,y);
-    
+//    NSLog(@"start%f,start%f,%f,%f",_gestureStartPoint.x,_gestureStartPoint.y,x,y);
+//    
     NSLog(@"_originPointName:%@",_originPointName);
     
-    if (point.x<self.centerPoint.x) {
+    CGPoint relativeCenterPoint = CGPointMake(self.realCenterPoint.x*[self.oldScale floatValue], self.realCenterPoint.y*[self.oldScale floatValue]);
+    
+    CGPoint relativeUpPoint = CGPointMake(self.realUpPoint.x*[self.oldScale floatValue], self.realUpPoint.y*[self.oldScale floatValue]);
+    
+    CGPoint relativeRightPoint = CGPointMake(self.realRightPoint.x*[self.oldScale floatValue], self.realRightPoint.y*[self.oldScale floatValue]);
+    
+    CGPoint relativeDownPoint = CGPointMake(self.realDownPoint.x*[self.oldScale floatValue], self.realDownPoint.y*[self.oldScale floatValue]);
+    
+    CGPoint relativeLeftPoint = CGPointMake(self.realLeftPoint.x*[self.oldScale floatValue], self.realLeftPoint.y*[self.oldScale floatValue]);
+    
+    CGPoint center = CGPointMake(self.scrollView.frame.size.width/2, self.scrollView.frame.size.height/2);
+    
+    CGFloat height = 40.0f;
+    
+    NSLog(@"%f,%f",center.x,center.y);
+    
+    if ([_steepName isEqualToString:@"one"]) {
         
-        if (point.y<self.upPoint.y) {
+        if (point.x<center.x) {
             
-            if (![_originPointName isEqualToString:@"upPoint"]) {
+            if (point.y<center.y-height) {
                 
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                if (![_originPointName isEqualToString:@"upPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
                 
-                x = 0.0f;
+                CGPoint newUpPoint = CGPointMake(relativeUpPoint.x+x, relativeUpPoint.y+y);
                 
-                y = 0.0f;
+                self.realUpPoint = CGPointMake(self.realUpPoint.x+x, self.realUpPoint.y+y);
+                
+                [self.upView setCenter:newUpPoint];
+                
+                [self.eyeView setUpPoint:newUpPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"upPoint";
+                
+            }else if(point.y>center.y-height&&point.y<center.y+height){
+                
+                if (![_originPointName isEqualToString:@"leftPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
+                
+                CGPoint newLeftPoint = CGPointMake(relativeLeftPoint.x+x, relativeLeftPoint.y+y);
+                
+                self.realLeftPoint = CGPointMake(self.realLeftPoint.x+x, self.realLeftPoint.y+y);
+                
+                [self.leftView setCenter:newLeftPoint];
+                
+                [self.eyeView setLeftPoint:newLeftPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"leftPoint";
+                
+            }else if(point.y>center.y+height){
+                
+                if (![_originPointName isEqualToString:@"downPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
+                
+                CGPoint newDownPoint = CGPointMake(relativeDownPoint.x+x, relativeDownPoint.y+y);
+                
+                self.realDownPoint = CGPointMake(self.realDownPoint.x+x, self.realDownPoint.y+y);
+                
+                [self.downView setCenter:newDownPoint];
+                
+                [self.eyeView setDownPoint:newDownPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"downPoint";
                 
             }
             
-            NSLog(@"upPointx%f,upPointy%f",self.upPoint.x,self.upPoint.y);
+        }else if (point.x>center.x){
             
-            self.upPoint = CGPointMake(self.upPoint.x+x, self.upPoint.y+y);
-            
-            NSLog(@"upPointx%f,upPointy%f",self.upPoint.x,self.upPoint.y);
-            
-            self.realUpPoint = CGPointMake(self.upPoint.x/[self.oldScale floatValue], self.upPoint.y/[self.oldScale floatValue]);
-            
-            [self.upView setCenter:self.upPoint];
-            
-            [self.eyeView setUpPoint:self.upPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"upPoint";
-            
-        }else if(point.y>self.upPoint.y&&point.y<self.downPoint.y){
-            
-            if (![_originPointName isEqualToString:@"leftPoint"]) {
+            if (point.y<center.y-height) {
                 
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                if (![_originPointName isEqualToString:@"upPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
                 
-                x = 0.0f;
+                CGPoint newUpPoint = CGPointMake(relativeUpPoint.x+x, relativeUpPoint.y+y);
                 
-                y = 0.0f;
+                self.realUpPoint = CGPointMake(self.realUpPoint.x+x, self.realUpPoint.y+y);
+                
+                [self.upView setCenter:newUpPoint];
+                
+                [self.eyeView setUpPoint:newUpPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"upPoint";
+                
+            }else if(point.y>center.y-height&&point.y<center.y+height){
+                
+                if (![_originPointName isEqualToString:@"rightPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
+                
+                CGPoint newRightPoint = CGPointMake(relativeRightPoint.x+x, relativeRightPoint.y+y);
+                
+                self.realRightPoint = CGPointMake(self.realRightPoint.x+x, self.realRightPoint.y+y);
+                
+                [self.rightView setCenter:newRightPoint];
+                
+                [self.eyeView setRightPoint:newRightPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"rightPoint";
+                
+            }else if(point.y>center.y+height){
+                
+                if (![_originPointName isEqualToString:@"downPoint"]) {
+                    
+                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
+                    
+                    x = 0.0f;
+                    
+                    y = 0.0f;
+                    
+                }
+                
+                CGPoint newDownPoint = CGPointMake(relativeDownPoint.x+x, relativeDownPoint.y+y);
+                
+                self.realDownPoint = CGPointMake(self.realDownPoint.x+x, self.realDownPoint.y+y);
+                
+                [self.downView setCenter:newDownPoint];
+                
+                [self.eyeView setDownPoint:newDownPoint];
+                
+                [self.eyeView setNeedsDisplay];
+                
+                _originPointName = @"downPoint";
                 
             }
             
-            NSLog(@"leftPoint,%f,%f,%f,%f",self.leftPoint.x,self.leftPoint.y,x,y);
-        
-            self.leftPoint = CGPointMake(self.leftPoint.x+x, self.leftPoint.y+y);
-            
-            NSLog(@"leftPoint--,%f,%f",self.leftPoint.x,self.leftPoint.y);
-            
-            self.realLeftPoint = CGPointMake(self.leftPoint.x/[self.oldScale floatValue], self.leftPoint.y/[self.oldScale floatValue]);
-            
-            [self.leftView setCenter:self.leftPoint];
-            
-            [self.eyeView setLeftPoint:self.leftPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"leftPoint";
-            
-        }else if(point.y>self.downPoint.y){
-            
-            if (![_originPointName isEqualToString:@"downPoint"]) {
-                
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-                
-                x = 0.0f;
-                
-                y = 0.0f;
-                
-            }
-            
-            self.downPoint = CGPointMake(self.downPoint.x+x, self.downPoint.y+y);
-            
-            self.realDownPoint = CGPointMake(self.downPoint.x/[self.oldScale floatValue], self.downPoint.y/[self.oldScale floatValue]);
-            
-            [self.downView setCenter:self.downPoint];
-            
-            [self.eyeView setDownPoint:self.downPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"downPoint";
-        
         }
         
-    }else if (point.x>self.centerPoint.x){
-        
-        if (point.y<self.upPoint.y) {
-            
-            if (![_originPointName isEqualToString:@"upPoint"]) {
-                
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-                
-                x = 0.0f;
-                
-                y = 0.0f;
-                
-            }
-            
-            self.upPoint = CGPointMake(self.upPoint.x+x, self.upPoint.y+y);
-            
-            self.realUpPoint = CGPointMake(self.upPoint.x/[self.oldScale floatValue], self.upPoint.y/[self.oldScale floatValue]);
-            
-            [self.upView setCenter:self.upPoint];
-            
-            [self.eyeView setUpPoint:self.upPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"upPoint";
-            
-        }else if(point.y>self.upPoint.y&&point.y<self.downPoint.y){
-            
-            if (![_originPointName isEqualToString:@"rightPoint"]) {
-                
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-                
-                x = 0.0f;
-                
-                y = 0.0f;
-                
-            }
-            
-            self.rightPoint = CGPointMake(self.rightPoint.x+x, self.rightPoint.y+y);
-            
-            self.realRightPoint = CGPointMake(self.rightPoint.x/[self.oldScale floatValue], self.rightPoint.y/[self.oldScale floatValue]);
-            
-            [self.rightView setCenter:self.rightPoint];
-            
-            [self.eyeView setRightPoint:self.rightPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"rightPoint";
-            
-        }else if(point.y>self.downPoint.y){
-            
-            if (![_originPointName isEqualToString:@"downPoint"]) {
-                
-                _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-                
-                x = 0.0f;
-                
-                y = 0.0f;
-                
-            }
-            
-            self.downPoint = CGPointMake(self.downPoint.x+x, self.downPoint.y+y);
-            
-            self.realDownPoint = CGPointMake(self.downPoint.x/[self.oldScale floatValue], self.downPoint.y/[self.oldScale floatValue]);
-            
-            [self.downView setCenter:self.downPoint];
-            
-            [self.eyeView setDownPoint:self.downPoint];
-            
-            [self.eyeView setNeedsDisplay];
-            
-            _originPointName = @"downPoint";
-            
-        }
+    }else if([_steepName isEqualToString:@"two"]){
     
-    }
-    
-    if (view.tag==1) {
+        self.centerPoint = CGPointMake(self.centerPoint.x+x, self.centerPoint.y+y);
         
-        self.upPoint = point;
+        [_eyeCircleView setCenterPoint:self.centerPoint];
         
-        self.realUpPoint = CGPointMake(self.upPoint.x/[self.oldScale floatValue], self.upPoint.y/[self.oldScale floatValue]);
+        [_eyeCircleView setRadius:_radius];
         
-        [self.upView setCenter:self.upPoint];
-        
-        [self.eyeView setUpPoint:point];
-        
-        [self.eyeView setNeedsDisplay];
-        
-    }else if (view.tag==2) {
-        
-        self.rightPoint = point;
-        
-        self.realRightPoint = CGPointMake(self.rightPoint.x/[self.oldScale floatValue], self.rightPoint.y/[self.oldScale floatValue]);
-        
-        [self.rightView setCenter:CGPointMake(self.rightPoint.x, self.rightPoint.y)];
-        
-        [self.eyeView setRightPoint:point];
-        
-        [self.eyeView setNeedsDisplay];
-        
-    }else if (view.tag==3) {
-        
-        self.leftPoint = point;
-        
-        self.realLeftPoint = CGPointMake(self.leftPoint.x/[self.oldScale floatValue], self.leftPoint.y/[self.oldScale floatValue]);
-        
-        [self.leftView setCenter:CGPointMake(self.leftPoint.x, self.leftPoint.y)];
-        
-        [self.eyeView setLeftPoint:point];
-        
-        [self.eyeView setNeedsDisplay];
-        
-    }else if (view.tag==4) {
-        
-        self.downPoint = point;
-        
-        self.realDownPoint = CGPointMake(self.downPoint.x/[self.oldScale floatValue], self.downPoint.y/[self.oldScale floatValue]);
-        
-        [self.downView setCenter:self.downPoint];
-        
-        [self.eyeView setDownPoint:point];
-        
-        [self.eyeView setNeedsDisplay];
-        
-    }else if (view.tag==5) {
-        
-        NSLog(@"%f,%f",self.imageView.center.x,self.imageView.center.y);
-        
-        self.centerPoint = point;
-        
-        self.realCenterPoint = CGPointMake(self.centerPoint.x/[self.oldScale floatValue], self.centerPoint.y/[self.oldScale floatValue]);
-        
-        self.realUpPoint = CGPointMake(self.centerPoint.x/[self.oldScale floatValue], (self.centerPoint.y-52)/[self.oldScale floatValue]);
-        
-        self.realRightPoint = CGPointMake((self.centerPoint.x+51)/[self.oldScale floatValue], self.centerPoint.y/[self.oldScale floatValue]);
-        
-        self.realLeftPoint = CGPointMake((self.centerPoint.x-52)/[self.oldScale floatValue], self.centerPoint.y/[self.oldScale floatValue]);
-        
-        self.realDownPoint = CGPointMake(self.centerPoint.x/[self.oldScale floatValue], (self.centerPoint.y+51)/[self.oldScale floatValue]);
-        
-        NSLog(@"%f,%f",self.centerPoint.x,self.centerPoint.y);
-        
-        [self.centerView setCenter:self.centerPoint];
-        
-        [self.upView setCenter:CGPointMake(self.centerPoint.x, self.centerPoint.y-52)];
-        
-        [self.rightView setCenter:CGPointMake(self.centerPoint.x+51, self.centerPoint.y)];
-        
-        [self.leftView setCenter:CGPointMake(self.centerPoint.x-52, self.centerPoint.y)];
-        
-        [self.downView setCenter:CGPointMake(self.centerPoint.x, self.centerPoint.y+51)];
-        
-        [self.eyeView setUpPoint:CGPointMake(self.centerPoint.x, self.centerPoint.y-52)];
-        
-        [self.eyeView setRightPoint:CGPointMake(self.centerPoint.x+51, self.centerPoint.y)];
-        
-        [self.eyeView setLeftPoint:CGPointMake(self.centerPoint.x-52, self.centerPoint.y)];
-        
-        [self.eyeView setDownPoint:CGPointMake(self.centerPoint.x, self.centerPoint.y+51)];
-        
-        [self.eyeView setCenterPoint:self.centerPoint];
-        
-        [self.eyeView setViewDelegate:self];
-        
-        [self.eyeView setNeedsDisplay];
+        [_eyeCircleView setNeedsDisplay];
         
     }
-
     
 }
 
@@ -604,7 +622,7 @@
     
     [self.leftView setHidden:YES];
     
-    [self.centerView setHidden:NO];
+    [self.centerView setHidden:YES];
     
     [self.eyeView setHidden:YES];
     
@@ -631,13 +649,14 @@
     //不缩放时定位中心点后，缩放时点不会改变
     
     CGPoint relativeCenterPoint = CGPointMake(self.realCenterPoint.x*scale, self.realCenterPoint.y*scale);
-    [self.upView setFrame:CGRectMake(self.centerPoint.x, self.centerPoint.y-52, 40, 40)];
     
-    [self.rightView setFrame:CGRectMake(self.centerPoint.x+51, self.centerPoint.y, 5, 5)];
+    [self.upView setFrame:CGRectMake(self.centerPoint.x, self.centerPoint.y-12, 20, 20)];
     
-    [self.leftView setFrame:CGRectMake(self.centerPoint.x-52, self.centerPoint.y, 5, 5)];
+    [self.rightView setFrame:CGRectMake(self.centerPoint.x+21, self.centerPoint.y, 20, 20)];
     
-    [self.downView setFrame:CGRectMake(self.centerPoint.x, self.centerPoint.y+51, 5, 5)];
+    [self.leftView setFrame:CGRectMake(self.centerPoint.x-22, self.centerPoint.y, 20, 20)];
+    
+    [self.downView setFrame:CGRectMake(self.centerPoint.x, self.centerPoint.y+11, 20, 20)];
     
     CGPoint relativeUpPoint = CGPointMake(self.realUpPoint.x*scale, self.realUpPoint.y*scale);
     
@@ -647,15 +666,15 @@
     
     CGPoint relativeLeftPoint = CGPointMake(self.realLeftPoint.x*scale, self.realLeftPoint.y*scale);
     
-    [self.centerView setFrame:CGRectMake(relativeCenterPoint.x, relativeCenterPoint.y, 5, 5)];
+    [self.centerView setCenter:CGPointMake(relativeCenterPoint.x, relativeCenterPoint.y)];
     
-    [self.upView setFrame:CGRectMake(relativeUpPoint.x, relativeUpPoint.y, 40, 40)];
+    [self.upView setCenter:CGPointMake(relativeUpPoint.x, relativeUpPoint.y)];
     
-    [self.rightView setFrame:CGRectMake(relativeRightPoint.x, relativeRightPoint.y, 5, 5)];
+    [self.rightView setCenter:CGPointMake(relativeRightPoint.x, relativeRightPoint.y)];
     
-    [self.leftView setFrame:CGRectMake(relativeLeftPoint.x, relativeLeftPoint.y, 5, 5)];
+    [self.leftView setCenter:CGPointMake(relativeLeftPoint.x, relativeLeftPoint.y)];
     
-    [self.downView setFrame:CGRectMake(relativeDownPoint.x, relativeDownPoint.y, 5, 5)];
+    [self.downView setCenter:CGPointMake(relativeDownPoint.x, relativeDownPoint.y)];
     
     [self.eyeView setUpPoint:CGPointMake(relativeUpPoint.x, relativeUpPoint.y)];
     
@@ -680,8 +699,6 @@
 }
 
 -(void)getPath:(UIBezierPath *)paths{
-    
-    NSLog(@"upPath");
     
     self.path = paths;
     
@@ -807,79 +824,100 @@
     _gestureStartPoint = CGPointMake(0.0f, 0.0f);
     
 }
-//
-//-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-//    
-//    
-//    UITouch *touch = [touches anyObject];
-//    
-//    _gestureStartPoint= [touch locationInView:self.view.superview];//开始触摸
-//    
-//    NSLog(@"move%f,move%f",_gestureStartPoint.x,_gestureStartPoint.y);
-//
-//}
-//
-//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-//    
-//    UITouch *touch = [touches anyObject];
-//    
-//    CGPoint currentPosition = [touch locationInView:self.view.superview];
-//    
-//    CGFloat deltaX = (_gestureStartPoint.x - currentPosition.x);
-//    
-//    CGFloat deltaY = _gestureStartPoint.y - currentPosition.y;
-//    
-//    NSLog(@"end%f,end%f",deltaX,deltaY);
-//    
-//    //上下滑动
-//    
-//    if(fabs(deltaY) > fabs(deltaX))
-//        
-//    {
-//        
-//        //向上滑动
-//        
-//        if (deltaY > MINDISTANCE)   //有效滑动距离 MINDISTANCE
-//            
-//        {
-//            
-//        }
-//        
-//        //向下滑动
-//        
-//        else if (deltaY < -MINDISTANCE)
-//            
-//        {
-//            
-//        } 
-//        
-//    }
-//    
-//    //左右滑动
-//    
-//    else if(fabs(deltaX) > fabs(deltaY))
-//        
-//    {
-//        
-//        //向左滑动
-//        
-//        if (deltaX > MINDISTANCE)
-//            
-//        {
-//            
-//        }
-//        
-//        //向右滑动
-//        
-//        else if (deltaX < -MINDISTANCE)
-//            
-//        {
-//            
-//        }
-//        
-//    }
-//    
-//}
 
+#pragma mark - 人脸检测方法
+- (void)faceDetect:(UIImage *)aImage
+{
+    
+    //Create a CIImage version of your photo
+    CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
+    
+    //create a face detector
+    //此处是CIDetectorAccuracyHigh，若用于real-time的人脸检测，则用CIDetectorAccuracyLow，更快
+    NSDictionary  *opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh
+                                                      forKey:CIDetectorAccuracy];
+    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                              context:nil
+                                              options:opts];
+    
+    //Pull out the features of the face and loop through them
+    NSArray* features = [detector featuresInImage:image];
+    
+    if ([features count]==0) {
+        NSLog(@">>>>> 人脸监测【失败】啦 ～！！！");
+        
+    }
+    NSLog(@">>>>> 人脸监测【成功】～！！！>>>>>> ");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self markAfterFaceDetect:features];
+    });
+    
+}
+
+//人脸标识
+-(void)markAfterFaceDetect:(NSArray *)features
+{
+    if ([features count]==0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"失败"
+                                                       message:@"眼部定位失败，您可以换另外一张图片"
+                                                      delegate:self
+                                             cancelButtonTitle:@"Ok"
+                                             otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    for (CIFaceFeature *f in features)
+    {
+        //旋转180，仅y
+        CGRect aRect = f.bounds;
+        aRect.origin.y = self.scrollView.bounds.size.height - aRect.size.height - aRect.origin.y;//self.bounds.size
+        
+//        UIView *vv = [[UIView alloc]initWithFrame:aRect];
+//        vv.tag = 100;
+//        [vv setTransform:CGAffineTransformMakeScale(1, -1)];
+//        vv.backgroundColor = [UIColor redColor];
+//        vv.alpha = 0.6;
+//        [self.scrollView addSubview:vv];
+        
+        self.rectFaceDetect = aRect;
+        
+        
+        NSLog(@"%@",NSStringFromCGRect(f.bounds));
+        if (f.hasLeftEyePosition){
+            printf("Left eye %g %g\n", f.leftEyePosition.x, f.leftEyePosition.y);
+            
+            _leftCenterPoint = CGPointMake(f.leftEyePosition.x, self.scrollView.bounds.size.height-f.leftEyePosition.y);
+            
+//            UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+//            vv.tag = 100;
+//            //旋转180，仅y
+//            CGPoint newCenter =  f.leftEyePosition;
+//            newCenter.y = self.scrollView.bounds.size.height-newCenter.y;
+//            vv.center = newCenter;
+//            
+//            vv.backgroundColor = [UIColor yellowColor];
+//            [vv setTransform:CGAffineTransformMakeScale(1, -1)];
+//            vv.alpha = 0.6;
+//            [self.scrollView addSubview:vv];
+
+        }
+        if (f.hasRightEyePosition)
+        {
+            printf("Right eye %g %g\n", f.rightEyePosition.x, f.rightEyePosition.y);
+            
+            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, f.rightEyePosition.y);
+
+        }
+        if (f.hasMouthPosition)
+        {
+            printf("Mouth %g %g\n", f.mouthPosition.x, f.mouthPosition.y);
+            
+        }
+    }
+    
+    [self drawRect];
+    
+}
 
 @end

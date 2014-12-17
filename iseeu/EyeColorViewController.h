@@ -14,6 +14,8 @@
 
 #import "UIScrollView+UITouch.h"
 
+#import "EyeCircleView.h"
+
 @interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol>
 
 @property(strong,nonatomic)UIView *upView;
@@ -72,5 +74,17 @@
 @property(nonatomic)CGPoint _gestureStartPoint;
 
 @property(strong,nonatomic)NSString *_originPointName;
+
+@property(strong,nonatomic)NSString *_steepName;
+
+@property(strong,nonatomic)EyeCircleView *_eyeCircleView;
+
+@property(nonatomic)CGFloat _radius;
+
+@property(nonatomic)CGRect rectFaceDetect;
+
+@property(nonatomic)CGPoint _leftCenterPoint;
+
+@property(nonatomic)CGPoint _rightCenterPoint;
 
 @end
