@@ -28,17 +28,24 @@
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
-    [path moveToPoint:CGPointMake(self.leftPoint.x+10.0, self.leftPoint.y)];
+    [path moveToPoint:CGPointMake(self.leftPoint.x, self.leftPoint.y)];
     
     //NSLog(@"%f,%f",self.leftPoint.x,self.leftPoint.y);
     
-    [path addQuadCurveToPoint:CGPointMake(self.rightPoint.x-10.0, self.rightPoint.y) controlPoint:self.upPoint];
+    float upControlX = self.upPoint.x * 2 - ((self.leftPoint.x + self.rightPoint.x) / 2);
+    float upControlY = self.upPoint.y * 2 - ((self.leftPoint.y + self.rightPoint.y) / 2);
+    
+    [path addQuadCurveToPoint:CGPointMake(self.rightPoint.x, self.rightPoint.y) controlPoint:CGPointMake(upControlX, upControlY)];
     
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     
-    [path1 moveToPoint:CGPointMake(self.rightPoint.x-10.0, self.rightPoint.y)];
+    [path1 moveToPoint:CGPointMake(self.rightPoint.x, self.rightPoint.y)];
     
-    [path1 addQuadCurveToPoint:CGPointMake(self.leftPoint.x+10.0, self.leftPoint.y) controlPoint:self.downPoint];
+    float downControlX = self.downPoint.x * 2 - ((self.leftPoint.x + self.rightPoint.x) / 2);
+    float downControlY = self.downPoint.y * 2 - ((self.leftPoint.y + self.rightPoint.y) / 2);
+
+    
+    [path1 addQuadCurveToPoint:CGPointMake(self.leftPoint.x, self.leftPoint.y) controlPoint:CGPointMake(downControlX, downControlY)];
     
     [path appendPath:path1];
     

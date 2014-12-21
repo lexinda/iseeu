@@ -72,13 +72,37 @@
 
 @synthesize _eyeCircleView;
 
-@synthesize _radius;
-
-@synthesize rectFaceDetect;
-
 @synthesize _leftCenterPoint;
 
 @synthesize _rightCenterPoint;
+
+@synthesize _mousePoint;
+
+@synthesize _eyeSlider;
+
+@synthesize _leftDictionary;
+
+@synthesize _leftEyeDictionary;
+
+@synthesize _rightDictionary;
+
+@synthesize _rightEyeDictionary;
+
+@synthesize _leftImageView;
+
+@synthesize _leftEyeView;
+
+@synthesize _eyeViewAlpha;
+
+@synthesize _rightImageView;
+
+@synthesize _rightEyeView;
+
+@synthesize _radius;
+
+@synthesize _leftRadius;
+
+@synthesize _rightRadius;
 
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
@@ -115,14 +139,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _eyeViewAlpha = 1.0f;
+    
     _steepName = @"one";
     
-     _radius = 30.0f;
+    _radius = 10.0;
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
     [[self view] addGestureRecognizer:pan];
     
-    self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
     UIImage *image=[UIImage imageNamed:@"image1.jpg"];
     
@@ -164,6 +190,26 @@
     
     [self faceDetect:self.imageView.image];
     
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [nextButton setFrame:CGRectMake(self.view.frame.size.width-40.0, self.view.frame.size.height-64-49-40.0, 10, 20.0)];
+    
+    [nextButton setBackgroundImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
+    
+    [nextButton addTarget:self action:@selector(NextConvertEye) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:nextButton];
+    
+    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
+    
+    [footView set_activeView:2];
+    
+    [footView setViewDelegate:self];
+    
+    [footView setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.view addSubview:footView];
+    
 }
 
 -(void)NextConvertEye{
@@ -174,9 +220,17 @@
         _steepName = @"three";
     }else if([_steepName isEqualToString:@"three"]) {
         _steepName = @"four";
+    }else if([_steepName isEqualToString:@"four"]){
+        _steepName = @"five";
     }
     
     if ([_steepName isEqualToString:@"two"]) {
+        
+        _radius = 10.0f;
+        
+        _leftRadius = _radius*0.5*[self.oldScale floatValue];
+        
+        _leftDictionary = @{@"center":[NSValue valueWithCGPoint:self.realCenterPoint],@"left":[NSValue valueWithCGPoint:self.realLeftPoint],@"right":[NSValue valueWithCGPoint:self.realRightPoint],@"up":[NSValue valueWithCGPoint:self.realUpPoint],@"down":[NSValue valueWithCGPoint:self.realDownPoint]};
         
         [self.eyeView removeFromSuperview];
         
@@ -194,47 +248,155 @@
         
         [_eyeCircleView setBackgroundColor:[UIColor clearColor]];
         
-        _eyeCircleView.alpha=0.1;
+        _eyeCircleView.alpha=0.3;
         
         [_eyeCircleView setCenterPoint:CGPointMake(_leftCenterPoint.x*[self.oldScale floatValue], _leftCenterPoint.y*[self.oldScale floatValue])];
         
-        [_eyeCircleView setRadius:_radius];
+        [_eyeCircleView setTag:8];
+        
+        [_eyeCircleView setRadius:_radius*0.5*[self.oldScale floatValue]];
         
         [self.scrollView addSubview:_eyeCircleView];
         
-        UISlider *eyeSlider = [[UISlider alloc] initWithFrame:CGRectMake(-80.0, 200.0, 200.0, 20.0)];
+        _eyeSlider = [[UISlider alloc] initWithFrame:CGRectMake(-80.0, 200.0, 200.0, 20.0)];
         
-        [eyeSlider setTransform:[self transformForExpandDirection]];
+        [_eyeSlider setTransform:[self transformForExpandDirection]];
         
-        [self.view addSubview:eyeSlider];
+        [self.view addSubview:_eyeSlider];
         
-        eyeSlider.minimumValue = 1.0;
+        _eyeSlider.minimumValue = 0.0f;
         
-        eyeSlider.value = _radius;
+        _eyeSlider.value = 0.5;
         
-        eyeSlider.maximumValue = 100.0;
+        _eyeSlider.maximumValue = 1.0f;
         
-        [eyeSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
+        [_eyeSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
         
     }else if ([_steepName isEqualToString:@"three"]) {
         
+        _leftEyeDictionary = @{@"center":[NSValue valueWithCGPoint:self.realCenterPoint],@"radius":[NSNumber numberWithFloat:_leftRadius/[self.oldScale floatValue]]};
         
+        [_eyeCircleView removeFromSuperview];
+        
+        [_eyeSlider removeFromSuperview];
+        
+        [self drawRect];
         
     }else if ([_steepName isEqualToString:@"four"]) {
         
+        _radius = 10.0f;
         
+        _rightRadius = _radius*0.5*[self.oldScale floatValue];
+        
+        _rightDictionary = @{@"center":[NSValue valueWithCGPoint:self.realCenterPoint],@"left":[NSValue valueWithCGPoint:self.realLeftPoint],@"right":[NSValue valueWithCGPoint:self.realRightPoint],@"up":[NSValue valueWithCGPoint:self.realUpPoint],@"down":[NSValue valueWithCGPoint:self.realDownPoint]};
+        
+        [self.eyeView removeFromSuperview];
+        
+        [self.upView removeFromSuperview];
+        
+        [self.rightView removeFromSuperview];
+        
+        [self.leftView removeFromSuperview];
+        
+        [self.downView removeFromSuperview];
+        
+        [self.centerView removeFromSuperview];
+        
+        _eyeCircleView = [[EyeCircleView alloc] initWithFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.frame.size.width*5, self.scrollView.frame.size.height*5)];
+        
+        [_eyeCircleView setTag:9];
+        
+        [_eyeCircleView setBackgroundColor:[UIColor clearColor]];
+        
+        _eyeCircleView.alpha=0.3;
+        
+        [_eyeCircleView setCenterPoint:CGPointMake(_rightCenterPoint.x*[self.oldScale floatValue], _rightCenterPoint.y*[self.oldScale floatValue])];
+        
+        [_eyeCircleView setRadius:_radius*0.5*[self.oldScale floatValue]];
+        
+        [self.scrollView addSubview:_eyeCircleView];
+        
+        _eyeSlider = [[UISlider alloc] initWithFrame:CGRectMake(-80.0, 200.0, 200.0, 20.0)];
+        
+        [_eyeSlider setTransform:[self transformForExpandDirection]];
+        
+        [self.view addSubview:_eyeSlider];
+        
+        _eyeSlider.minimumValue = 0.0f;
+        
+        _eyeSlider.value = 0.5;
+        
+        _eyeSlider.maximumValue = 1.0f;
+        
+        [_eyeSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
+        
+    }else if([_steepName isEqualToString:@"five"]){
+        
+        [_eyeSlider removeFromSuperview];
+        
+        [_eyeCircleView removeFromSuperview];
+    
+        _rightEyeDictionary = @{@"center":[NSValue valueWithCGPoint:self.realCenterPoint],@"radius":[NSNumber numberWithFloat:_rightRadius/[self.oldScale floatValue]]};
+        
+        NSLog(@"left%@",_leftDictionary);
+        
+        NSLog(@"leftEye%@",_leftEyeDictionary);
+        
+        NSLog(@"right%@",_rightDictionary);
+        
+        NSLog(@"rightEye%@",_rightEyeDictionary);
+        
+        [self.scrollView setContentOffset:CGPointMake(_mousePoint.x*[self.oldScale floatValue]-self.view.frame.size.width/2, _mousePoint.y)];
+        
+        [self addEyeImageView];
+        
+        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, self.view.frame.size.height-64-49-40, 200.0, 20.0)];
+        
+        [self.view addSubview:slider];
+        
+        slider.minimumValue = 0.0f;
+        
+        [slider setValue:1.0f];
+        
+        slider.maximumValue = 1.0f;
+        
+        [slider addTarget:self action:@selector(imageEyeChanged:) forControlEvents:UIControlEventValueChanged];
         
     }
     
 }
 
--(IBAction)sliderChanged:(id)sender{
+-(void)imageEyeChanged:(id)sender{
+    
+     UISlider *mySlider = (UISlider *)sender;
+    
+    _eyeViewAlpha = mySlider.value;
+    
+    [_leftEyeView setAlpha:_eyeViewAlpha];
+    
+    [_rightEyeView setAlpha:_eyeViewAlpha];
+
+}
+
+-(void)sliderChanged:(id)sender{
     
     UISlider *mySlider = (UISlider *)sender;
     
-    _radius = mySlider.value;
+    if (mySlider.tag == 8) {
+        
+        [_eyeCircleView setCenterPoint:CGPointMake(_leftCenterPoint.x*[self.oldScale floatValue], _leftCenterPoint.y*[self.oldScale floatValue])];
+        
+        _leftRadius = _radius*mySlider.value*[self.oldScale floatValue];
+        
+    }else if(mySlider.tag == 9){
+        
+        [_eyeCircleView setCenterPoint:CGPointMake(_rightCenterPoint.x*[self.oldScale floatValue], _rightCenterPoint.y*[self.oldScale floatValue])];
+        
+        _rightRadius = _radius*mySlider.value*[self.oldScale floatValue];
     
-    [_eyeCircleView setRadius:_radius];
+    }
+    
+    [_eyeCircleView setRadius:_radius*mySlider.value*[self.oldScale floatValue]];
     
     [_eyeCircleView setNeedsDisplay];
     
@@ -249,9 +411,25 @@
 
 -(void)drawRect{
     
-    [self.scrollView setContentOffset:CGPointMake(_leftCenterPoint.x+80.0, _leftCenterPoint.y)];
+    int tag = 0;
     
-    self.centerPoint = _leftCenterPoint;
+    if ([_steepName isEqualToString:@"one"]) {
+        
+        tag = 6;
+        
+        [self.scrollView setContentOffset:CGPointMake(_leftCenterPoint.x*[self.oldScale floatValue]-self.view.frame.size.width/2, _leftCenterPoint.y)];
+        
+        self.centerPoint = _leftCenterPoint;
+        
+    }else if([_steepName isEqualToString:@"three"]){
+        
+        tag = 7;
+        
+        [self.scrollView setContentOffset:CGPointMake(_rightCenterPoint.x*[self.oldScale floatValue]-self.view.frame.size.width/2, _rightCenterPoint.y)];
+        
+        self.centerPoint = _rightCenterPoint;
+        
+    }
     
     self.realCenterPoint = self.centerPoint;
     
@@ -273,54 +451,12 @@
     
     NSLog(@"%f,%f",self.centerPoint.x,self.centerPoint.y);
     
-    self.commitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [self.commitButton setFrame:CGRectMake(10.0, 30.0, 60.0, 10.0)];
-    
-    [self.commitButton setTitle:@"试戴" forState:UIControlStateNormal];
-    
-    [self.commitButton addTarget:self action:@selector(showSelectView) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.commitButton];
-    
-    self.draw = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [self.draw setFrame:CGRectMake(10.0, 50.0, 60.0, 10.0)];
-    
-    [self.draw setTitle:@"调整" forState:UIControlStateNormal];
-    
-    [self.draw addTarget:self action:@selector(drawRect) forControlEvents:UIControlEventTouchUpInside];
-    
-    //[self.view addSubview:self.draw];
-    
-    self.resizeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [self.resizeButton setFrame:CGRectMake(10.0, 70.0, 60.0, 10.0)];
-    
-    [self.resizeButton setTitle:@"重绘" forState:UIControlStateNormal];
-    
-    [self.resizeButton addTarget:self action:@selector(resize) forControlEvents:UIControlEventTouchUpInside];
-    
-    //[self.view addSubview:self.resizeButton];
-    
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [nextButton setFrame:CGRectMake(self.view.frame.size.width-40.0, self.view.frame.size.height-64-49-40.0, 10, 20.0)];
-    
-    [nextButton setBackgroundImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
-    
-    [nextButton addTarget:self action:@selector(NextConvertEye) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:nextButton];
-    
     //眼部的图片跟缩放的最大倍数相同
     self.eyeView = [[EyeView alloc] initWithFrame:CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.scrollView.frame.size.width*5, self.scrollView.frame.size.height*5)];
     
-    self.eyeView.alpha=0.2;
+    self.eyeView.alpha=0.3;
     
-    self.eyeView.tag = 6;
+    self.eyeView.tag = tag;
     
     [self.eyeView setCenterPoint:CGPointMake(self.realCenterPoint.x*[self.oldScale floatValue], self.realCenterPoint.y*[self.oldScale floatValue])];
     
@@ -358,6 +494,8 @@
     
     self.centerView = [self getView:5 withCenter:relativeCenterPoint];
     
+    [self.centerView setHidden:YES];
+    
     [self.scrollView addSubview:self.upView];
     
     [self.scrollView addSubview:self.rightView];
@@ -394,15 +532,11 @@
     
     CGPoint point = [recognizer locationInView:recognizer.view];
     
-//    point = CGPointMake(point.x*[self.oldScale floatValue], point.y*[self.oldScale floatValue]);
-    
-    NSLog(@"%f,%f",point.x,point.y);
-    
     CGFloat x = 0.0f;
     
     if (_gestureStartPoint.x>0) {
         
-        x = point.x-_gestureStartPoint.x;
+        x = (point.x-_gestureStartPoint.x)/[self.oldScale floatValue];
         
     }
     
@@ -410,15 +544,11 @@
     
     if (_gestureStartPoint.y>0) {
         
-        y = point.y-_gestureStartPoint.y;
+        y = (point.y-_gestureStartPoint.y)/[self.oldScale floatValue];
         
     }
     
     _gestureStartPoint = point;
-    
-//    NSLog(@"start%f,start%f,%f,%f",_gestureStartPoint.x,_gestureStartPoint.y,x,y);
-//    
-    NSLog(@"_originPointName:%@",_originPointName);
     
     CGPoint relativeCenterPoint = CGPointMake(self.realCenterPoint.x*[self.oldScale floatValue], self.realCenterPoint.y*[self.oldScale floatValue]);
     
@@ -434,9 +564,7 @@
     
     CGFloat height = 40.0f;
     
-    NSLog(@"%f,%f",center.x,center.y);
-    
-    if ([_steepName isEqualToString:@"one"]) {
+    if ([_steepName isEqualToString:@"one"]||[_steepName isEqualToString:@"three"]) {
         
         if (point.x<center.x) {
             
@@ -592,13 +720,22 @@
             
         }
         
-    }else if([_steepName isEqualToString:@"two"]){
+    }else if([_steepName isEqualToString:@"two"]||[_steepName isEqualToString:@"four"]){
     
-        self.centerPoint = CGPointMake(self.centerPoint.x+x, self.centerPoint.y+y);
+        CGPoint newCenterPoint = CGPointMake(relativeCenterPoint.x+x, relativeCenterPoint.y+y);
         
-        [_eyeCircleView setCenterPoint:self.centerPoint];
+        self.realCenterPoint = CGPointMake(self.realCenterPoint.x+x, self.realCenterPoint.y+y);
         
-        [_eyeCircleView setRadius:_radius];
+        [_eyeCircleView setCenterPoint:newCenterPoint];
+        
+        if ([_steepName isEqualToString:@"two"]) {
+            
+            [_eyeCircleView setRadius:_leftRadius];
+            
+        }else if([_steepName isEqualToString:@"four"]){
+            
+            [_eyeCircleView setRadius:_rightRadius];
+        }
         
         [_eyeCircleView setNeedsDisplay];
         
@@ -628,6 +765,24 @@
     
     [self.selectImageView setHidden:YES];
     
+    [_eyeCircleView setHidden:YES];
+    
+    [_leftEyeView removeFromSuperview];
+    
+    _leftEyeView = nil;
+    
+    [_leftImageView removeFromSuperview];
+    
+    _leftImageView = nil;
+    
+    [_rightEyeView removeFromSuperview];
+    
+    _rightEyeView = nil;
+    
+    [_rightImageView removeFromSuperview];
+    
+    _rightImageView = nil;
+    
 }
 
 -(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
@@ -640,9 +795,11 @@
     
     [self.leftView setHidden:NO];
     
-    [self.centerView setHidden:NO];
+    [self.centerView setHidden:YES];
     
     [self.eyeView setHidden:NO];
+    
+    [_eyeCircleView setHidden:NO];
     
     self.oldScale = [NSNumber numberWithFloat:scale];
     
@@ -690,119 +847,21 @@
     
     [self.eyeView setNeedsDisplay];
     
-    if (self.selectImageView != nil) {
-        
-        [self showSelectView];
-        
-    }
+    [_eyeCircleView setCenterPoint:relativeCenterPoint];
+    
+    [_eyeCircleView setRadius:10*[self.oldScale floatValue]];
+    
+    [_eyeCircleView setNeedsDisplay];
+    
+    [self addEyeImageView];
+    
+    
     
 }
 
 -(void)getPath:(UIBezierPath *)paths{
     
     self.path = paths;
-    
-}
-
--(void)showSelectView{
-    
-    CAShapeLayer* shape = [CAShapeLayer layer];
-    
-    UIBezierPath *testPath = [UIBezierPath bezierPathWithRect:self.view.bounds];
-    
-    [testPath appendPath:[UIBezierPath bezierPathWithOvalInRect:(CGRect){{100, 100}, 100, 100}]];
-    shape.fillRule = kCAFillRuleEvenOdd;
-    shape.path = testPath.CGPath;
-    shape.fillColor = [UIColor redColor].CGColor;
-    
-//    [self.upView setHidden:YES];
-//    
-//    [self.rightView setHidden:YES];
-//    
-//    [self.downView setHidden:YES];
-//    
-//    [self.leftView setHidden:YES];
-//    
-//    [self.centerView setHidden:YES];
-//    
-//    [self.eyeView setHidden:YES];
-//    
-//    if (self.selectImageView !=nil) {
-//        [self.selectImageView removeFromSuperview];
-//    }
-//    
-//    UIImage *meitongImage = [UIImage imageNamed:@"metong1"];
-//    
-//    CGFloat imageViewWidth = self.realRightPoint.x*[self.oldScale floatValue]-self.realLeftPoint.x*[self.oldScale floatValue];
-//    
-//    self.selectImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, imageViewWidth, imageViewWidth)];
-//    
-//    self.selectImageView.image = meitongImage;
-//    
-//    CGPoint imageCenter = CGPointMake(self.realLeftPoint.x*[self.oldScale floatValue]+(self.realRightPoint.x*[self.oldScale floatValue]-self.realLeftPoint.x*[self.oldScale floatValue])/2,self.realUpPoint.y*[self.oldScale floatValue]+(self.realDownPoint.y*[self.oldScale floatValue]-self.realUpPoint.y*[self.oldScale floatValue])/2);
-//    
-//    self.selectImageView.center = imageCenter ;
-//    
-//    //相对于selectImageView;
-//    CGPoint leftSelectPoint = CGPointMake(0, self.selectImageView.frame.size.height/2);
-//    //实际点
-//    CGPoint imageRealLeftPoint = CGPointMake(self.realLeftPoint.x*[self.oldScale floatValue],self.realLeftPoint.y*[self.oldScale floatValue]);
-//    
-//    CGPoint imageRealUpPoint = CGPointMake(imageRealLeftPoint.x+imageViewWidth/2, imageRealLeftPoint.y-imageViewWidth/2);
-//    
-//    CGPoint imageRealDownPoint = CGPointMake(imageRealLeftPoint.x+imageViewWidth/2, imageRealLeftPoint.y+imageViewWidth/2);
-//    
-//    CGPoint upSelectPoint = CGPointMake(self.selectImageView.frame.size.width/2,0-(imageRealUpPoint.y-self.realUpPoint.y*[self.oldScale floatValue]));
-//    
-//    CGPoint rightSelectPoint = CGPointMake(self.selectImageView.frame.size.width, self.selectImageView.frame.size.height/2);
-//    
-//    CGPoint downSelectPoint = CGPointMake(self.selectImageView.frame.size.width/2+(imageRealDownPoint.x-self.realDownPoint.x*[self.oldScale floatValue]),self.selectImageView.frame.size.height-(imageRealDownPoint.y-self.realDownPoint.y*[self.oldScale floatValue]));
-//    
-//    UIBezierPath *paths = [UIBezierPath bezierPath];
-//    
-//    [paths moveToPoint:leftSelectPoint];
-//    
-//    [paths addQuadCurveToPoint:rightSelectPoint controlPoint:upSelectPoint];
-//    
-//    UIBezierPath *path1 = [UIBezierPath bezierPath];
-//    
-//    [path1 moveToPoint:rightSelectPoint];
-//    
-//    [path1 addQuadCurveToPoint:leftSelectPoint controlPoint:downSelectPoint];
-//    
-//    [paths appendPath:path1];
-//    
-//    [paths stroke];
-//    
-//    CAShapeLayer* shape = [CAShapeLayer layer];
-//    
-//    shape.fillColor = [[UIColor redColor] CGColor];
-//    
-//    shape.path = paths.CGPath;
-//    
-//    [self.selectImageView.layer setMask: shape];
-//    
-//    [self.scrollView.layer addSublayer:self.selectImageView.layer];
-    
-}
-
--(void)resize{
-    
-    [self.upView setHidden:NO];
-    
-    [self.rightView setHidden:NO];
-    
-    [self.downView setHidden:NO];
-    
-    [self.leftView setHidden:NO];
-    
-    [self.centerView setHidden:NO];
-    
-    [self.eyeView setHidden:NO];
-    
-    if (self.selectImageView !=nil) {
-        [self.selectImageView removeFromSuperview];
-    }
     
 }
 
@@ -857,6 +916,7 @@
 //人脸标识
 -(void)markAfterFaceDetect:(NSArray *)features
 {
+    
     if ([features count]==0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"失败"
                                                        message:@"眼部定位失败，您可以换另外一张图片"
@@ -869,25 +929,14 @@
     
     for (CIFaceFeature *f in features)
     {
-        //旋转180，仅y
-        CGRect aRect = f.bounds;
-        aRect.origin.y = self.scrollView.bounds.size.height - aRect.size.height - aRect.origin.y;//self.bounds.size
-        
-//        UIView *vv = [[UIView alloc]initWithFrame:aRect];
-//        vv.tag = 100;
-//        [vv setTransform:CGAffineTransformMakeScale(1, -1)];
-//        vv.backgroundColor = [UIColor redColor];
-//        vv.alpha = 0.6;
-//        [self.scrollView addSubview:vv];
-        
-        self.rectFaceDetect = aRect;
-        
         
         NSLog(@"%@",NSStringFromCGRect(f.bounds));
         if (f.hasLeftEyePosition){
             printf("Left eye %g %g\n", f.leftEyePosition.x, f.leftEyePosition.y);
             
-            _leftCenterPoint = CGPointMake(f.leftEyePosition.x, self.scrollView.bounds.size.height-f.leftEyePosition.y);
+            NSLog(@"%f",self.scrollView.bounds.size.height);
+            
+            _leftCenterPoint = CGPointMake(f.leftEyePosition.x,480-f.leftEyePosition.y);
             
 //            UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 //            vv.tag = 100;
@@ -906,12 +955,14 @@
         {
             printf("Right eye %g %g\n", f.rightEyePosition.x, f.rightEyePosition.y);
             
-            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, f.rightEyePosition.y);
+            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, 480-f.rightEyePosition.y);
 
         }
         if (f.hasMouthPosition)
         {
             printf("Mouth %g %g\n", f.mouthPosition.x, f.mouthPosition.y);
+            
+            _mousePoint = CGPointMake(f.mouthPosition.x, 480-f.mouthPosition.y);
             
         }
     }
@@ -919,5 +970,263 @@
     [self drawRect];
     
 }
+
+-(void)addEyeImageView{
+    
+    //leftImageView
+    
+    NSValue *leftValue = [_leftDictionary objectForKey:@"left"];
+    
+    CGPoint left = CGPointMake([leftValue CGPointValue].x*[self.oldScale floatValue], [leftValue CGPointValue].y*[self.oldScale floatValue]) ;
+    
+    NSValue *rightValue = [_leftDictionary objectForKey:@"right"];
+    
+    CGPoint right = CGPointMake([rightValue CGPointValue].x*[self.oldScale floatValue], [rightValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    NSValue *upValue = [_leftDictionary objectForKey:@"up"];
+    
+    CGPoint up = CGPointMake([upValue CGPointValue].x*[self.oldScale floatValue], [upValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    NSValue *downValue = [_leftDictionary objectForKey:@"down"];
+    
+    CGPoint down = CGPointMake([downValue CGPointValue].x*[self.oldScale floatValue], [downValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    CGFloat width = right.x-left.x;
+    
+    NSNumber *radiusValue = [_leftEyeDictionary objectForKey:@"radius"];
+    
+    CGFloat height = [radiusValue floatValue]*2*[self.oldScale floatValue];
+    
+    NSValue *centerValue = [_leftEyeDictionary objectForKey:@"center"];
+    
+    CGPoint center = CGPointMake([centerValue CGPointValue].x*[self.oldScale floatValue], [centerValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    _leftEyeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)];
+    
+    [_leftEyeView setAlpha:_eyeViewAlpha];
+    
+    CGFloat upMargin = center.y-height/2;
+    
+    CGFloat leftMargin = center.x-width/2;
+    
+    _leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, height, height)];
+    
+    [_leftImageView setCenter:_leftEyeView.center];
+    
+    [_leftImageView setImage:[UIImage imageNamed:@"eye1"]];
+    
+    [_leftEyeView addSubview:_leftImageView];
+    
+    [_leftEyeView setCenter:center];
+    
+    CAShapeLayer* shape = [CAShapeLayer layer];
+    
+    shape.fillColor = [[UIColor redColor] CGColor];
+    
+    CGPoint upBerzierPoint = CGPointMake(up.x-leftMargin, up.y-upMargin);
+    
+    CGPoint leftBerzierPoint = CGPointMake(left.x-leftMargin, left.y-upMargin);
+    
+    CGPoint rightBerzierPoint = CGPointMake(right.x-leftMargin, right.y-upMargin);
+    
+    CGPoint downBerzierPoint = CGPointMake(down.x-leftMargin, down.y-upMargin);
+    
+    UIBezierPath *pathLeft = [UIBezierPath bezierPath];
+    
+    [pathLeft moveToPoint:leftBerzierPoint];
+    
+    float upControlX = upBerzierPoint.x * 2 - ((leftBerzierPoint.x + rightBerzierPoint.x) / 2);
+    float upControlY = upBerzierPoint.y * 2 - ((leftBerzierPoint.y + rightBerzierPoint.y) / 2);
+
+    
+    [pathLeft addQuadCurveToPoint:rightBerzierPoint controlPoint:CGPointMake(upControlX, upControlY)];
+    
+    UIBezierPath *pathLeft1 = [UIBezierPath bezierPath];
+    
+    [pathLeft1 moveToPoint:rightBerzierPoint];
+    
+    float downControlX = downBerzierPoint.x * 2 - ((leftBerzierPoint.x + rightBerzierPoint.x) / 2);
+    float downControlY = downBerzierPoint.y * 2 - ((leftBerzierPoint.y + rightBerzierPoint.y) / 2);
+
+    
+    [pathLeft1 addQuadCurveToPoint:leftBerzierPoint controlPoint:CGPointMake(downControlX, downControlY)];
+    
+    [pathLeft appendPath:pathLeft1];
+    
+    shape.path = pathLeft.CGPath;
+    
+    shape.lineWidth = 1;
+    
+    [_leftEyeView.layer setMask:shape];
+    
+    [self.scrollView.layer addSublayer:_leftEyeView.layer];
+    
+    //rightImageView
+    
+    NSValue *rightLeftValue = [_rightDictionary objectForKey:@"left"];
+    
+    CGPoint rightLeft = CGPointMake([rightLeftValue CGPointValue].x*[self.oldScale floatValue], [rightLeftValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    NSValue *rightRightValue = [_rightDictionary objectForKey:@"right"];
+    
+    CGPoint rightRight = CGPointMake([rightRightValue CGPointValue].x*[self.oldScale floatValue], [rightRightValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    NSValue *rightUpValue = [_rightDictionary objectForKey:@"up"];
+    
+    CGPoint rightUp = CGPointMake([rightUpValue CGPointValue].x*[self.oldScale floatValue], [rightUpValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    NSValue *rightDownValue = [_rightDictionary objectForKey:@"down"];
+    
+    CGPoint rightDown = CGPointMake([rightDownValue CGPointValue].x*[self.oldScale floatValue], [rightDownValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    CGFloat rightWidth = rightRight.x-rightLeft.x;
+    
+    NSNumber *rightRadiusValue = [_rightEyeDictionary objectForKey:@"radius"];
+    
+    CGFloat rightHeight = [rightRadiusValue floatValue]*2*[self.oldScale floatValue];
+    
+    NSValue *rightCenterValue = [_rightEyeDictionary objectForKey:@"center"];
+    
+    CGPoint rightCenter = CGPointMake([rightCenterValue CGPointValue].x*[self.oldScale floatValue], [rightCenterValue CGPointValue].y*[self.oldScale floatValue]);
+    
+    _rightEyeView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, rightWidth, rightHeight)];
+    
+    [_rightEyeView setAlpha:_eyeViewAlpha];
+    
+    CGFloat rightUpMargin = rightCenter.y-rightHeight/2;
+    
+    CGFloat rightLeftMargin = rightCenter.x-rightWidth/2;
+    
+    _rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, rightHeight, rightHeight)];
+    
+    [_rightImageView setCenter:_rightEyeView.center];
+    
+    [_rightImageView setImage:[UIImage imageNamed:@"eye1"]];
+    
+    [_rightEyeView addSubview:_rightImageView];
+    
+    [_rightEyeView setCenter:rightCenter];
+    
+    CAShapeLayer* rightShape = [CAShapeLayer layer];
+    
+    rightShape.fillColor = [[UIColor redColor] CGColor];
+    
+    CGPoint rightUpBerzierPoint = CGPointMake(rightUp.x-rightLeftMargin, rightUp.y-rightUpMargin);
+    
+    CGPoint rightLeftBerzierPoint = CGPointMake(rightLeft.x-rightLeftMargin, rightLeft.y-rightUpMargin);
+    
+    CGPoint rightRightBerzierPoint = CGPointMake(rightRight.x-rightLeftMargin, rightRight.y-rightUpMargin);
+    
+    CGPoint rightDownBerzierPoint = CGPointMake(rightDown.x-rightLeftMargin, rightDown.y-rightUpMargin);
+    
+    UIBezierPath *rightPathLeft = [UIBezierPath bezierPath];
+    
+    [rightPathLeft moveToPoint:rightLeftBerzierPoint];
+    
+    float rightUpControlX = rightUpBerzierPoint.x * 2 - ((rightLeftBerzierPoint.x + rightRightBerzierPoint.x) / 2);
+    float rightUpControlY = rightUpBerzierPoint.y * 2 - ((rightLeftBerzierPoint.y + rightRightBerzierPoint.y) / 2);
+    
+    [rightPathLeft addQuadCurveToPoint:rightRightBerzierPoint controlPoint:CGPointMake(rightUpControlX, rightUpControlY)];
+    
+    UIBezierPath *rightPathLeft1 = [UIBezierPath bezierPath];
+    
+    [rightPathLeft1 moveToPoint:rightRightBerzierPoint];
+    
+    float rightDownControlX = rightDownBerzierPoint.x * 2 - ((rightLeftBerzierPoint.x + rightRightBerzierPoint.x) / 2);
+    float rightDownControlY = rightDownBerzierPoint.y * 2 - ((rightLeftBerzierPoint.y + rightRightBerzierPoint.y) / 2);
+    
+    [rightPathLeft1 addQuadCurveToPoint:rightLeftBerzierPoint controlPoint:CGPointMake(rightDownControlX, rightDownControlY)];
+    
+    [rightPathLeft appendPath:rightPathLeft1];
+    
+    rightShape.path = rightPathLeft.CGPath;
+    
+    rightShape.lineWidth = 1;
+    
+    [_rightEyeView.layer setMask:rightShape];
+    
+    [self.scrollView.layer addSublayer:_rightEyeView.layer];
+
+}
+
+-(void)pushViewController:(int)type{
+    
+    if (type==0) {
+        
+        BOOL isHave = NO;
+        
+        ViewController *viewController = [[ViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:viewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:viewController animated:NO];
+        }
+        
+    }
+    
+    if (type == 2) {
+        
+        BOOL isHave = NO;
+        
+        MarketViewController *marketViewController = [[MarketViewController alloc] init];
+        
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:marketViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:marketViewController animated:NO];
+        }
+        
+    }
+    
+    if (type == 3) {
+        
+        BOOL isHave = NO;
+        
+        CartDetailViewController *cartDetailViewController = [[CartDetailViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:cartDetailViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:cartDetailViewController animated:NO];
+        }
+        
+    }
+    
+    if (type == 4) {
+        BOOL isHave = NO;
+        
+        UserInfoViewController *userInfoViewController = [[UserInfoViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:userInfoViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:userInfoViewController animated:NO];
+        }
+    }
+    
+}
+
 
 @end

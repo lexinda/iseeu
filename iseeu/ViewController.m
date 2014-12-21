@@ -382,24 +382,24 @@
 
 -(void)pushViewController:(int)type{
     
-    if (type==0) {
-        
-        BOOL isHave = NO;
-        
-        ViewController *viewController = [[ViewController alloc] init];
-        
-        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
-            if ([uiViewController isKindOfClass:viewController.class]) {
-                isHave = YES;
-                [self.navigationController popToViewController:uiViewController animated:NO];
-            }
-        }
-        
-        if (!isHave) {
-            [self.navigationController pushViewController:viewController animated:NO];
-        }
-        
-    }
+//    if (type==0) {
+//        
+//        BOOL isHave = NO;
+//        
+//        ViewController *viewController = [[ViewController alloc] init];
+//        
+//        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+//            if ([uiViewController isKindOfClass:viewController.class]) {
+//                isHave = YES;
+//                [self.navigationController popToViewController:uiViewController animated:NO];
+//            }
+//        }
+//        
+//        if (!isHave) {
+//            [self.navigationController pushViewController:viewController animated:NO];
+//        }
+//        
+//    }
     
     if (type==1) {
         

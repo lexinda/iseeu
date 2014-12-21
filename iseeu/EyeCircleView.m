@@ -22,7 +22,7 @@
     
     [path setLineWidth:1];
     
-    [[UIColor blueColor] setFill];
+    [[UIColor greenColor] setFill];
     
     [path fill];
     

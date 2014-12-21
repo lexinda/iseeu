@@ -16,7 +16,19 @@
 
 #import "EyeCircleView.h"
 
-@interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol>
+#import "EyeImageView.h"
+
+#import "FootView.h"
+
+#import "UserInfoViewController.h"
+
+#import "CartDetailViewController.h"
+
+#import "MarketViewController.h"
+
+#import "ViewController.h"
+
+@interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol,FootPushViewDelegate>
 
 @property(strong,nonatomic)UIView *upView;
 
@@ -79,12 +91,36 @@
 
 @property(strong,nonatomic)EyeCircleView *_eyeCircleView;
 
-@property(nonatomic)CGFloat _radius;
-
-@property(nonatomic)CGRect rectFaceDetect;
-
 @property(nonatomic)CGPoint _leftCenterPoint;
 
 @property(nonatomic)CGPoint _rightCenterPoint;
+
+@property(strong,nonatomic)UISlider *_eyeSlider;
+
+@property(strong,nonatomic)NSDictionary *_leftDictionary;
+
+@property(strong,nonatomic)NSDictionary *_leftEyeDictionary;
+
+@property(strong,nonatomic)NSDictionary *_rightDictionary;
+
+@property(strong,nonatomic)NSDictionary *_rightEyeDictionary;
+
+@property(strong,nonatomic)UIImageView *_leftImageView;
+
+@property(strong,nonatomic)UIView *_leftEyeView;
+
+@property(strong,nonatomic)UIImageView *_rightImageView;
+
+@property(nonatomic)CGFloat _eyeViewAlpha;
+
+@property(strong,nonatomic)UIView *_rightEyeView;
+
+@property(nonatomic)CGPoint _mousePoint;
+
+@property(nonatomic)CGFloat _radius;
+
+@property(nonatomic)CGFloat _leftRadius;
+
+@property(nonatomic)CGFloat _rightRadius;
 
 @end

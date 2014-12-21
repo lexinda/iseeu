@@ -36,8 +36,6 @@
 
 #import "MarketViewController.h"
 
-#import "CartDetailViewController.h"
-
 #import "EyeColorViewController.h"
 
 #import "SideViewController.h"

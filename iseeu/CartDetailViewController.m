@@ -352,6 +352,25 @@
         
     }
     
+    if (type==1) {
+        
+        BOOL isHave = NO;
+        
+        EyeColorViewController *eyeColorViewController = [[EyeColorViewController alloc] init];
+        
+        for (UIViewController *uiViewController in self.navigationController.viewControllers) {
+            if ([uiViewController isKindOfClass:eyeColorViewController.class]) {
+                isHave = YES;
+                [self.navigationController popToViewController:uiViewController animated:NO];
+            }
+        }
+        
+        if (!isHave) {
+            [self.navigationController pushViewController:eyeColorViewController animated:NO];
+        }
+        
+    }
+    
     if (type == 2) {
         
         BOOL isHave = NO;
