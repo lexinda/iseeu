@@ -42,6 +42,11 @@
 		2873AFDA1A35DD2500169D60 /* CartDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2873AFD91A35DD2500169D60 /* CartDetailTableViewCell.m */; };
 		288D52F81A21C5010030B4BC /* ClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 288D52F71A21C5010030B4BC /* ClassificationViewController.m */; };
 		289128241A18518E00E5F9BA /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289128231A18518E00E5F9BA /* GoodsDetailViewController.m */; };
+		2897895B1A5D89680070E769 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 289789561A5D89680070E769 /* 2.png */; };
+		2897895C1A5D89680070E769 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 289789571A5D89680070E769 /* 3.png */; };
+		2897895D1A5D89680070E769 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 289789581A5D89680070E769 /* 4.png */; };
+		2897895E1A5D89680070E769 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 289789591A5D89680070E769 /* 5.png */; };
+		2897895F1A5D89680070E769 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 2897895A1A5D89680070E769 /* 6.png */; };
 		28A4414D1A3DCB0100ACDE2C /* EyeColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A4414C1A3DCB0100ACDE2C /* EyeColorViewController.m */; };
 		28A441501A3DCE2300ACDE2C /* EyeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A4414F1A3DCE2300ACDE2C /* EyeView.m */; };
 		28A441531A3DCF7A00ACDE2C /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28A441521A3DCF7A00ACDE2C /* image1.jpg */; };
@@ -337,6 +342,11 @@
 		288D52F71A21C5010030B4BC /* ClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationViewController.m; sourceTree = "<group>"; };
 		289128221A18518E00E5F9BA /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		289128231A18518E00E5F9BA /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
+		289789561A5D89680070E769 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		289789571A5D89680070E769 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		289789581A5D89680070E769 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		289789591A5D89680070E769 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		2897895A1A5D89680070E769 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		28A4414A1A3D804D00ACDE2C /* FootPushViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FootPushViewDelegate.h; sourceTree = "<group>"; };
 		28A4414B1A3DCB0100ACDE2C /* EyeColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeColorViewController.h; sourceTree = "<group>"; };
 		28A4414C1A3DCB0100ACDE2C /* EyeColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeColorViewController.m; sourceTree = "<group>"; };
@@ -724,6 +734,18 @@
 			name = controller;
 			sourceTree = "<group>";
 		};
+		289789551A5D894D0070E769 /* colorEye */ = {
+			isa = PBXGroup;
+			children = (
+				289789561A5D89680070E769 /* 2.png */,
+				289789571A5D89680070E769 /* 3.png */,
+				289789581A5D89680070E769 /* 4.png */,
+				289789591A5D89680070E769 /* 5.png */,
+				2897895A1A5D89680070E769 /* 6.png */,
+			);
+			name = colorEye;
+			sourceTree = "<group>";
+		};
 		28A4AC051A1714AB00709F33 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,6 +799,7 @@
 		28D532141A14F06300E62C39 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				289789551A5D894D0070E769 /* colorEye */,
 				28D532151A14F0A400E62C39 /* a.png */,
 				28D532161A14F0A400E62C39 /* a1.jpg */,
 				28D532171A14F0A400E62C39 /* a2.jpg */,
@@ -1127,8 +1150,10 @@
 				28D5337E1A14F0A400E62C39 /* userlongin_line.png in Resources */,
 				28D5331F1A14F0A400E62C39 /* home_head.png in Resources */,
 				28D533521A14F0A400E62C39 /* pingpai2.jpg in Resources */,
+				2897895C1A5D89680070E769 /* 3.png in Resources */,
 				28224B0F1A13985A00C6EE18 /* Main.storyboard in Resources */,
 				28D5334C1A14F0A400E62C39 /* personal_score_line.png in Resources */,
+				2897895F1A5D89680070E769 /* 6.png in Resources */,
 				28D532CF1A14F0A400E62C39 /* a3.jpg in Resources */,
 				28D5331B1A14F0A400E62C39 /* home_classify_04.png in Resources */,
 				28D5333A1A14F0A400E62C39 /* longin_submmit.png in Resources */,
@@ -1256,11 +1281,13 @@
 				28D532DE1A14F0A400E62C39 /* bar_integralshopping_selected.png in Resources */,
 				28D5332C1A14F0A400E62C39 /* iseeu_et.png in Resources */,
 				28D532FB1A14F0A400E62C39 /* eye3.png in Resources */,
+				2897895D1A5D89680070E769 /* 4.png in Resources */,
 				28D533611A14F0A400E62C39 /* shopping_detial_normal.png in Resources */,
 				28D533051A14F0A400E62C39 /* f.png in Resources */,
 				28D5336C1A14F0A400E62C39 /* three.jpg in Resources */,
 				28D533351A14F0A400E62C39 /* kkk.png in Resources */,
 				28D533781A14F0A400E62C39 /* type_price.png in Resources */,
+				2897895E1A5D89680070E769 /* 5.png in Resources */,
 				28D532D31A14F0A400E62C39 /* aaa.png in Resources */,
 				28D5335A1A14F0A400E62C39 /* scrollbar_handle_vertical.9.png in Resources */,
 				28D533591A14F0A400E62C39 /* reset_select.png in Resources */,
@@ -1299,6 +1326,7 @@
 				28D532E01A14F0A400E62C39 /* bar_more_selected.png in Resources */,
 				28D533601A14F0A400E62C39 /* shopping_cut1.png in Resources */,
 				28D533231A14F0A400E62C39 /* home_search_ont.png in Resources */,
+				2897895B1A5D89680070E769 /* 2.png in Resources */,
 				28D532E91A14F0A400E62C39 /* baseshoppijng.png in Resources */,
 				28D533211A14F0A400E62C39 /* home_search_content.png in Resources */,
 				28D5330A1A14F0A400E62C39 /* g.png in Resources */,

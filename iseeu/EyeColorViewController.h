@@ -18,8 +18,6 @@
 
 #import "EyeImageView.h"
 
-#import "FootView.h"
-
 #import "UserInfoViewController.h"
 
 #import "CartDetailViewController.h"
@@ -122,5 +120,7 @@
 @property(nonatomic)CGFloat _leftRadius;
 
 @property(nonatomic)CGFloat _rightRadius;
+
+@property(strong,nonatomic)NSArray *_colorEyeImage;
 
 @end

@@ -10,6 +10,8 @@
 
 #define MINDISTANCE 1.0f
 
+#define navBarHeight    44.0f
+
 @implementation EyeColorViewController
 
 @synthesize startPoint;
@@ -104,6 +106,8 @@
 
 @synthesize _rightRadius;
 
+@synthesize _colorEyeImage;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -139,6 +143,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _colorEyeImage = [NSArray arrayWithObjects:@"2.png",@"3.png",@"4.png",@"5.png",@"6.png",@"eye1.png", nil];
+    
     _eyeViewAlpha = 1.0f;
     
     _steepName = @"one";
@@ -150,9 +156,17 @@
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
-    UIImage *image=[UIImage imageNamed:@"image1.jpg"];
+    UIImage *image=[UIImage imageNamed:@"try1111.png"];
     
-    self.imageView=[[UIImageView alloc]initWithImage:image];
+    self.imageView=[[UIImageView alloc]initWithFrame:self.scrollView.frame];
+    
+    self.imageView.image = image;
+    
+    UIImage *newImg = [self scaleImage:imageView.image];//图片根据imgV的frame进行重新缩放生成
+    
+    NSLog(@"%f,%f",newImg.size.width,newImg.size.height);
+    imageView.image = newImg;
+    //
     
     NSLog(@"%f,%f",self.imageView.center.x,self.imageView.center.y);
     
@@ -200,16 +214,25 @@
     
     [self.view addSubview:nextButton];
     
-    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
-    
-    [footView set_activeView:2];
-    
-    [footView setViewDelegate:self];
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
     
     [footView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:footView];
     
+}
+
+//将图片进行缩放重新生成
+- (UIImage *) scaleImage:(UIImage *)image{
+    if (image) {
+        CGSize newSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
+        UIGraphicsBeginImageContext(newSize);
+        [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return scaledImage;
+    }
+    return nil;
 }
 
 -(void)NextConvertEye{
@@ -362,6 +385,34 @@
         
         [slider addTarget:self action:@selector(imageEyeChanged:) forControlEvents:UIControlEventValueChanged];
         
+        UIScrollView *colorEyeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-44.0-90.0, self.view.frame.size.width, 90.0)];
+        
+        [colorEyeScrollView setBackgroundColor:[UIColor clearColor]];
+        
+        CGFloat x = 0.0f;
+        
+        for (int i = 0; i<_colorEyeImage.count; i++) {
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            
+            [button setBackgroundImage:[UIImage imageNamed:[_colorEyeImage objectAtIndex:i]] forState:UIControlStateNormal];
+            
+            [button setFrame:CGRectMake(x, 0.0f, 90.0f, 90.0f)];
+            
+            [button setTag:1000+i];
+            
+            [button addTarget:self action:@selector(colorImageEyeChanged:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [colorEyeScrollView addSubview:button];
+            
+            x+=90.0f;
+            
+        }
+        
+        [self.view addSubview:colorEyeScrollView];
+        
+        [colorEyeScrollView setContentSize:CGSizeMake(x+45.0f, colorEyeScrollView.frame.size.height)];
+        
     }
     
 }
@@ -376,6 +427,20 @@
     
     [_rightEyeView setAlpha:_eyeViewAlpha];
 
+}
+
+-(void)colorImageEyeChanged:(id)sender{
+    
+    UIButton *button = (UIButton *)sender;
+    
+    NSLog(@"%i",button.tag);
+    
+    NSString *colorImageStr = [_colorEyeImage objectAtIndex:button.tag-1000];
+    
+    [_leftImageView setImage:[UIImage imageNamed:colorImageStr]];
+    
+    [_rightImageView setImage:[UIImage imageNamed:colorImageStr]];
+    
 }
 
 -(void)sliderChanged:(id)sender{
@@ -936,7 +1001,7 @@
             
             NSLog(@"%f",self.scrollView.bounds.size.height);
             
-            _leftCenterPoint = CGPointMake(f.leftEyePosition.x,480-f.leftEyePosition.y);
+            _leftCenterPoint = CGPointMake(f.leftEyePosition.x,self.scrollView.bounds.size.height-f.leftEyePosition.y);
             
 //            UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
 //            vv.tag = 100;
@@ -955,14 +1020,14 @@
         {
             printf("Right eye %g %g\n", f.rightEyePosition.x, f.rightEyePosition.y);
             
-            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, 480-f.rightEyePosition.y);
+            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, self.scrollView.bounds.size.height-f.rightEyePosition.y);
 
         }
         if (f.hasMouthPosition)
         {
             printf("Mouth %g %g\n", f.mouthPosition.x, f.mouthPosition.y);
             
-            _mousePoint = CGPointMake(f.mouthPosition.x, 480-f.mouthPosition.y);
+            _mousePoint = CGPointMake(f.mouthPosition.x, self.scrollView.bounds.size.height-f.mouthPosition.y);
             
         }
     }
@@ -1013,7 +1078,7 @@
     
     [_leftImageView setCenter:_leftEyeView.center];
     
-    [_leftImageView setImage:[UIImage imageNamed:@"eye1"]];
+    [_leftImageView setImage:[UIImage imageNamed:@"2.png"]];
     
     [_leftEyeView addSubview:_leftImageView];
     
@@ -1101,7 +1166,7 @@
     
     [_rightImageView setCenter:_rightEyeView.center];
     
-    [_rightImageView setImage:[UIImage imageNamed:@"eye1"]];
+    [_rightImageView setImage:[UIImage imageNamed:@"2.png"]];
     
     [_rightEyeView addSubview:_rightImageView];
     
