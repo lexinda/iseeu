@@ -22,6 +22,8 @@
 
 #import "UserInfoViewController.h"
 
+#import "ValidataLogin.h"
+
 #import "MarketViewController.h"
 
 @interface CartDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DeleteReloadCartDetail,UIAlertViewDelegate,FootPushViewDelegate>
@@ -35,5 +37,7 @@
 @property(strong,nonatomic)UILabel *_cartNumber;
 
 @property(strong,nonatomic)UILabel *_sumPriceValue;
+
+@property(strong,nonatomic)NSString *_uid;
 
 @end

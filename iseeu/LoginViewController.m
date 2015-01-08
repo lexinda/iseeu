@@ -16,6 +16,8 @@
 
 @synthesize hud;
 
+@synthesize _parentView;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -115,6 +117,8 @@
     
     self.passwordField.placeholder = @"输入密码";
     
+    self.passwordField.secureTextEntry = YES;
+    
     self.passwordField.delegate = self;
     
     self.passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -204,11 +208,24 @@
                 
                 for (UIViewController *viewController in self.navigationController.viewControllers) {
                     
-                    if ([viewController isKindOfClass:UserInfoViewController.class]) {
+                    if ([_parentView isEqualToString:@"cart"]) {
                         
-                        [self.navigationController popToViewController:viewController animated:YES];
+                        if ([viewController isKindOfClass:CartDetailViewController.class]) {
+                            
+                            [self.navigationController popToViewController:viewController animated:YES];
+                            
+                        }
                         
+                    }else{
+                        
+                        if ([viewController isKindOfClass:UserInfoViewController.class]) {
+                            
+                            [self.navigationController popToViewController:viewController animated:YES];
+                            
+                        }
+                    
                     }
+                    
                 }
                 
             }

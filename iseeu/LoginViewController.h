@@ -18,6 +18,8 @@
 
 #import "UserInfoViewController.h"
 
+#import "CartDetailViewController.h"
+
 @interface LoginViewController : UIViewController<UITextFieldDelegate,MBProgressHUDDelegate>
 
 @property(strong,nonatomic)UITextField *userNameField;
@@ -25,5 +27,7 @@
 @property(strong,nonatomic)UITextField *passwordField;
 
 @property(strong,nonatomic)MBProgressHUD *hud;
+
+@property(strong,nonatomic)NSString *_parentView;
 
 @end

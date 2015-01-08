@@ -75,11 +75,17 @@
             }
         }
         
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height-49.0f)];
+        
+        [scrollView setBackgroundColor:[UIColor clearColor]];
+        
+        [self.view addSubview:scrollView];
+        
         UIImageView *topView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 120.0)];
         
         [topView setImage:[UIImage imageNamed:@"personal_balack"]];
         
-        [self.view addSubview:topView];
+        [scrollView addSubview:topView];
         
         _userPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
@@ -89,19 +95,19 @@
         
         [_userPhoto addTarget:self action:@selector(showPhotoOptions) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.view addSubview:_userPhoto];
+        [scrollView addSubview:_userPhoto];
         
         _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_userPhoto.frame.origin.x+_userPhoto.frame.size.width+10.0, 10.0, self.view.frame.size.width-_userPhoto.frame.origin.x-_userPhoto.frame.size.width, 30.0)];
         
         [_userNameLabel setTextColor:[UIColor whiteColor]];
         
-        [self.view addSubview:_userNameLabel];
+        [scrollView addSubview:_userNameLabel];
         
         _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(_userNameLabel.frame.origin.x, _userNameLabel.frame.origin.y+_userNameLabel.frame.size.height, 60.0, 30.0)];
         
         [_scoreLabel setTextColor:[UIColor whiteColor]];
         
-        [self.view addSubview:_scoreLabel];
+        [scrollView addSubview:_scoreLabel];
         
         _noticeLabel = [[UILabel alloc] initWithFrame:CGRectMake(_scoreLabel.frame.origin.x+_scoreLabel.frame.size.width+2, _scoreLabel.frame.origin.y+2, self.view.frame.size.width-_scoreLabel.frame.origin.x-_scoreLabel.frame.size.width-5.0, 30.0)];
         
@@ -115,13 +121,13 @@
         
         [_noticeLabel setTextColor:[UIColor redColor]];
         
-        [self.view addSubview:_noticeLabel];
+        [scrollView addSubview:_noticeLabel];
         
         _scoreUsedLabel = [[UILabel alloc] initWithFrame:CGRectMake(_userNameLabel.frame.origin.x, _scoreLabel.frame.origin.y+_scoreLabel.frame.size.height, self.view.frame.size.width-_userPhoto.frame.origin.x-_userPhoto.frame.size.width, 30.0)];
         
         [_scoreUsedLabel setTextColor:[UIColor whiteColor]];
         
-        [self.view addSubview:_scoreUsedLabel];
+        [scrollView addSubview:_scoreUsedLabel];
         
         CGFloat width = (self.view.frame.size.width-20.0)/3;
         
@@ -133,7 +139,7 @@
         
         [orderButton addTarget:self action:@selector(pushOrderView) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.view addSubview:orderButton];
+        [scrollView addSubview:orderButton];
         
         UIButton *checkinButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
@@ -143,7 +149,7 @@
         
         [checkinButton addTarget:self action:@selector(checkinAction) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.view addSubview:checkinButton];
+        [scrollView addSubview:checkinButton];
         
         UIButton *scoreButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         
@@ -153,13 +159,13 @@
         
         [scoreButton addTarget:self action:@selector(scoreManage) forControlEvents:UIControlEventTouchUpInside];
         
-        [self.view addSubview:scoreButton];
+        [scrollView addSubview:scoreButton];
         
         UIImageView *shoppingView = [[UIImageView alloc] initWithFrame:CGRectMake(orderButton.frame.origin.x, orderButton.frame.size.height+orderButton.frame.origin.y+5.0, self.view.frame.size.width-20.0, 50.0)];
         
         [shoppingView setImage:[UIImage imageNamed:@"baseshoppijng"]];
         
-        [self.view addSubview:shoppingView];
+        [scrollView addSubview:shoppingView];
         
         _tableArray = [NSArray arrayWithObjects:@"基本资料",@"修改密码",@"修改送货地址",@"意见反馈", nil];
         
@@ -171,7 +177,9 @@
         
         _aboutTableView.dataSource = self;
         
-        [self.view addSubview:_aboutTableView];
+        [scrollView addSubview:_aboutTableView];
+        
+        [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, _aboutTableView.frame.origin.y+_aboutTableView.frame.size.height)];
         
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         
@@ -444,19 +452,30 @@
     NSLog(@"%li",(long)indexPath.row);
     
     if (indexPath.row == 0) {
-        
-        UserMaterialViewController *userMaterialViewController = [[UserMaterialViewController alloc] init];
-        
-        [userMaterialViewController set_uid:_uid];
-        
-        [self.navigationController pushViewController:userMaterialViewController animated:YES];
+
+        if ([[_tableArray objectAtIndex:indexPath.row] isEqualToString:@"关于Iseeu"]) {
+            AboutAppViewController *aboutAppViewController = [[AboutAppViewController alloc] init];
+            [self.navigationController pushViewController:aboutAppViewController animated:YES];
+        }else{
+            UserMaterialViewController *userMaterialViewController = [[UserMaterialViewController alloc] init];
+            
+            [userMaterialViewController set_uid:_uid];
+            
+            [self.navigationController pushViewController:userMaterialViewController animated:YES];
+        }
         
     }else if(indexPath.row == 1){
-        ModifyPasswordViewController *modifyPasswordViewController = [[ModifyPasswordViewController alloc] init];
+        if ([[_tableArray objectAtIndex:indexPath.row] isEqualToString:@"更多"]) {
+            MoreViewController *moreViewController = [[MoreViewController alloc] init];
+            [self.navigationController pushViewController:moreViewController animated:YES];
+        }else{
+            ModifyPasswordViewController *modifyPasswordViewController = [[ModifyPasswordViewController alloc] init];
+            
+            [modifyPasswordViewController set_uid:_uid];
+            
+            [self.navigationController pushViewController:modifyPasswordViewController animated:YES];
+        }
         
-        [modifyPasswordViewController set_uid:_uid];
-        
-        [self.navigationController pushViewController:modifyPasswordViewController animated:YES];
     }else if (indexPath.row ==2){
     
         ModifyAddressViewController *modifyAddressViewController = [[ModifyAddressViewController alloc] init];

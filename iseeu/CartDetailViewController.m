@@ -24,6 +24,8 @@
 
 @synthesize _sumPriceValue;
 
+@synthesize _uid;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -57,102 +59,10 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0]];
-    
-    [self getTableData];
-    
-    if (_tableData.count>0) {
-        
-        int number=0;
-        
-        float price = 0.0f;
-        
-        for (NSDictionary *dictionary in _tableData) {
-            
-            number = number+[[dictionary objectForKey:@"number"] intValue];
-            
-            price = price+[[dictionary objectForKey:@"price"] floatValue]*[[dictionary objectForKey:@"number"] intValue];
-            
-        }
-        
-        
-        CGFloat width = (self.view.frame.size.width-40.0)/2;
-        
-        UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
-        
-        [topView setBackgroundColor:[UIColor blackColor]];
-        
-        [self.view addSubview:topView];
-        
-        UILabel *cartCount = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 10.0, 80.0, 30.0)];
-        
-        [cartCount setTextColor:[UIColor whiteColor]];
-        
-        [cartCount setText:@"商品数量:"];
-        
-        [self.view addSubview:cartCount];
-        
-        _cartNumber = [[UILabel alloc] initWithFrame:CGRectMake(cartCount.frame.origin.x+cartCount.frame.size.width, cartCount.frame.origin.y, width-cartCount.frame.size.width, 30.0)];
-        
-        [_cartNumber setTextColor:[UIColor whiteColor]];
-        
-        [_cartNumber setText:[NSString stringWithFormat:@"%i",number]];
-        
-        [self.view addSubview:_cartNumber];
-        
-        UILabel *sumPrice = [[UILabel alloc] initWithFrame:CGRectMake(20.0+width, 10.0, 40.0, 30.0)];
-        
-        [sumPrice setTextColor:[UIColor whiteColor]];
-        
-        [sumPrice setText:@"总计:"];
-        
-        [self.view addSubview:sumPrice];
-        
-        _sumPriceValue = [[UILabel alloc] initWithFrame:CGRectMake(sumPrice.frame.origin.x+sumPrice.frame.size.width, sumPrice.frame.origin.y, width-sumPrice.frame.size.width, 30.0)];
-        
-        [_sumPriceValue setTextColor:[UIColor redColor]];
-        
-        [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f元",price]];
-        
-        [self.view addSubview:_sumPriceValue];
-        
-        _tableView =[[UITableView alloc] initWithFrame:CGRectMake(0.0, topView.frame.origin.y+topView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-50-49-64-40)];
-        
-        _tableView.delegate = self;
-        
-        _tableView.dataSource = self;
-        
-        [self.view addSubview:_tableView];
-        
-        UIButton *getMoney = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        
-        [getMoney setFrame:CGRectMake(30.0, _tableView.frame.origin.y+_tableView.frame.size.height+10.0, self.view.frame.size.width-60.0, 30.0)];
-        
-        [getMoney setBackgroundImage:[UIImage imageNamed:@"shopping_getmoney"] forState:UIControlStateNormal];
-        
-        [self.view addSubview:getMoney];
-        
-    }else{
-    
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.width)];
-        
-        [imageView setImage:[UIImage imageNamed:@"shopping_no"]];
-        
-        [self.view addSubview:imageView];
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        
-        [button setFrame:CGRectMake(80.0, imageView.frame.size.height+10.0, self.view.frame.size.width-160.0, 40.0)];
-        
-        [button setBackgroundImage:[UIImage imageNamed:@"toshopping"] forState:UIControlStateNormal];
-        
-        [button addTarget:self action:@selector(gotoMarket) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:button];
-        
-    }
     
     FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
     
@@ -165,6 +75,127 @@
     [self.view addSubview:footView];
     
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    ValidataLogin *validataLogin = [[ValidataLogin alloc] init];
+    
+    NSDictionary *validata = [validataLogin validataUserInfo];
+    
+    NSString *username = [validata objectForKey:@"username"];
+    
+    NSString *password = [validata objectForKey:@"password"];
+    
+    _uid = [validata objectForKey:@"uid"] ;
+    
+    if (![username isEqualToString:@""]&&![password isEqualToString:@""]) {
+        
+        [self getTableData];
+        
+        if (_tableData.count>0) {
+            
+            int number=0;
+            
+            float price = 0.0f;
+            
+            for (NSDictionary *dictionary in _tableData) {
+                
+                number = number+[[dictionary objectForKey:@"number"] intValue];
+                
+                price = price+[[dictionary objectForKey:@"price"] floatValue]*[[dictionary objectForKey:@"number"] intValue];
+                
+            }
+            
+            
+            CGFloat width = (self.view.frame.size.width-40.0)/2;
+            
+            UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 50.0)];
+            
+            [topView setBackgroundColor:[UIColor blackColor]];
+            
+            [self.view addSubview:topView];
+            
+            UILabel *cartCount = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 10.0, 80.0, 30.0)];
+            
+            [cartCount setTextColor:[UIColor whiteColor]];
+            
+            [cartCount setText:@"商品数量:"];
+            
+            [self.view addSubview:cartCount];
+            
+            _cartNumber = [[UILabel alloc] initWithFrame:CGRectMake(cartCount.frame.origin.x+cartCount.frame.size.width, cartCount.frame.origin.y, width-cartCount.frame.size.width, 30.0)];
+            
+            [_cartNumber setTextColor:[UIColor whiteColor]];
+            
+            [_cartNumber setText:[NSString stringWithFormat:@"%i",number]];
+            
+            [self.view addSubview:_cartNumber];
+            
+            UILabel *sumPrice = [[UILabel alloc] initWithFrame:CGRectMake(20.0+width, 10.0, 40.0, 30.0)];
+            
+            [sumPrice setTextColor:[UIColor whiteColor]];
+            
+            [sumPrice setText:@"总计:"];
+            
+            [self.view addSubview:sumPrice];
+            
+            _sumPriceValue = [[UILabel alloc] initWithFrame:CGRectMake(sumPrice.frame.origin.x+sumPrice.frame.size.width, sumPrice.frame.origin.y, width-sumPrice.frame.size.width, 30.0)];
+            
+            [_sumPriceValue setTextColor:[UIColor redColor]];
+            
+            [_sumPriceValue setText:[NSString stringWithFormat:@"%.2f元",price]];
+            
+            [self.view addSubview:_sumPriceValue];
+            
+            _tableView =[[UITableView alloc] initWithFrame:CGRectMake(0.0, topView.frame.origin.y+topView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-50-49-64-40)];
+            
+            _tableView.delegate = self;
+            
+            _tableView.dataSource = self;
+            
+            [self.view addSubview:_tableView];
+            
+            UIButton *getMoney = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            
+            [getMoney setFrame:CGRectMake(30.0, _tableView.frame.origin.y+_tableView.frame.size.height+10.0, self.view.frame.size.width-60.0, 30.0)];
+            
+            [getMoney setBackgroundImage:[UIImage imageNamed:@"shopping_getmoney"] forState:UIControlStateNormal];
+            
+            [self.view addSubview:getMoney];
+            
+        }else{
+            
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.width)];
+            
+            [imageView setImage:[UIImage imageNamed:@"shopping_no"]];
+            
+            [self.view addSubview:imageView];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            
+            [button setFrame:CGRectMake(80.0, imageView.frame.size.height+6.0, self.view.frame.size.width-160.0, 40.0)];
+            
+            [button setBackgroundImage:[UIImage imageNamed:@"toshopping"] forState:UIControlStateNormal];
+            
+            [button addTarget:self action:@selector(gotoMarket) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.view addSubview:button];
+            
+        }
+        
+    }else{
+    
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        
+        [loginViewController set_parentView:@"cart"];
+        
+        [self.navigationController pushViewController:loginViewController animated:YES];
+    
+    }
+    
 }
 
 -(void)gotoMarket{

@@ -42,6 +42,8 @@
 
 #import <PPRevealSideViewController/PPRevealSideViewController.h>
 
+#import "GuideViewController.h"
+
 @interface ViewController : UIViewController<MBProgressHUDDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate,HomeDelegate,UIAlertViewDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)MBProgressHUD *_hud;

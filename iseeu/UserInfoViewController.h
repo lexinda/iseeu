@@ -40,6 +40,10 @@
 
 #import "MarketViewController.h"
 
+#import "AboutAppViewController.h"
+
+#import "MoreViewController.h"
+
 @interface UserInfoViewController : UIViewController<UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)UITableView *_aboutTableView;

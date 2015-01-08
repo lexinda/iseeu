@@ -62,6 +62,13 @@
 		28BA92E11A209C46004FEAE3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92D81A209C46004FEAE3 /* UIView+MJExtension.m */; };
 		28BA92E21A209C46004FEAE3 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92DA1A209C46004FEAE3 /* UIScrollView+MJExtension.m */; };
 		28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BA92EA1A218E18004FEAE3 /* RightViewModel.m */; };
+		28D19B041A5EB3B800DCFCB0 /* try_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D19B001A5EB3B800DCFCB0 /* try_cancel.png */; };
+		28D19B051A5EB3B800DCFCB0 /* try_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D19B011A5EB3B800DCFCB0 /* try_photo.png */; };
+		28D19B061A5EB3B800DCFCB0 /* try_photos.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D19B021A5EB3B800DCFCB0 /* try_photos.png */; };
+		28D19B071A5EB3B800DCFCB0 /* try_summbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D19B031A5EB3B800DCFCB0 /* try_summbit.png */; };
+		28D19B0A1A5ED55A00DCFCB0 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D19B091A5ED55A00DCFCB0 /* GuideViewController.m */; };
+		28D19B0D1A5ED9AB00DCFCB0 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D19B0C1A5ED9AB00DCFCB0 /* AboutAppViewController.m */; };
+		28D19B101A5EDBFA00DCFCB0 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D19B0F1A5EDBFA00DCFCB0 /* MoreViewController.m */; };
 		28D530971A14E28600E62C39 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D530961A14E28600E62C39 /* SideMenuViewController.m */; };
 		28D532CC1A14F0A400E62C39 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 28D532151A14F0A400E62C39 /* a.png */; };
 		28D532CD1A14F0A400E62C39 /* a1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28D532161A14F0A400E62C39 /* a1.jpg */; };
@@ -382,6 +389,16 @@
 		28BA92E71A2177DA004FEAE3 /* DetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableView.m; sourceTree = "<group>"; };
 		28BA92E91A218E18004FEAE3 /* RightViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewModel.h; sourceTree = "<group>"; };
 		28BA92EA1A218E18004FEAE3 /* RightViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewModel.m; sourceTree = "<group>"; };
+		28D19B001A5EB3B800DCFCB0 /* try_cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = try_cancel.png; sourceTree = "<group>"; };
+		28D19B011A5EB3B800DCFCB0 /* try_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = try_photo.png; sourceTree = "<group>"; };
+		28D19B021A5EB3B800DCFCB0 /* try_photos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = try_photos.png; sourceTree = "<group>"; };
+		28D19B031A5EB3B800DCFCB0 /* try_summbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = try_summbit.png; sourceTree = "<group>"; };
+		28D19B081A5ED55A00DCFCB0 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		28D19B091A5ED55A00DCFCB0 /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
+		28D19B0B1A5ED9AB00DCFCB0 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutAppViewController.h; sourceTree = "<group>"; };
+		28D19B0C1A5ED9AB00DCFCB0 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAppViewController.m; sourceTree = "<group>"; };
+		28D19B0E1A5EDBFA00DCFCB0 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		28D19B0F1A5EDBFA00DCFCB0 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		28D530951A14E28600E62C39 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		28D530961A14E28600E62C39 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		28D532151A14F0A400E62C39 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
@@ -623,6 +640,10 @@
 				2811B1BB1A344789001D1F9D /* ModifyPasswordViewController.m */,
 				2811B1BD1A344DB9001D1F9D /* ModifyAddressViewController.h */,
 				2811B1BE1A344DB9001D1F9D /* ModifyAddressViewController.m */,
+				28D19B0B1A5ED9AB00DCFCB0 /* AboutAppViewController.h */,
+				28D19B0C1A5ED9AB00DCFCB0 /* AboutAppViewController.m */,
+				28D19B0E1A5EDBFA00DCFCB0 /* MoreViewController.h */,
+				28D19B0F1A5EDBFA00DCFCB0 /* MoreViewController.m */,
 			);
 			name = userInfoDetail;
 			sourceTree = "<group>";
@@ -730,6 +751,8 @@
 				28E0265D1A3D2B820015843E /* ScoreDetailViewController.m */,
 				28A4414B1A3DCB0100ACDE2C /* EyeColorViewController.h */,
 				28A4414C1A3DCB0100ACDE2C /* EyeColorViewController.m */,
+				28D19B081A5ED55A00DCFCB0 /* GuideViewController.h */,
+				28D19B091A5ED55A00DCFCB0 /* GuideViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -737,6 +760,10 @@
 		289789551A5D894D0070E769 /* colorEye */ = {
 			isa = PBXGroup;
 			children = (
+				28D19B001A5EB3B800DCFCB0 /* try_cancel.png */,
+				28D19B011A5EB3B800DCFCB0 /* try_photo.png */,
+				28D19B021A5EB3B800DCFCB0 /* try_photos.png */,
+				28D19B031A5EB3B800DCFCB0 /* try_summbit.png */,
 				289789561A5D89680070E769 /* 2.png */,
 				289789571A5D89680070E769 /* 3.png */,
 				289789581A5D89680070E769 /* 4.png */,
@@ -1182,6 +1209,7 @@
 				28D533511A14F0A400E62C39 /* pingpai1.jpg in Resources */,
 				28D532DA1A14F0A400E62C39 /* bar_class_selected.png in Resources */,
 				28D5334A1A14F0A400E62C39 /* personal_info_et.png in Resources */,
+				28D19B041A5EB3B800DCFCB0 /* try_cancel.png in Resources */,
 				28D533491A14F0A400E62C39 /* personal_info_enter.png in Resources */,
 				28D532EA1A14F0A400E62C39 /* bb.png in Resources */,
 				28D533141A14F0A400E62C39 /* head_button_red.9.png in Resources */,
@@ -1196,6 +1224,8 @@
 				28D5335F1A14F0A400E62C39 /* shopping_cut.png in Resources */,
 				28D5333B1A14F0A400E62C39 /* longin_weibo.png in Resources */,
 				28224B141A13985A00C6EE18 /* LaunchScreen.xib in Resources */,
+				28D19B061A5EB3B800DCFCB0 /* try_photos.png in Resources */,
+				28D19B071A5EB3B800DCFCB0 /* try_summbit.png in Resources */,
 				28D5337C1A14F0A400E62C39 /* type4.png in Resources */,
 				28D5337A1A14F0A400E62C39 /* type2.png in Resources */,
 				28D533751A14F0A400E62C39 /* type_hot1.png in Resources */,
@@ -1309,6 +1339,7 @@
 				28D532EE1A14F0A400E62C39 /* ccc.png in Resources */,
 				28D532F81A14F0A400E62C39 /* e.png in Resources */,
 				28D532DD1A14F0A400E62C39 /* bar_integralshopping_normal.png in Resources */,
+				28D19B051A5EB3B800DCFCB0 /* try_photo.png in Resources */,
 				28D532EF1A14F0A400E62C39 /* change_address.png in Resources */,
 				28D532E81A14F0A400E62C39 /* bar_try_selected.png in Resources */,
 				28D532D91A14F0A400E62C39 /* bar_class_normal.png in Resources */,
@@ -1390,6 +1421,7 @@
 			files = (
 				28A4414D1A3DCB0100ACDE2C /* EyeColorViewController.m in Sources */,
 				28F4AC0D1A24AF4C00E761D9 /* DetailTableView.m in Sources */,
+				28D19B0D1A5ED9AB00DCFCB0 /* AboutAppViewController.m in Sources */,
 				282027721A1A2ED9009CC640 /* CartDetail.m in Sources */,
 				28216E881A39DD3C000A9A96 /* ScoreDataModel.m in Sources */,
 				283402EA1A237AB100313035 /* ClassificationModel.m in Sources */,
@@ -1409,6 +1441,7 @@
 				28275A461A40648700CE0E8E /* UIScrollView+UITouch.m in Sources */,
 				28224B0C1A13985A00C6EE18 /* ViewController.m in Sources */,
 				2873AFD71A35DAF800169D60 /* CartDetailViewController.m in Sources */,
+				28D19B101A5EDBFA00DCFCB0 /* MoreViewController.m in Sources */,
 				28BA92DC1A209C46004FEAE3 /* MJRefreshBaseView.m in Sources */,
 				2811B1B91A341696001D1F9D /* UserMaterialViewController.m in Sources */,
 				2811B1B21A340FAA001D1F9D /* UserScoreLog.m in Sources */,
@@ -1441,6 +1474,7 @@
 				28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */,
 				2811B1BF1A344DB9001D1F9D /* ModifyAddressViewController.m in Sources */,
 				28BA92BB1A203F51004FEAE3 /* UIColor+Color.m in Sources */,
+				28D19B0A1A5ED55A00DCFCB0 /* GuideViewController.m in Sources */,
 				28BA92B41A203C48004FEAE3 /* SideViewController.m in Sources */,
 				2811B1C21A345F19001D1F9D /* Address.m in Sources */,
 				28E026611A3D2C6A0015843E /* ScoreDetailTableCell.m in Sources */,

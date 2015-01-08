@@ -52,6 +52,8 @@
         
         [leftButton setBackgroundImage:[UIImage imageNamed:@"home_head_left"] forState:UIControlStateNormal];
         
+        [leftButton addTarget:self action:@selector(pushGuideView) forControlEvents:UIControlEventTouchUpInside];
+        
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
         
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 40)];
@@ -494,6 +496,14 @@
         
         [self.navigationController pushViewController:cartDetailViewController animated:YES];
     }
+
+}
+
+-(void)pushGuideView{
+    
+    GuideViewController *guideViewController = [[GuideViewController alloc] init];
+    
+    [self.navigationController pushViewController:guideViewController animated:YES];
 
 }
 

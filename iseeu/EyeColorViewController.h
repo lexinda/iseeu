@@ -26,7 +26,7 @@
 
 #import "ViewController.h"
 
-@interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol,FootPushViewDelegate>
+@interface EyeColorViewController : UIViewController<UIScrollViewDelegate,ViewProtocol,FootPushViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(strong,nonatomic)UIView *upView;
 
@@ -122,5 +122,9 @@
 @property(nonatomic)CGFloat _rightRadius;
 
 @property(strong,nonatomic)NSArray *_colorEyeImage;
+
+@property(strong,nonatomic)UISlider *_slider;
+
+@property(strong,nonatomic)NSString *_defaultImageStr;
 
 @end
