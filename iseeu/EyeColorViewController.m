@@ -116,6 +116,10 @@
 
 @synthesize _defaultImageStr;
 
+@synthesize _footView;
+
+@synthesize _colorEyeScrollView;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -218,108 +222,30 @@
     
     [mainView addSubview:self.scrollView];
     
+    [self changeEyeView];
+    
+}
+
+-(void)changeEyeView{
+    
+    [self faceDetectOne:self.imageView.image];
+    
+}
+
+-(void)getFaceEyeViewAndTool{
+    
     [self faceDetect:self.imageView.image];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [nextButton setFrame:CGRectMake(self.view.frame.size.width-40.0, self.view.frame.size.height-64-49-40.0-50.0, 10, 20.0)];
+    [nextButton setFrame:CGRectMake(self.view.frame.size.width-50.0, 0.0, 40, _footView.frame.size.height)];
     
-    [nextButton setBackgroundImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
+    [nextButton setTitle:@"next" forState:UIControlStateNormal];
     
     [nextButton addTarget:self action:@selector(NextConvertEye) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:nextButton];
-    
-    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0, self.view.frame.size.width, 49.0)];
-    
-    UIButton *takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                           
-    [takePhoto setFrame:CGRectMake(10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, footView.frame.size.height)];
-    
-    UIImage *takePhotoImage = [UIImage imageNamed:@"try_photo.png"];
-    
-    [takePhoto setBackgroundImage:takePhotoImage forState:UIControlStateNormal];
-    
-    [takePhoto setTag:2000];
-    
-    [takePhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [footView addSubview:takePhoto];
-    
-    UIButton *libraryPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [libraryPhoto setFrame:CGRectMake(takePhoto.frame.size.width+10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, footView.frame.size.height)];
-    
-    UIImage *libraryPhotoImage = [UIImage imageNamed:@"try_photos.png"];
-    
-    [libraryPhoto setBackgroundImage:libraryPhotoImage forState:UIControlStateNormal];
-    
-    [libraryPhoto setTag:2001];
-    
-    [libraryPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [footView addSubview:libraryPhoto];
-    
-    UIButton *commitPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [commitPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0*2-takePhoto.frame.size.width*2, 0.0f, (self.view.frame.size.width-60-20)/4, footView.frame.size.height)];
-    
-    UIImage *commitPhotoImage = [UIImage imageNamed:@"try_summbit.png"];
-    
-    [commitPhoto setBackgroundImage:commitPhotoImage forState:UIControlStateNormal];
-    
-    [commitPhoto setTag:2002];
-    
-    [commitPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [footView addSubview:commitPhoto];
-    
-    UIButton *cancelPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [cancelPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0-takePhoto.frame.size.width, 0.0f, (self.view.frame.size.width-60-20)/4, footView.frame.size.height)];
-    
-    UIImage *cancelPhotoImage = [UIImage imageNamed:@"try_cancel.png"];
-    
-    [cancelPhoto setBackgroundImage:cancelPhotoImage forState:UIControlStateNormal];
-    
-    [cancelPhoto setTag:2003];
-    
-    [cancelPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [footView addSubview:cancelPhoto];
-    
-    [footView setBackgroundColor:[UIColor whiteColor]];
-    
-    [self.view addSubview:footView];
-    
-    UIScrollView *colorEyeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-20.0-44.0-49.0-45.0, self.view.frame.size.width, 45.0)];
-    
-    [colorEyeScrollView setBackgroundColor:[UIColor clearColor]];
-    
-    CGFloat x = 0.0f;
-    
-    for (int i = 0; i<_colorEyeImage.count; i++) {
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        
-        [button setBackgroundImage:[UIImage imageNamed:[_colorEyeImage objectAtIndex:i]] forState:UIControlStateNormal];
-        
-        [button setFrame:CGRectMake(x, 0.0f, 45.0f, 45.0f)];
-        
-        [button setTag:1000+i];
-        
-        [button addTarget:self action:@selector(colorImageEyeChanged:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [colorEyeScrollView addSubview:button];
-        
-        x+=45.0f+20;
-        
-    }
-    
-    [self.view addSubview:colorEyeScrollView];
-    
-    [colorEyeScrollView setContentSize:CGSizeMake(x+45.0f, colorEyeScrollView.frame.size.height)];
-    
+    [_footView addSubview:nextButton];
+
 }
 
 //将图片进行缩放重新生成
@@ -485,6 +411,98 @@
         
         [_slider addTarget:self action:@selector(imageEyeChanged:) forControlEvents:UIControlEventValueChanged];
         
+        for (UIView *view in [_footView subviews]) {
+            [view removeFromSuperview];
+        }
+        
+        UIButton *takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [takePhoto setFrame:CGRectMake(10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+        
+        UIImage *takePhotoImage = [UIImage imageNamed:@"try_photo.png"];
+        
+        [takePhoto setBackgroundImage:takePhotoImage forState:UIControlStateNormal];
+        
+        [takePhoto setTag:2000];
+        
+        [takePhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_footView addSubview:takePhoto];
+        
+        UIButton *libraryPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [libraryPhoto setFrame:CGRectMake(takePhoto.frame.size.width+10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+        
+        UIImage *libraryPhotoImage = [UIImage imageNamed:@"try_photos.png"];
+        
+        [libraryPhoto setBackgroundImage:libraryPhotoImage forState:UIControlStateNormal];
+        
+        [libraryPhoto setTag:2001];
+        
+        [libraryPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_footView addSubview:libraryPhoto];
+        
+        UIButton *commitPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [commitPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0*2-takePhoto.frame.size.width*2, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+        
+        UIImage *commitPhotoImage = [UIImage imageNamed:@"try_summbit.png"];
+        
+        [commitPhoto setBackgroundImage:commitPhotoImage forState:UIControlStateNormal];
+        
+        [commitPhoto setTag:2002];
+        
+        [commitPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_footView addSubview:commitPhoto];
+        
+        UIButton *cancelPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [cancelPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0-takePhoto.frame.size.width, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+        
+        UIImage *cancelPhotoImage = [UIImage imageNamed:@"try_cancel.png"];
+        
+        [cancelPhoto setBackgroundImage:cancelPhotoImage forState:UIControlStateNormal];
+        
+        [cancelPhoto setTag:2003];
+        
+        [cancelPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_footView addSubview:cancelPhoto];
+        
+        [_footView setBackgroundColor:[UIColor whiteColor]];
+        
+        [self.view addSubview:_footView];
+        
+        _colorEyeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-49.0-45.0, self.view.frame.size.width, 45.0)];
+        
+        [_colorEyeScrollView setBackgroundColor:[UIColor clearColor]];
+        
+        CGFloat x = 0.0f;
+        
+        for (int i = 0; i<_colorEyeImage.count; i++) {
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            
+            [button setBackgroundImage:[UIImage imageNamed:[_colorEyeImage objectAtIndex:i]] forState:UIControlStateNormal];
+            
+            [button setFrame:CGRectMake(x, 0.0f, 45.0f, 45.0f)];
+            
+            [button setTag:1000+i];
+            
+            [button addTarget:self action:@selector(colorImageEyeChanged:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [_colorEyeScrollView addSubview:button];
+            
+            x+=45.0f+20;
+            
+        }
+        
+        [self.view addSubview:_colorEyeScrollView];
+        
+        [_colorEyeScrollView setContentSize:CGSizeMake(x+45.0f, _colorEyeScrollView.frame.size.height)];
+        
     }
     
 }
@@ -505,7 +523,7 @@
     
     UIButton *button = (UIButton *)sender;
     
-    NSLog(@"%i",button.tag);
+    NSLog(@"%li",(long)button.tag);
     
     NSString *colorImageStr = [_colorEyeImage objectAtIndex:button.tag-1000];
     
@@ -706,160 +724,6 @@
     CGFloat height = 50.0f;
     
     if ([_steepName isEqualToString:@"one"]||[_steepName isEqualToString:@"three"]) {
-        
-//        if (point.x<center.x) {
-//            
-//            if (point.y<center.y-height) {
-//                
-//                if (![_originPointName isEqualToString:@"upPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newUpPoint = CGPointMake(relativeUpPoint.x+x, relativeUpPoint.y+y);
-//                
-//                self.realUpPoint = CGPointMake(self.realUpPoint.x+x, self.realUpPoint.y+y);
-//                
-//                [self.upView setCenter:newUpPoint];
-//                
-//                [self.eyeView setUpPoint:newUpPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"upPoint";
-//                
-//            }else if(point.y>center.y-height&&point.y<center.y+height){
-//                
-//                if (![_originPointName isEqualToString:@"leftPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newLeftPoint = CGPointMake(relativeLeftPoint.x+x, relativeLeftPoint.y+y);
-//                
-//                self.realLeftPoint = CGPointMake(self.realLeftPoint.x+x, self.realLeftPoint.y+y);
-//                
-//                [self.leftView setCenter:newLeftPoint];
-//                
-//                [self.eyeView setLeftPoint:newLeftPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"leftPoint";
-//                
-//            }else if(point.y>center.y+height){
-//                
-//                if (![_originPointName isEqualToString:@"downPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newDownPoint = CGPointMake(relativeDownPoint.x+x, relativeDownPoint.y+y);
-//                
-//                self.realDownPoint = CGPointMake(self.realDownPoint.x+x, self.realDownPoint.y+y);
-//                
-//                [self.downView setCenter:newDownPoint];
-//                
-//                [self.eyeView setDownPoint:newDownPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"downPoint";
-//                
-//            }
-//            
-//        }else if (point.x>center.x){
-//            
-//            if (point.y<center.y-height) {
-//                
-//                if (![_originPointName isEqualToString:@"upPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newUpPoint = CGPointMake(relativeUpPoint.x+x, relativeUpPoint.y+y);
-//                
-//                self.realUpPoint = CGPointMake(self.realUpPoint.x+x, self.realUpPoint.y+y);
-//                
-//                [self.upView setCenter:newUpPoint];
-//                
-//                [self.eyeView setUpPoint:newUpPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"upPoint";
-//                
-//            }else if(point.y>center.y-height&&point.y<center.y+height){
-//                
-//                if (![_originPointName isEqualToString:@"rightPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newRightPoint = CGPointMake(relativeRightPoint.x+x, relativeRightPoint.y+y);
-//                
-//                self.realRightPoint = CGPointMake(self.realRightPoint.x+x, self.realRightPoint.y+y);
-//                
-//                [self.rightView setCenter:newRightPoint];
-//                
-//                [self.eyeView setRightPoint:newRightPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"rightPoint";
-//                
-//            }else if(point.y>center.y+height){
-//                
-//                if (![_originPointName isEqualToString:@"downPoint"]) {
-//                    
-//                    _gestureStartPoint = CGPointMake(0.0f, 0.0f);
-//                    
-//                    x = 0.0f;
-//                    
-//                    y = 0.0f;
-//                    
-//                }
-//                
-//                CGPoint newDownPoint = CGPointMake(relativeDownPoint.x+x, relativeDownPoint.y+y);
-//                
-//                self.realDownPoint = CGPointMake(self.realDownPoint.x+x, self.realDownPoint.y+y);
-//                
-//                [self.downView setCenter:newDownPoint];
-//                
-//                [self.eyeView setDownPoint:newDownPoint];
-//                
-//                [self.eyeView setNeedsDisplay];
-//                
-//                _originPointName = @"downPoint";
-//                
-//            }
-//            
-//        }
         
         if (point.x<center.x-height) {
             
@@ -1222,6 +1086,215 @@
     
 }
 
+#pragma mark - 人脸检测方法
+- (void)faceDetectOne:(UIImage *)aImage
+{
+    
+    //Create a CIImage version of your photo
+    CIImage* image = [CIImage imageWithCGImage:aImage.CGImage];
+    
+    //create a face detector
+    //此处是CIDetectorAccuracyHigh，若用于real-time的人脸检测，则用CIDetectorAccuracyLow，更快
+    NSDictionary  *opts = [NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh
+                                                      forKey:CIDetectorAccuracy];
+    CIDetector* detector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                              context:nil
+                                              options:opts];
+    
+    //Pull out the features of the face and loop through them
+    NSArray* features = [detector featuresInImage:image];
+    
+    if ([features count]==0) {
+        NSLog(@">>>>> 人脸监测【失败】啦 ～！！！");
+        
+    }
+    NSLog(@">>>>> 人脸监测【成功】～！！！>>>>>> ");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self markAfterFaceDetectOne:features];
+    });
+    
+}
+
+//人脸标识
+-(void)markAfterFaceDetectOne:(NSArray *)features
+{
+    
+    if ([features count]==0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"失败"
+                                                       message:@"眼部定位失败，您可以换另外一张图片"
+                                                      delegate:self
+                                             cancelButtonTitle:@"Ok"
+                                             otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    for (CIFaceFeature *f in features)
+    {
+        
+        NSLog(@"%@",NSStringFromCGRect(f.bounds));
+        if (f.hasLeftEyePosition){
+            printf("Left eye %g %g\n", f.leftEyePosition.x, f.leftEyePosition.y);
+            
+            NSLog(@"%f",self.scrollView.bounds.size.height);
+            
+            if ([_defaultImageStr isEqualToString:@"try1111.png"]) {
+                _leftCenterPoint = CGPointMake(f.leftEyePosition.x-6.0f,self.imageView.image.size.height-f.leftEyePosition.y-2.0f);
+            }else{
+                
+                _leftCenterPoint = CGPointMake(f.leftEyePosition.x,self.imageView.image.size.height-f.leftEyePosition.y);
+                
+            }
+            
+            
+            
+            //            UIView *vv = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+            //            vv.tag = 100;
+            //            //旋转180，仅y
+            //            CGPoint newCenter =  f.leftEyePosition;
+            //            newCenter.y = self.scrollView.bounds.size.height-newCenter.y;
+            //            vv.center = newCenter;
+            //
+            //            vv.backgroundColor = [UIColor yellowColor];
+            //            [vv setTransform:CGAffineTransformMakeScale(1, -1)];
+            //            vv.alpha = 0.6;
+            //            [self.scrollView addSubview:vv];
+            
+        }
+        if (f.hasRightEyePosition)
+        {
+            printf("Right eye %g %g\n", f.rightEyePosition.x, f.rightEyePosition.y);
+            
+            _rightCenterPoint = CGPointMake(f.rightEyePosition.x, self.scrollView.bounds.size.height-f.rightEyePosition.y);
+            
+        }
+        if (f.hasMouthPosition)
+        {
+            printf("Mouth %g %g\n", f.mouthPosition.x, f.mouthPosition.y);
+            
+            _mousePoint = CGPointMake(f.mouthPosition.x, self.scrollView.bounds.size.height-f.mouthPosition.y);
+            
+        }
+    }
+    
+    _leftDictionary = @{@"center":[NSValue valueWithCGPoint:CGPointMake(158, 124)],@"left":[NSValue valueWithCGPoint:CGPointMake(146, 124)],@"right":[NSValue valueWithCGPoint:CGPointMake(175, 128.75)],@"up":[NSValue valueWithCGPoint:CGPointMake(160.5, 115.5)],@"down":[NSValue valueWithCGPoint:CGPointMake(159.75, 130.75)]};
+    
+    _leftEyeDictionary = @{@"center":[NSValue valueWithCGPoint:CGPointMake(159.5, 122.5)],@"radius":[NSNumber numberWithFloat:6.5]};
+    
+    _rightDictionary = @{@"center":[NSValue valueWithCGPoint:CGPointMake(215, 132)],@"left":[NSValue valueWithCGPoint:CGPointMake(201.5, 133)],@"right":[NSValue valueWithCGPoint:CGPointMake(226, 132)],@"up":[NSValue valueWithCGPoint:CGPointMake(214.5, 124.5)],@"down":[NSValue valueWithCGPoint:CGPointMake(213.75, 138.5)]};
+    
+    _rightEyeDictionary = @{@"center":[NSValue valueWithCGPoint:CGPointMake(211.25, 131.25)],@"radius":[NSNumber numberWithFloat:6.5]};
+    
+    NSLog(@"%f",_mousePoint.x*[self.oldScale floatValue]-self.view.frame.size.width/2);
+    
+    [self.scrollView setContentOffset:CGPointMake(_mousePoint.x*[self.oldScale floatValue]-self.view.frame.size.width/2, _mousePoint.y)];
+    
+    [self addEyeImageView];
+    
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, self.view.frame.size.height-64-49-40, 200.0, 20.0)];
+    
+    [self.view addSubview:_slider];
+    
+    _slider.minimumValue = 0.0f;
+    
+    [_slider setValue:1.0f];
+    
+    _slider.maximumValue = 1.0f;
+    
+    [_slider addTarget:self action:@selector(imageEyeChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    _footView = [[UIView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-49.0, self.view.frame.size.width, 49.0)];
+    
+    UIButton *takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [takePhoto setFrame:CGRectMake(10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+    
+    UIImage *takePhotoImage = [UIImage imageNamed:@"try_photo.png"];
+    
+    [takePhoto setBackgroundImage:takePhotoImage forState:UIControlStateNormal];
+    
+    [takePhoto setTag:2000];
+    
+    [takePhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_footView addSubview:takePhoto];
+    
+    UIButton *libraryPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [libraryPhoto setFrame:CGRectMake(takePhoto.frame.size.width+10.0f, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+    
+    UIImage *libraryPhotoImage = [UIImage imageNamed:@"try_photos.png"];
+    
+    [libraryPhoto setBackgroundImage:libraryPhotoImage forState:UIControlStateNormal];
+    
+    [libraryPhoto setTag:2001];
+    
+    [libraryPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_footView addSubview:libraryPhoto];
+    
+    UIButton *commitPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [commitPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0*2-takePhoto.frame.size.width*2, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+    
+    UIImage *commitPhotoImage = [UIImage imageNamed:@"try_summbit.png"];
+    
+    [commitPhoto setBackgroundImage:commitPhotoImage forState:UIControlStateNormal];
+    
+    [commitPhoto setTag:2002];
+    
+    [commitPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_footView addSubview:commitPhoto];
+    
+    UIButton *cancelPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [cancelPhoto setFrame:CGRectMake(self.view.frame.size.width-10.0-takePhoto.frame.size.width, 0.0f, (self.view.frame.size.width-60-20)/4, _footView.frame.size.height)];
+    
+    UIImage *cancelPhotoImage = [UIImage imageNamed:@"try_cancel.png"];
+    
+    [cancelPhoto setBackgroundImage:cancelPhotoImage forState:UIControlStateNormal];
+    
+    [cancelPhoto setTag:2003];
+    
+    [cancelPhoto addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_footView addSubview:cancelPhoto];
+    
+    [_footView setBackgroundColor:[UIColor whiteColor]];
+    
+    [self.view addSubview:_footView];
+    
+    _colorEyeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-49.0-45.0, self.view.frame.size.width, 45.0)];
+    
+    [_colorEyeScrollView setBackgroundColor:[UIColor clearColor]];
+    
+    CGFloat x = 0.0f;
+    
+    for (int i = 0; i<_colorEyeImage.count; i++) {
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        [button setBackgroundImage:[UIImage imageNamed:[_colorEyeImage objectAtIndex:i]] forState:UIControlStateNormal];
+        
+        [button setFrame:CGRectMake(x, 0.0f, 45.0f, 45.0f)];
+        
+        [button setTag:1000+i];
+        
+        [button addTarget:self action:@selector(colorImageEyeChanged:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_colorEyeScrollView addSubview:button];
+        
+        x+=45.0f+20;
+        
+    }
+    
+    [self.view addSubview:_colorEyeScrollView];
+    
+    [_colorEyeScrollView setContentSize:CGSizeMake(x+45.0f, _colorEyeScrollView.frame.size.height)];
+    
+}
+
 -(void)addEyeImageView{
     
     //leftImageView
@@ -1513,6 +1586,59 @@
                              NSLog(@"Picker View Controller is presented");
                          }];
         
+    }else if ((button.tag-2000) == 2) {
+        // 从相册中选取
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+        [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+        controller.mediaTypes = mediaTypes;
+        controller.delegate = self;
+        [self presentViewController:controller
+                           animated:YES
+                         completion:^(void){
+                             NSLog(@"Picker View Controller is presented");
+                         }];
+        
+    }else if ((button.tag-2000) == 3) {
+        
+        _steepName = @"one";
+        
+        for (UIView *view in self.scrollView.subviews) {
+            if (![view isKindOfClass:[self.imageView class]]) {
+                [view removeFromSuperview];
+            }
+        }
+        
+        [_slider removeFromSuperview];
+        
+        _slider = nil;
+        
+        for (UIView *view in [_footView subviews]) {
+            [view removeFromSuperview];
+        }
+        
+        [_colorEyeScrollView removeFromSuperview];
+        
+        _colorEyeScrollView = nil;
+        
+//        for (UIView *view in self.scrollView.subviews) {
+//            if (![view isKindOfClass:[self.imageView class]]) {
+//                [view removeFromSuperview];
+//            }
+//        }
+        
+        [_leftEyeView removeFromSuperview];
+        
+        _leftEyeView = nil;
+        
+        [_rightEyeView removeFromSuperview];
+        
+        _rightEyeView = nil;
+        
+        [self getFaceEyeViewAndTool];
+        
     }
 }
 
@@ -1532,6 +1658,14 @@
         
         _slider = nil;
         
+        for (UIView *view in [_footView subviews]) {
+            [view removeFromSuperview];
+        }
+        
+        [_colorEyeScrollView removeFromSuperview];
+        
+        _colorEyeScrollView = nil;
+        
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         
         _defaultImageStr = @"";
@@ -1546,7 +1680,7 @@
         
         self.imageView.image = newImg;
         
-        [self faceDetect:self.imageView.image];
+        [self getFaceEyeViewAndTool];
         
     }];
 }

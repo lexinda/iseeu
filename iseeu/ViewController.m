@@ -481,7 +481,13 @@
 }
 
 -(void)pushCartView{
-
+    
+//    personal_infobalack.png
+//    
+//    try1111.png
+//
+//    dialg11.png
+    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"添加购物车成功" delegate:self cancelButtonTitle:@"继续购物" otherButtonTitles:@"进入购物车", nil];
     
     [alertView show];

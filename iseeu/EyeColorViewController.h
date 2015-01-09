@@ -127,4 +127,8 @@
 
 @property(strong,nonatomic)NSString *_defaultImageStr;
 
+@property(strong,nonatomic)UIView *_footView;
+
+@property(strong,nonatomic)UIScrollView *_colorEyeScrollView;
+
 @end

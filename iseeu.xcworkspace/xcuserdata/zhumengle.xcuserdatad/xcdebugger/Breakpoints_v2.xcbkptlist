@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/ViewController.m"
-            timestampString = "442423145.020843"
+            timestampString = "442510504.887614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518">
+            startingLineNumber = "524"
+            endingLineNumber = "524">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1566,11 +1566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "986"
-            endingLineNumber = "986"
+            startingLineNumber = "850"
+            endingLineNumber = "850"
             landmarkName = "-longAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1598,11 +1598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1222"
-            endingLineNumber = "1222"
+            startingLineNumber = "1086"
+            endingLineNumber = "1086"
             landmarkName = "-markAfterFaceDetect:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1614,11 +1614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "664"
+            endingLineNumber = "664"
             landmarkName = "-drawRect"
             landmarkType = "5">
          </BreakpointContent>
@@ -1630,11 +1630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
             landmarkName = "-drawRect"
             landmarkType = "5">
          </BreakpointContent>
@@ -1646,11 +1646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "571"
-            endingLineNumber = "571"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
             landmarkName = "-drawRect"
             landmarkType = "5">
          </BreakpointContent>
@@ -1662,11 +1662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "968"
-            endingLineNumber = "968"
+            startingLineNumber = "832"
+            endingLineNumber = "832"
             landmarkName = "-longAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1678,11 +1678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
             landmarkName = "-imageEyeChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1694,11 +1694,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442514066.85487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1710,11 +1710,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442514066.85487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1726,11 +1726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515480.185517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1543"
-            endingLineNumber = "1543"
+            startingLineNumber = "1677"
+            endingLineNumber = "1677"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1742,11 +1742,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1504"
-            endingLineNumber = "1504"
+            startingLineNumber = "1577"
+            endingLineNumber = "1577"
             landmarkName = "-getPhoto:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1758,11 +1758,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515344.749237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1484"
-            endingLineNumber = "1484"
+            startingLineNumber = "1557"
+            endingLineNumber = "1557"
             landmarkName = "-getPhoto:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1774,11 +1774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442515480.185517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1538"
-            endingLineNumber = "1538"
+            startingLineNumber = "1672"
+            endingLineNumber = "1672"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1790,11 +1790,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442514066.85487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1806,11 +1806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442514066.85487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "-scaleImage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1822,11 +1822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iseeu/EyeColorViewController.m"
-            timestampString = "442421913.668361"
+            timestampString = "442514066.85487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1860,6 +1860,38 @@
             startingLineNumber = "201"
             endingLineNumber = "201"
             landmarkName = "-loginAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iseeu/EyeColorViewController.m"
+            timestampString = "442514066.85487"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "-changeEyeView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iseeu/EyeColorViewController.m"
+            timestampString = "442515344.749237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1302"
+            endingLineNumber = "1302"
+            landmarkName = "-addEyeImageView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
