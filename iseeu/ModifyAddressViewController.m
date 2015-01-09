@@ -152,7 +152,7 @@
     
     [_addressField setBorderStyle:UITextBorderStyleNone];
     
-    _addressField.placeholder = @"省事";
+    _addressField.placeholder = @"省市";
     
     _addressField.delegate = self;
     

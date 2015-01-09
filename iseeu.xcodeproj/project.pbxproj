@@ -36,6 +36,7 @@
 		283402EA1A237AB100313035 /* ClassificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283402E91A237AB100313035 /* ClassificationModel.m */; };
 		2854864F1A387096000B598A /* MarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2854864E1A387096000B598A /* MarketViewController.m */; };
 		285486521A388DCE000B598A /* ScroeMarketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 285486511A388DCE000B598A /* ScroeMarketViewController.m */; };
+		2856CC0E1A604B6C000F3E57 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2856CC0D1A604B6C000F3E57 /* FeedBackViewController.m */; };
 		285CF7731A2CB4010071F8AC /* ValidataLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 285CF7721A2CB4010071F8AC /* ValidataLogin.m */; };
 		2873AFD41A35C96300169D60 /* CartActionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 2873AFD31A35C96300169D60 /* CartActionDetail.m */; };
 		2873AFD71A35DAF800169D60 /* CartDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2873AFD61A35DAF800169D60 /* CartDetailViewController.m */; };
@@ -336,6 +337,9 @@
 		2854864E1A387096000B598A /* MarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketViewController.m; sourceTree = "<group>"; };
 		285486501A388DCE000B598A /* ScroeMarketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScroeMarketViewController.h; sourceTree = "<group>"; };
 		285486511A388DCE000B598A /* ScroeMarketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScroeMarketViewController.m; sourceTree = "<group>"; };
+		2856CC0C1A604B6C000F3E57 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		2856CC0D1A604B6C000F3E57 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		2856CC0F1A60577F000F3E57 /* GoodsToCartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsToCartDelegate.h; sourceTree = "<group>"; };
 		285CF7711A2CB4010071F8AC /* ValidataLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidataLogin.h; sourceTree = "<group>"; };
 		285CF7721A2CB4010071F8AC /* ValidataLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidataLogin.m; sourceTree = "<group>"; };
 		2873AFD21A35C96300169D60 /* CartActionDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartActionDetail.h; sourceTree = "<group>"; };
@@ -644,6 +648,8 @@
 				28D19B0C1A5ED9AB00DCFCB0 /* AboutAppViewController.m */,
 				28D19B0E1A5EDBFA00DCFCB0 /* MoreViewController.h */,
 				28D19B0F1A5EDBFA00DCFCB0 /* MoreViewController.m */,
+				2856CC0C1A604B6C000F3E57 /* FeedBackViewController.h */,
+				2856CC0D1A604B6C000F3E57 /* FeedBackViewController.m */,
 			);
 			name = userInfoDetail;
 			sourceTree = "<group>";
@@ -1068,6 +1074,7 @@
 				28E026631A3D314D0015843E /* ScoreMarketDelegate.h */,
 				28E026641A3D32ED0015843E /* ScoreCellModelDelegate.h */,
 				28A4414A1A3D804D00ACDE2C /* FootPushViewDelegate.h */,
+				2856CC0F1A60577F000F3E57 /* GoodsToCartDelegate.h */,
 			);
 			name = delegate;
 			sourceTree = "<group>";
@@ -1470,6 +1477,7 @@
 				2873AFD41A35C96300169D60 /* CartActionDetail.m in Sources */,
 				28A441501A3DCE2300ACDE2C /* EyeView.m in Sources */,
 				28BA92EB1A218E18004FEAE3 /* RightViewModel.m in Sources */,
+				2856CC0E1A604B6C000F3E57 /* FeedBackViewController.m in Sources */,
 				2830D3CA1A17A7740062D7F1 /* SpecialSellingTopView.m in Sources */,
 				28DE0C001A29BEAB0072F2CC /* UserInfoViewController.m in Sources */,
 				2811B1BF1A344DB9001D1F9D /* ModifyAddressViewController.m in Sources */,

@@ -116,7 +116,7 @@
     
     [_mainScrollView setBackgroundColor:[UIColor whiteColor]];
     
-    [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width*4, _mainScrollView.frame.size.height)];
+    [_mainScrollView setContentSize:CGSizeMake(self.view.frame.size.width*3, _mainScrollView.frame.size.height)];
     
     [_mainScrollView setPagingEnabled:YES];
     

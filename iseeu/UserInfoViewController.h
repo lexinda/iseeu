@@ -44,6 +44,8 @@
 
 #import "MoreViewController.h"
 
+#import "FeedBackViewController.h"
+
 @interface UserInfoViewController : UIViewController<UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,FootPushViewDelegate>
 
 @property(strong,nonatomic)UITableView *_aboutTableView;
@@ -54,7 +56,7 @@
 
 @property(strong,nonatomic)NSString *_uid;
 
-@property(strong,nonatomic)UIButton *_userPhoto;
+@property(strong,nonatomic)UIImageView *_userPhoto;
 
 @property(strong,nonatomic)UILabel *_userNameLabel;
 

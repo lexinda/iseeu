@@ -12,11 +12,19 @@
 
 @synthesize _price;
 
+@synthesize _goodsToCartDelegate;
+
 -(void)drawRect:(CGRect)rect{
     
     UIImageView *getCartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, 50.0)];
     
     [getCartImageView setImage:[UIImage imageNamed:@"home_shopping"]];
+    
+    getCartImageView.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonPress)];
+    
+    [getCartImageView addGestureRecognizer:singleTap1];
     
     [self addSubview:getCartImageView];
 
@@ -44,6 +52,12 @@
     
     [self addSubview:goShopping];
     
+}
+
+-(void)buttonPress{
+    
+    [_goodsToCartDelegate pushCartView];
+
 }
 
 @end

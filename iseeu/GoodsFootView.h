@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GoodsToCartDelegate.h"
+
 @interface GoodsFootView : UIView
 
 @property(strong,nonatomic)NSString *_price;
+
+@property(strong,nonatomic)id<GoodsToCartDelegate> _goodsToCartDelegate;
 
 @end

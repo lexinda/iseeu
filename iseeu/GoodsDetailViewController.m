@@ -30,6 +30,8 @@
 
 @synthesize _pickerViewData;
 
+@synthesize _cartDetail;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -110,11 +112,11 @@
         
         NSLog(@"%@",dictionary);
         
-        CartDetail *cartDetail = [CartDetail getCartDetail:dictionary];
+        _cartDetail = [CartDetail getCartDetail:dictionary];
         
         UIImageView *goodsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 180.0)];
         
-        NSURL *goodsImage = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,cartDetail.pic2]];
+        NSURL *goodsImage = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,_cartDetail.pic2]];
         
         [goodsImageView sd_setImageWithURL:goodsImage placeholderImage:[UIImage imageNamed:@"goodsImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             NSLog(@"加载goodsImage!");
@@ -126,11 +128,11 @@
         
         [priceLabel setFont:[UIFont systemFontOfSize:15]];
         
-        [priceLabel setText:[NSString stringWithFormat:@"￥%@",cartDetail.price_xiaoshou]];
+        [priceLabel setText:[NSString stringWithFormat:@"￥%@",_cartDetail.price_xiaoshou]];
         
         [_mainScrollView addSubview:priceLabel];
         
-        NSString *sellShuText = [NSString stringWithFormat:@"已有%@人购买",cartDetail.shu];
+        NSString *sellShuText = [NSString stringWithFormat:@"已有%@人购买",_cartDetail.shu];
         
         NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:15]};
         
@@ -143,6 +145,8 @@
         [cartButton setFrame:CGRectMake(_mainScrollView.frame.size.width-cartAndShuWidth-10.0, priceLabel.frame.origin.y-8.0, 30.0, 30.0)];
         
         [cartButton setBackgroundImage:[UIImage imageNamed:@"home_shopping"] forState:UIControlStateNormal];
+        
+        [cartButton addTarget:self action:@selector(pushCartView) forControlEvents:UIControlEventTouchUpInside];
         
         [_mainScrollView addSubview:cartButton];
         
@@ -457,7 +461,7 @@
         
         UILabel *titleLabelInfo = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width, titleLabel.frame.origin.y, footContentView.frame.size.width-titleLabel.frame.size.width, 20.0)];
         
-        [titleLabelInfo setText:cartDetail.titleName];
+        [titleLabelInfo setText:_cartDetail.titleName];
         
         [footContentView addSubview:titleLabelInfo];
         
@@ -485,7 +489,7 @@
         
         UILabel *zhijingLabelInfo = [[UILabel alloc] initWithFrame:CGRectMake(zhijingLabel.frame.origin.x+zhijingLabel.frame.size.width, zhijingLabel.frame.origin.y, footContentView.frame.size.width-zhijingLabel.frame.size.width, 20.0)];
         
-        [zhijingLabelInfo setText:cartDetail.zhijin_id];
+        [zhijingLabelInfo setText:_cartDetail.zhijin_id];
         
         [footContentView addSubview:zhijingLabelInfo];
         
@@ -499,7 +503,7 @@
         
         UILabel *fenLabelInfo = [[UILabel alloc] initWithFrame:CGRectMake(fenLabel.frame.origin.x+fenLabel.frame.size.width, fenLabel.frame.origin.y, footContentView.frame.size.width-fenLabel.frame.size.width, 20.0)];
         
-        [fenLabelInfo setText:cartDetail.fen];
+        [fenLabelInfo setText:_cartDetail.fen];
         
         [footContentView addSubview:fenLabelInfo];
         
@@ -513,7 +517,7 @@
         
         UILabel *hangLabelInfo = [[UILabel alloc] initWithFrame:CGRectMake(hangLabel.frame.origin.x+hangLabel.frame.size.width, hangLabel.frame.origin.y, footContentView.frame.size.width-hangLabel.frame.size.width, 20.0)];
         
-        [hangLabelInfo setText:cartDetail.hang_id];
+        [hangLabelInfo setText:_cartDetail.hang_id];
         
         [footContentView addSubview:hangLabelInfo];
         
@@ -523,7 +527,7 @@
         
         [footDetailView setTag:805];
         
-        NSURL *goodsDetailImage = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,cartDetail.pic3]];
+        NSURL *goodsDetailImage = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",SERVER_URL,_cartDetail.pic3]];
         
         [footDetailView sd_setImageWithURL:goodsDetailImage placeholderImage:[UIImage imageNamed:@"goodsDetailImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             NSLog(@"加载图片!");
@@ -537,7 +541,9 @@
         
         [goodsFootView setTag:806];
         
-        [goodsFootView set_price:cartDetail.price_xiaoshou];
+        [goodsFootView set_goodsToCartDelegate:self];
+        
+        [goodsFootView set_price:_cartDetail.price_xiaoshou];
         
         [goodsFootView setBackgroundColor:[UIColor clearColor]];
         
@@ -662,6 +668,39 @@
     
     NSLog(@"%li",(long)button.tag);
 
+}
+
+-(void)pushCartView{
+    
+    //    personal_infobalack.png
+    //
+    //    try1111.png
+    //
+    //    dialg11.png
+    
+    CartActionDetail *cartActionDetail = [[CartActionDetail alloc] init];
+    
+    FMDatabase *db = [CartActionDetail getDb];
+    
+    NSDictionary *dictionary = @{@"id":_cartDetail.id,@"title":_cartDetail.titleName,@"number":@"1",@"price":_cartDetail.price_xiaoshou,@"pic":_cartDetail.pic2};
+    
+    [cartActionDetail insertCartRow:db withDictionary:dictionary];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"添加购物车成功" delegate:self cancelButtonTitle:@"继续购物" otherButtonTitles:@"进入购物车", nil];
+    
+    [alertView show];
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        
+        CartDetailViewController *cartDetailViewController = [[CartDetailViewController alloc] init];
+        
+        [self.navigationController pushViewController:cartDetailViewController animated:YES];
+    }
+    
 }
 
 /*

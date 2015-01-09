@@ -87,13 +87,15 @@
         
         [scrollView addSubview:topView];
         
-        _userPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _userPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];
         
-        [_userPhoto setFrame:CGRectMake(10.0, 10.0, 100.0, 100.0)];
+        [_userPhoto setImage:[UIImage imageNamed:@"personal"]];
         
-        [_userPhoto setBackgroundImage:[UIImage imageNamed:@"personal"] forState:UIControlStateNormal];
+        _userPhoto.userInteractionEnabled = YES;
         
-        [_userPhoto addTarget:self action:@selector(showPhotoOptions) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPhotoOptions)];
+        
+        [_userPhoto addGestureRecognizer:singleTap1];
         
         [scrollView addSubview:_userPhoto];
         
@@ -233,7 +235,7 @@
         
     }
     
-    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-49.0, self.view.frame.size.width, 49.0)];
+    FootView *footView = [[FootView alloc] initWithFrame:CGRectMake(0.0, [[UIScreen mainScreen] bounds].size.height-49.0-64.0f, self.view.frame.size.width, 49.0)];
     
     [footView set_activeView:5];
     
@@ -279,7 +281,11 @@
         
         if (image != nil) {
             
-            [_userPhoto setBackgroundImage:image forState:UIControlStateNormal];
+            _userPhoto.image = image;
+            
+            [_userPhoto.layer setCornerRadius:CGRectGetHeight([_userPhoto bounds]) / 2];  //修改半径，实现头像的圆形化
+            
+            _userPhoto.layer.masksToBounds = YES;
             
         }
         
@@ -327,6 +333,20 @@
     
     if (buttonIndex == 0) {
         
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+        [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+        controller.mediaTypes = mediaTypes;
+        controller.delegate = self;
+        [self presentViewController:controller
+                           animated:YES
+                         completion:^(void){
+                             NSLog(@"Picker View Controller is presented");
+                         }];
+        
+    }else{
+        
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
@@ -340,6 +360,7 @@
         }];
         
         [self.view addSubview:picker.view];
+    
     }
     
 }
@@ -373,15 +394,41 @@
         
         [self showAlert:@"上传成功！"];
         
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:_touImage]];
+        NSString *userUrl = [NSString stringWithFormat:@"%@/index.php/user/index",SERVER_URL];
         
-        UIImage *image = [UIImage imageWithData:imageData];
+        NSDictionary *params = @{@"uid":_uid};
         
-        if (image != nil) {
+        [manager POST:userUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            [_userPhoto setBackgroundImage:image forState:UIControlStateNormal];
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
             
-        }
+            NSDictionary *data = [dictionary objectForKey:@"xin"];
+            
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",SERVER_URL,[data objectForKey:@"tou"]]]];
+            
+            _touImage = [NSString stringWithFormat:@"%@/%@",SERVER_URL,_userInfo.tou];
+            
+            UIImage *image = [UIImage imageWithData:imageData];
+            
+            if (image != nil) {
+                
+                _userPhoto.image = image;
+                
+                [_userPhoto.layer setCornerRadius:CGRectGetHeight([_userPhoto bounds]) / 2];  //修改半径，实现头像的圆形化
+                
+                _userPhoto.layer.masksToBounds = YES;
+                
+            }
+
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self showAlert:@"上传失败！"];
+            
+            NSLog(@"error");
+            
+        }];
+        
         
         NSLog(@"success%@",responseString);
         
@@ -398,12 +445,64 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         NSLog(@"完成图片库");
     }];
-    UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];//获取编辑后的照片
+//    UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];//获取编辑后的照片
+    
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    NSLog(@"%f,%f",image.size.height,image.size.width);
+    
+//    UIImage *smallImage = [self thumbnailWithImageWithoutScale:image size:CGSizeMake(100, 100)];
+    
+    UIImage *smallImage = [self scaleFromImage:image toSize:CGSizeMake(100, 100)];
+    
+    NSLog(@"%f,%f",smallImage.size.height,smallImage.size.width);
     
     //UIImage *image1=[info objectForKey:UIImagePickerControllerOriginalImage];//获取未编辑的照片
     
-    [self performSelector:@selector(saveImage:)withObject:image afterDelay:0.5];//延迟0.5秒获取照片
+    [self performSelector:@selector(saveImage:)withObject:smallImage afterDelay:0.5];//延迟0.5秒获取照片
     
+}
+
+- (UIImage *) scaleFromImage: (UIImage *) image toSize: (CGSize) size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+//2.保持原来的长宽比，生成一个缩略图
+- (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)asize
+{
+    UIImage *newimage;
+    if (nil == image) {
+        newimage = nil;
+    }
+    else{
+        CGSize oldsize = image.size;
+        CGRect rect;
+        if (asize.width/asize.height > oldsize.width/oldsize.height) {
+            rect.size.width = asize.height*oldsize.width/oldsize.height;
+            rect.size.height = asize.height;
+            rect.origin.x = (asize.width - rect.size.width)/2;
+            rect.origin.y = 0;
+        }
+        else{
+            rect.size.width = asize.width;
+            rect.size.height = asize.width*oldsize.height/oldsize.width;
+            rect.origin.x = 0;
+            rect.origin.y = (asize.height - rect.size.height)/2;
+        }
+        UIGraphicsBeginImageContext(asize);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+        UIRectFill(CGRectMake(0, 0, asize.width, asize.height));//clear background
+        [image drawInRect:rect];
+        newimage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return newimage;
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
@@ -483,6 +582,14 @@
         [modifyAddressViewController set_uid:_uid];
         
         [self.navigationController pushViewController:modifyAddressViewController animated:YES];
+        
+    }else if (indexPath.row ==3){
+        
+        FeedBackViewController *feedBackViewController = [[FeedBackViewController alloc] init];
+        
+        [feedBackViewController set_uid:_uid];
+        
+        [self.navigationController pushViewController:feedBackViewController animated:YES];
         
     }
     

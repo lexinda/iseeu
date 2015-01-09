@@ -20,7 +20,13 @@
 
 #import "GoodsFootView.h"
 
-@interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+#import "CartDetailViewController.h"
+
+#import "CartActionDetail.h"
+
+#import <FMDB/FMDB.h>
+
+@interface GoodsDetailViewController : UIViewController<MBProgressHUDDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIAlertViewDelegate,GoodsToCartDelegate>
 
 @property(strong,nonatomic)NSNumber *_sid;
 
@@ -37,5 +43,7 @@
 @property(strong,nonatomic)NSString *_rightEyeCount;
 
 @property(strong,nonatomic)NSArray *_pickerViewData;
+
+@property(strong,nonatomic)CartDetail *_cartDetail;
 
 @end

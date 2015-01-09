@@ -136,6 +136,8 @@
     
     self.passwordAgainField.delegate = self;
     
+    self.passwordField.secureTextEntry = YES;
+    
     self.passwordAgainField.autocorrectionType = UITextAutocorrectionTypeNo;
     
     self.passwordAgainField.autocapitalizationType = UITextAutocapitalizationTypeNone;
